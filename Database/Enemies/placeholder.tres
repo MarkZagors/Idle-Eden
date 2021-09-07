@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://Global/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://SPRITES/Characters/enemystickmanattacking.png" type="Texture" id=2]
+[ext_resource path="res://SPRITES/Characters/enemystickmanidle.png" type="Texture" id=3]
+[ext_resource path="res://Database/Abilities/bite.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+id = "NULL"
+spriteIdle = ExtResource( 3 )
+spriteAttacking = ExtResource( 2 )
+abilities = [ ExtResource( 4 ), ExtResource( 4 ) ]

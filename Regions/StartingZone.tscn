@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Regions/RegionEncounter.gd" type="Script" id=1]
+[ext_resource path="res://Database/Encounters/medium.tres" type="Resource" id=2]
+[ext_resource path="res://SPRITES/Backgrounds/world1.png" type="Texture" id=3]
+[ext_resource path="res://Database/Encounters/easy.tres" type="Resource" id=4]
+[ext_resource path="res://Database/Encounters/hard.tres" type="Resource" id=5]
+
+[node name="StartingZone" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="Sprite" parent="."]
+position = Vector2( 288.446, 545.103 )
+scale = Vector2( 3.26968, 3.26968 )
+texture = ExtResource( 3 )
+
+[node name="Battle" type="Button" parent="."]
+margin_left = 342.356
+margin_top = 144.792
+margin_right = 492.356
+margin_bottom = 277.792
+text = "Easy"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+encounter = ExtResource( 4 )
+
+[node name="Battle2" type="Button" parent="."]
+margin_left = 510.535
+margin_top = 380.243
+margin_right = 660.535
+margin_bottom = 513.243
+text = "Medium"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+encounter = ExtResource( 2 )
+
+[node name="Battle3" type="Button" parent="."]
+margin_left = 882.211
+margin_top = 250.745
+margin_right = 1032.21
+margin_bottom = 383.745
+text = "Hard"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+encounter = ExtResource( 5 )
+
+[connection signal="pressed" from="Battle" to="Battle" method="gotoEncounter"]
+[connection signal="pressed" from="Battle2" to="Battle2" method="gotoEncounter"]
+[connection signal="pressed" from="Battle3" to="Battle3" method="gotoEncounter"]

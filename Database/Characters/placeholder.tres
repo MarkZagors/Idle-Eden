@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://Global/Character.gd" type="Script" id=1]
+[ext_resource path="res://SPRITES/Characters/stickmanidle.png" type="Texture" id=2]
+[ext_resource path="res://SPRITES/Characters/stickmanattack.png" type="Texture" id=3]
+[ext_resource path="res://Database/Abilities/smack.tres" type="Resource" id=4]
+[ext_resource path="res://Database/Abilities/slash.tres" type="Resource" id=5]
+[ext_resource path="res://SPRITES/UI/CircleCharacterSelect.png" type="Texture" id=6]
+
+[resource]
+script = ExtResource( 1 )
+id = "NULL"
+nameShown = "Gamer"
+spriteFace = ExtResource( 6 )
+spriteIdle = ExtResource( 2 )
+spriteAttacking = ExtResource( 3 )
+abilities = [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ) ]
+abilityAll = [ ExtResource( 5 ), ExtResource( 4 ) ]
+inventory = [ null, null, null, null ]
+healthBase = 10
+strBase = 5
+dexBase = 0
+intBase = 0

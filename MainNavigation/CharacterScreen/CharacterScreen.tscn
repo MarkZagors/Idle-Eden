@@ -1,0 +1,223 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://SPRITES/Characters/stickmanidle.png" type="Texture" id=1]
+[ext_resource path="res://SPRITES/UI/CircleLevel.png" type="Texture" id=2]
+[ext_resource path="res://MainNavigation/CharacterScreen/CharacterScreen.gd" type="Script" id=3]
+[ext_resource path="res://SPRITES/UI/Backgroud_1.png" type="Texture" id=4]
+[ext_resource path="res://SPRITES/UI/CircleCharacterSelect.png" type="Texture" id=5]
+[ext_resource path="res://SPRITES/UI/ButtonSquare.png" type="Texture" id=6]
+[ext_resource path="res://SPRITES/UI/ButtonLong.png" type="Texture" id=7]
+[ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 8 )
+
+[node name="CharacterScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+Path_group_items = NodePath("Items")
+Path_group_abilities = NodePath("Abilities")
+Path_group_info = NodePath("Info")
+Path_group_buttons = NodePath("Buttons")
+Path_group_bg = NodePath("BG")
+Path_upperpoint = NodePath("UpperPoint")
+
+[node name="BG" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="TextureRect" parent="BG"]
+margin_right = 1280.0
+margin_bottom = 720.0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="CircleMain" type="TextureRect" parent="BG"]
+self_modulate = Color( 1, 1, 1, 0.490196 )
+margin_left = -689.028
+margin_top = -273.724
+margin_right = 542.972
+margin_bottom = 958.276
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CharacterSprite" type="TextureRect" parent="BG"]
+margin_left = 18.8979
+margin_right = 413.898
+margin_bottom = 720.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameLabel" type="Label" parent="BG"]
+margin_left = 524.0
+margin_top = 18.0
+margin_right = 1280.0
+margin_bottom = 115.0
+custom_fonts/font = SubResource( 1 )
+text = "Placeholder"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Items" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentItems" type="HBoxContainer" parent="Items"]
+margin_left = 523.522
+margin_top = 168.546
+margin_right = 563.522
+margin_bottom = 208.546
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemGrid" type="ScrollContainer" parent="Items"]
+visible = false
+margin_left = 526.553
+margin_top = 168.546
+margin_right = 1030.55
+margin_bottom = 706.546
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="Items/ItemGrid"]
+columns = 4
+
+[node name="Abilities" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentAbilities" type="HBoxContainer" parent="Abilities"]
+margin_left = 523.522
+margin_top = 315.38
+margin_right = 563.522
+margin_bottom = 355.38
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AbilityGrid" type="ScrollContainer" parent="Abilities"]
+visible = false
+margin_left = 526.553
+margin_top = 168.546
+margin_right = 1030.55
+margin_bottom = 706.546
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="Abilities/AbilityGrid"]
+columns = 4
+
+[node name="Buttons" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelRewardsButton" type="TextureButton" parent="Buttons"]
+margin_left = 511.0
+margin_top = 480.0
+margin_right = 1028.0
+margin_bottom = 562.0
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="StatsButton" type="TextureButton" parent="Buttons"]
+margin_left = 511.0
+margin_top = 581.0
+margin_right = 1028.0
+margin_bottom = 680.0
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="Level" type="TextureRect" parent="."]
+self_modulate = Color( 1, 0.988235, 0.729412, 1 )
+margin_left = 308.563
+margin_right = 517.563
+margin_bottom = 209.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpperPoint" type="Control" parent="."]
+margin_left = 523.522
+margin_top = 18.0
+margin_right = 563.522
+margin_bottom = 58.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="TextureButton" parent="."]
+margin_left = 1050.0
+margin_top = 480.0
+margin_right = 1250.0
+margin_bottom = 680.0
+texture_normal = ExtResource( 6 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Info" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AbilityNameLabel" type="Label" parent="Info"]
+visible = false
+margin_left = 19.0
+margin_top = 18.0
+margin_right = 384.0
+margin_bottom = 115.0
+text = "NAME"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AbilityDescription" type="RichTextLabel" parent="Info"]
+visible = false
+margin_left = 19.0
+margin_top = 209.0
+margin_right = 433.0
+margin_bottom = 720.0
+
+[node name="EquipButton" type="Button" parent="Info"]
+visible = false
+margin_left = 40.0
+margin_top = 562.0
+margin_right = 478.0
+margin_bottom = 677.0
+text = "Equip"
+
+[connection signal="pressed" from="BackButton" to="." method="backButton"]
+[connection signal="pressed" from="Info/EquipButton" to="." method="actionPressed"]

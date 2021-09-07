@@ -1,0 +1,40 @@
+[gd_scene format=2]
+
+[node name="Slot1" type="Button"]
+self_modulate = Color( 1, 1, 1, 0.145098 )
+margin_left = -0.449005
+margin_top = -0.140289
+margin_right = 113.551
+margin_bottom = 245.86
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 59.4798, 119.39 )
+scale = Vector2( 0.75, 0.75 )
+
+[node name="HealthBar" type="ColorRect" parent="."]
+visible = false
+margin_left = -38.7104
+margin_top = -87.2442
+margin_right = 161.29
+margin_bottom = -67.2442
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthTemp" type="ColorRect" parent="HealthBar"]
+margin_right = 200.0
+margin_bottom = 20.0
+color = Color( 0.976471, 0.501961, 0.188235, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthCurrent" type="ColorRect" parent="HealthBar"]
+margin_right = 200.0
+margin_bottom = 20.0
+color = Color( 0.537255, 0.972549, 0.0627451, 1 )

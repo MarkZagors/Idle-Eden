@@ -1,0 +1,170 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Combat/CharacterSlot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Combat/CombatManager.gd" type="Script" id=2]
+[ext_resource path="res://Combat/EnemySlot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Combat/PreBattleController.gd" type="Script" id=5]
+[ext_resource path="res://Combat/MidBattleController.gd" type="Script" id=6]
+[ext_resource path="res://Combat/EndBattleController.gd" type="Script" id=7]
+[ext_resource path="res://Combat/AttackingController.gd" type="Script" id=8]
+[ext_resource path="res://SPRITES/Backgrounds/bg1.png" type="Texture" id=9]
+
+[node name="Combat" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CombatManager" type="Node" parent="."]
+process_priority = -1
+script = ExtResource( 2 )
+Path_group_characters = NodePath("../Characters")
+Path_group_enemies = NodePath("../Enemies")
+
+[node name="PreBattleController" type="Node" parent="CombatManager"]
+script = ExtResource( 5 )
+Path_table_choosePlayer = NodePath("../../CanvasLayer/ChoosePlayer")
+Path_button_startFight = NodePath("../../StartFightButton")
+
+[node name="MidBattleController" type="Node" parent="CombatManager"]
+script = ExtResource( 6 )
+
+[node name="AttackingController" type="Node" parent="CombatManager/MidBattleController"]
+script = ExtResource( 8 )
+
+[node name="Timer" type="Timer" parent="CombatManager/MidBattleController/AttackingController"]
+
+[node name="EndBattleController" type="Node" parent="CombatManager"]
+script = ExtResource( 7 )
+Path_table_winScreen = NodePath("../../CanvasLayer/WinScreen")
+Path_table_loseScreen = NodePath("../../CanvasLayer/LoseScreen")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Slot1" parent="Enemies" instance=ExtResource( 4 )]
+margin_left = 849.689
+margin_top = 350.682
+margin_right = 958.689
+margin_bottom = 584.682
+
+[node name="Slot2" parent="Enemies" instance=ExtResource( 4 )]
+margin_left = 989.538
+margin_top = 270.163
+margin_right = 1098.54
+margin_bottom = 504.163
+
+[node name="Slot3" parent="Enemies" instance=ExtResource( 4 )]
+margin_left = 1117.73
+margin_top = 361.277
+margin_right = 1226.73
+margin_bottom = 595.277
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="Slot1" parent="Characters" instance=ExtResource( 1 )]
+margin_left = 371.423
+margin_top = 342.066
+margin_right = 485.423
+margin_bottom = 588.066
+
+[node name="Slot2" parent="Characters" instance=ExtResource( 1 )]
+margin_left = 225.217
+margin_top = 259.428
+margin_right = 339.217
+margin_bottom = 505.428
+
+[node name="Slot3" parent="Characters" instance=ExtResource( 1 )]
+margin_left = 92.7837
+margin_top = 360.077
+margin_right = 206.784
+margin_bottom = 606.077
+
+[node name="StartFightButton" type="Button" parent="."]
+visible = false
+margin_left = 93.0
+margin_top = 596.0
+margin_right = 1210.0
+margin_bottom = 697.0
+text = "START"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ChoosePlayer" type="ColorRect" parent="CanvasLayer"]
+visible = false
+margin_left = 65.0
+margin_top = 44.0
+margin_right = 1220.0
+margin_bottom = 665.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/ChoosePlayer"]
+margin_right = 1153.0
+margin_bottom = 76.0
+text = "CHOOSE FIGHTER"
+align = 1
+valign = 1
+
+[node name="Characters" type="GridContainer" parent="CanvasLayer/ChoosePlayer"]
+margin_left = 60.4603
+margin_top = 87.946
+margin_right = 1213.46
+margin_bottom = 627.946
+custom_constants/vseparation = 15
+custom_constants/hseparation = 15
+columns = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WinScreen" type="ColorRect" parent="CanvasLayer"]
+visible = false
+margin_left = 84.0
+margin_top = 66.0
+margin_right = 1211.0
+margin_bottom = 657.0
+color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/WinScreen"]
+margin_right = 1129.0
+margin_bottom = 127.0
+text = "WIN!"
+align = 1
+valign = 1
+
+[node name="LoseScreen" type="ColorRect" parent="CanvasLayer"]
+visible = false
+margin_left = 84.0
+margin_top = 66.0
+margin_right = 1211.0
+margin_bottom = 657.0
+color = Color( 0.447059, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/LoseScreen"]
+margin_right = 1129.0
+margin_bottom = 127.0
+text = "LOSE!"
+align = 1
+valign = 1
+
+[node name="Bg" type="Sprite" parent="."]
+modulate = Color( 0.956863, 0.956863, 0.956863, 1 )
+position = Vector2( 637.52, 352.778 )
+scale = Vector2( 0.758095, 0.758095 )
+z_index = -999
+texture = ExtResource( 9 )
+
+[connection signal="timeout" from="CombatManager/MidBattleController/AttackingController/Timer" to="CombatManager/MidBattleController/AttackingController" method="exitAttacking"]
+[connection signal="pressed" from="StartFightButton" to="CombatManager/PreBattleController" method="startBattle"]

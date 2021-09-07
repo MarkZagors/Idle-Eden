@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://MainNavigation/WorldMap.gd" type="Script" id=1]
+[ext_resource path="res://MainNavigation/UIMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SPRITES/Backgrounds/world1.png" type="Texture" id=3]
+
+[node name="WorldMap" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 505.076, 374.535 )
+scale = Vector2( 0.844435, 0.844435 )
+texture = ExtResource( 3 )
+
+[node name="SatrtingButton" type="Button" parent="."]
+modulate = Color( 0.960784, 0.960784, 0.960784, 0.6 )
+margin_left = 455.616
+margin_top = 212.175
+margin_right = 875.616
+margin_bottom = 351.175
+text = "STARTING ZONE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UIMap" parent="." instance=ExtResource( 2 )]
+
+[connection signal="pressed" from="SatrtingButton" to="." method="gotoStart"]
