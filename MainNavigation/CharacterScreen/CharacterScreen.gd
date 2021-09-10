@@ -82,6 +82,7 @@ func setupAbilities() -> void:
 
 func setupInfo() -> void:
 	group_bg.get_node("NameLabel").text = character.nameShown
+	group_bg.get_node("CharacterSprite").texture = character.spriteIdle
 
 func backButton() -> void:
 	match state:

@@ -53,9 +53,10 @@ __meta__ = {
 }
 
 [node name="CharacterSprite" type="TextureRect" parent="BG"]
-margin_left = 18.8979
-margin_right = 413.898
-margin_bottom = 720.0
+margin_left = -45.3242
+margin_top = -22.2487
+margin_right = 461.676
+margin_bottom = 871.751
 texture = ExtResource( 1 )
 expand = true
 __meta__ = {
