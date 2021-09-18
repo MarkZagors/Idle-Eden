@@ -6,6 +6,9 @@ const ITEM_TYPE_EQUIPPABLE = 1
 var characters = []
 var inventory = []
 
+var charactersAvailable = []
+var charactersBusy = []
+
 var transferCharacter : Character = null
 var transferEncounter : Encounter = null
 
@@ -16,7 +19,9 @@ signal inventory_restructure_remove
 func _ready():
 	var placeholder = load("res://Database/Characters/placeholder.tres")
 	characters.append(placeholder)
+	charactersAvailable.append(placeholder)
 	var item : Item = load("res://Database/Items/placeholder.tres")
+	addItem(item)
 	addItem(item)
 
 func addItem(item : Item) -> void:

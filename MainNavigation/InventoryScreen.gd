@@ -14,7 +14,11 @@ func _ready():
 func setupItems() -> void:
 	for i in range(len(inventory)):
 		var slot = slotObj.instance()
+		var ammount = inventory[i].ammount
 		slot.get_node("Sprite").texture = inventory[i].icon
+		if ammount > 1:
+			slot.get_node("Ammount").visible = true
+			slot.get_node("Ammount/Label").text = str(ammount)
 		slot.connect("pressed",self,"showInfo",[inventory[i]])
 		group_items.add_child(slot)
 

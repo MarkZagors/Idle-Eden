@@ -4,7 +4,7 @@ onready var GLOBAL = get_parent()
 export var Path_table_choosePlayer : NodePath
 onready var table_choosePlayer : ColorRect = get_node(Path_table_choosePlayer)
 export var Path_button_startFight: NodePath
-onready var button_startFight : Button = get_node(Path_button_startFight)
+onready var button_startFight : TextureButton = get_node(Path_button_startFight)
 
 onready var characterChooseButton : PackedScene = preload("res://Combat/CombatSlotChoose.tscn")
 
@@ -21,9 +21,13 @@ func setup_connections() -> void:
 		character.connect("pressed",self,"pressPlayerSlot",[character.get_index()])
 
 func setup_chooseButtons() -> void:
-	for character in Controller.characters:
+	for buttonRemove in table_choosePlayer.get_node("Characters").get_children():
+		buttonRemove.queue_free()
+	for character in Controller.charactersAvailable:
 		var button = characterChooseButton.instance()
-		button.get_node("AcceptButton").connect("pressed",self,"pressChooseCharacterSlot",[character])
+		button.connect("pressed",self,"pressChooseCharacterSlot",[character])
+		button.get_node("Icon").texture = character.spriteFace
+		button.get_node("Name").text = character.nameShown
 		table_choosePlayer.get_node("Characters").add_child(button)
 
 func setupEnemies() -> void:
@@ -51,7 +55,6 @@ func setupCharacter(index : int) -> void:
 		character.intCurrent += item.intBase
 	
 	character.healthCurrent = character.healthMax
-	pass
 
 func pressPlayerSlot(index : int) -> void:
 	table_choosePlayer.visible = true
@@ -65,6 +68,10 @@ func pressChooseCharacterSlot(character : Character) -> void:
 	
 	setupCharacter(index)
 	button_startFight.visible = true
+	
+	Controller.charactersAvailable.erase(character)
+	Controller.charactersBusy.append(character)
+	setup_chooseButtons()
 
 func startBattle() -> void:
 	GLOBAL.state = GLOBAL.FIGHTING
@@ -82,9 +89,17 @@ func startBattle() -> void:
 	for character in GLOBAL.group_characters.get_children():
 		character.disconnect("pressed",self,"pressPlayerSlot")
 		character.connect("pressed",midController,"pressPlayerSlot",[character.get_index()])
+	
+	for button in GLOBAL.group_characters.get_children():
+		button.self_modulate = Color(0.0,0.0,0.0,0.0)
 	midController.startBattle()
+
+func closeChoosePlayer():
+	table_choosePlayer.visible = false
 
 func clone(character : Character) -> Character:
 	var clonedChar : Character = character.duplicate()
 	clonedChar.abilities = [] + character.abilities
 	return clonedChar
+
+

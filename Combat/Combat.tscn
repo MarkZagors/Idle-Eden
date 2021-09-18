@@ -1,13 +1,54 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Combat/CharacterSlot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Combat/CombatManager.gd" type="Script" id=2]
+[ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Combat/EnemySlot.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Combat/PreBattleController.gd" type="Script" id=5]
 [ext_resource path="res://Combat/MidBattleController.gd" type="Script" id=6]
 [ext_resource path="res://Combat/EndBattleController.gd" type="Script" id=7]
 [ext_resource path="res://Combat/AttackingController.gd" type="Script" id=8]
 [ext_resource path="res://SPRITES/Backgrounds/bg1.png" type="Texture" id=9]
+[ext_resource path="res://SPRITES/UI/SlotNormal1.png" type="Texture" id=10]
+[ext_resource path="res://SPRITES/UI/SlotHoverl1.png" type="Texture" id=11]
+[ext_resource path="res://SPRITES/UI/ButtonLong1Hover.png" type="Texture" id=12]
+[ext_resource path="res://SPRITES/UI/ButtonLong1.png" type="Texture" id=13]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 50
+font_data = ExtResource( 3 )
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.496894, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 0.964706, 0.0980392, 1, 1, 1, 1, 0 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 30
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 24
+font_data = ExtResource( 3 )
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0, 0.52795, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.898438, 0.101776, 0.101776, 1, 1, 1, 1, 0 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
+font_data = ExtResource( 3 )
 
 [node name="Combat" type="Control"]
 anchor_right = 1.0
@@ -25,7 +66,7 @@ Path_group_enemies = NodePath("../Enemies")
 [node name="PreBattleController" type="Node" parent="CombatManager"]
 script = ExtResource( 5 )
 Path_table_choosePlayer = NodePath("../../CanvasLayer/ChoosePlayer")
-Path_button_startFight = NodePath("../../StartFightButton")
+Path_button_startFight = NodePath("../../CanvasLayer/StartFightButton")
 
 [node name="MidBattleController" type="Node" parent="CombatManager"]
 script = ExtResource( 6 )
@@ -39,6 +80,13 @@ script = ExtResource( 8 )
 script = ExtResource( 7 )
 Path_table_winScreen = NodePath("../../CanvasLayer/WinScreen")
 Path_table_loseScreen = NodePath("../../CanvasLayer/LoseScreen")
+
+[node name="Bg" type="Sprite" parent="."]
+modulate = Color( 0.956863, 0.956863, 0.956863, 1 )
+position = Vector2( 637.52, 352.778 )
+scale = Vector2( 0.758095, 0.758095 )
+z_index = -999
+texture = ExtResource( 9 )
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -63,59 +111,79 @@ margin_bottom = 595.277
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="Slot1" parent="Characters" instance=ExtResource( 1 )]
-margin_left = 371.423
-margin_top = 342.066
-margin_right = 485.423
-margin_bottom = 588.066
+margin_left = 438.29
+margin_top = 297.978
+margin_right = 568.29
+margin_bottom = 610.978
 
 [node name="Slot2" parent="Characters" instance=ExtResource( 1 )]
-margin_left = 225.217
-margin_top = 259.428
-margin_right = 339.217
-margin_bottom = 505.428
+margin_left = 277.0
+margin_top = 270.163
+margin_right = 407.0
+margin_bottom = 583.163
 
 [node name="Slot3" parent="Characters" instance=ExtResource( 1 )]
-margin_left = 92.7837
-margin_top = 360.077
-margin_right = 206.784
-margin_bottom = 606.077
+margin_left = 125.46
+margin_top = 317.978
+margin_right = 255.46
+margin_bottom = 630.978
 
-[node name="StartFightButton" type="Button" parent="."]
-visible = false
-margin_left = 93.0
-margin_top = 596.0
-margin_right = 1210.0
-margin_bottom = 697.0
-text = "START"
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ExitButton" type="TextureButton" parent="CanvasLayer"]
+margin_left = 25.373
+margin_top = 25.2911
+margin_right = 109.373
+margin_bottom = 109.291
+texture_normal = ExtResource( 10 )
+texture_hover = ExtResource( 11 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Label" type="Label" parent="CanvasLayer/ExitButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+text = "Exit"
+align = 1
+valign = 1
 
 [node name="ChoosePlayer" type="ColorRect" parent="CanvasLayer"]
 visible = false
-margin_left = 65.0
-margin_top = 44.0
-margin_right = 1220.0
-margin_bottom = 665.0
-color = Color( 0, 0, 0, 1 )
+margin_right = 1284.0
+margin_bottom = 720.0
+color = Color( 0.172549, 0.172549, 0.172549, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="CanvasLayer/ChoosePlayer"]
-margin_right = 1153.0
+margin_right = 1277.0
 margin_bottom = 76.0
+custom_fonts/font = SubResource( 2 )
 text = "CHOOSE FIGHTER"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Separator" type="ColorRect" parent="CanvasLayer/ChoosePlayer"]
+margin_top = 63.0
+margin_right = 1277.0
+margin_bottom = 72.0
+color = Color( 1, 0.992157, 0.545098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Characters" type="GridContainer" parent="CanvasLayer/ChoosePlayer"]
-margin_left = 60.4603
-margin_top = 87.946
-margin_right = 1213.46
-margin_bottom = 627.946
+margin_left = 25.0
+margin_top = 87.0
+margin_right = 1258.0
+margin_bottom = 697.0
 custom_constants/vseparation = 15
 custom_constants/hseparation = 15
 columns = 4
@@ -123,48 +191,145 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CloseButton" type="TextureButton" parent="CanvasLayer/ChoosePlayer"]
+margin_left = 1196.0
+margin_top = 25.2911
+margin_right = 1258.0
+margin_bottom = 87.2911
+texture_normal = ExtResource( 10 )
+texture_hover = ExtResource( 11 )
+expand = true
+
+[node name="Label" type="Label" parent="CanvasLayer/ChoosePlayer/CloseButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 3 )
+text = "x"
+align = 1
+valign = 1
+
 [node name="WinScreen" type="ColorRect" parent="CanvasLayer"]
 visible = false
-margin_left = 84.0
-margin_top = 66.0
-margin_right = 1211.0
-margin_bottom = 657.0
+margin_left = 599.0
+margin_right = 1284.0
+margin_bottom = 720.0
 color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/WinScreen"]
-margin_right = 1129.0
-margin_bottom = 127.0
-text = "WIN!"
+[node name="WinLabel" type="Label" parent="CanvasLayer/WinScreen"]
+margin_right = 678.0
+margin_bottom = 92.0
+custom_fonts/font = SubResource( 4 )
+text = "VICTORY!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Separator" type="Line2D" parent="CanvasLayer/WinScreen"]
+position = Vector2( 0, 82 )
+points = PoolVector2Array( 0, 0, 339.218, 0, 674.575, 0 )
+gradient = SubResource( 5 )
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/WinScreen"]
+margin_left = 2.0
+margin_top = 107.0
+margin_right = 681.0
+margin_bottom = 172.0
+custom_fonts/font = SubResource( 6 )
+text = "TIME:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="TextureButton" parent="CanvasLayer/WinScreen"]
+margin_left = 113.0
+margin_top = 583.163
+margin_right = 597.0
+margin_bottom = 690.163
+texture_normal = ExtResource( 13 )
+texture_hover = ExtResource( 12 )
+expand = true
+
+[node name="Label" type="Label" parent="CanvasLayer/WinScreen/ExitButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 7 )
+text = "EXIT"
 align = 1
 valign = 1
 
 [node name="LoseScreen" type="ColorRect" parent="CanvasLayer"]
 visible = false
-margin_left = 84.0
-margin_top = 66.0
-margin_right = 1211.0
-margin_bottom = 657.0
-color = Color( 0.447059, 0, 0, 1 )
+margin_right = 695.0
+margin_bottom = 720.0
+color = Color( 0.0784314, 0.0313726, 0.0313726, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/LoseScreen"]
-margin_right = 1129.0
-margin_bottom = 127.0
-text = "LOSE!"
+[node name="DefeatLabel" type="Label" parent="CanvasLayer/LoseScreen"]
+margin_right = 695.0
+margin_bottom = 92.0
+custom_fonts/font = SubResource( 4 )
+text = "DEFEAT"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Separator" type="Line2D" parent="CanvasLayer/LoseScreen"]
+position = Vector2( 0, 82 )
+points = PoolVector2Array( 0, 0, 343, 0, 690.43, 0 )
+gradient = SubResource( 8 )
+
+[node name="ExitButton" type="TextureButton" parent="CanvasLayer/LoseScreen"]
+margin_left = 109.373
+margin_top = 583.163
+margin_right = 593.373
+margin_bottom = 690.163
+texture_normal = ExtResource( 13 )
+texture_hover = ExtResource( 12 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/LoseScreen/ExitButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 7 )
+text = "EXIT"
 align = 1
 valign = 1
 
-[node name="Bg" type="Sprite" parent="."]
-modulate = Color( 0.956863, 0.956863, 0.956863, 1 )
-position = Vector2( 637.52, 352.778 )
-scale = Vector2( 0.758095, 0.758095 )
-z_index = -999
-texture = ExtResource( 9 )
+[node name="StartFightButton" type="TextureButton" parent="CanvasLayer"]
+visible = false
+margin_left = 93.0
+margin_top = 596.0
+margin_right = 1210.0
+margin_bottom = 697.0
+texture_normal = ExtResource( 13 )
+texture_hover = ExtResource( 12 )
+expand = true
+
+[node name="Label" type="Label" parent="CanvasLayer/StartFightButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 9 )
+text = "Start"
+align = 1
+valign = 1
 
 [connection signal="timeout" from="CombatManager/MidBattleController/AttackingController/Timer" to="CombatManager/MidBattleController/AttackingController" method="exitAttacking"]
-[connection signal="pressed" from="StartFightButton" to="CombatManager/PreBattleController" method="startBattle"]
+[connection signal="pressed" from="CanvasLayer/ExitButton" to="CombatManager" method="exit"]
+[connection signal="pressed" from="CanvasLayer/ChoosePlayer/CloseButton" to="CombatManager/PreBattleController" method="closeChoosePlayer"]
+[connection signal="pressed" from="CanvasLayer/WinScreen/ExitButton" to="CombatManager" method="exit"]
+[connection signal="pressed" from="CanvasLayer/LoseScreen/ExitButton" to="CombatManager" method="exit"]
+[connection signal="pressed" from="CanvasLayer/StartFightButton" to="CombatManager/PreBattleController" method="startBattle"]

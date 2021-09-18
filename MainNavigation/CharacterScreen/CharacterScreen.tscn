@@ -1,16 +1,137 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://SPRITES/Characters/stickmanidle.png" type="Texture" id=1]
-[ext_resource path="res://SPRITES/UI/CircleLevel.png" type="Texture" id=2]
+[ext_resource path="res://SPRITES/zMisc/Circle500px.png" type="Texture" id=2]
 [ext_resource path="res://MainNavigation/CharacterScreen/CharacterScreen.gd" type="Script" id=3]
-[ext_resource path="res://SPRITES/UI/Backgroud_1.png" type="Texture" id=4]
-[ext_resource path="res://SPRITES/UI/CircleCharacterSelect.png" type="Texture" id=5]
-[ext_resource path="res://SPRITES/UI/ButtonSquare.png" type="Texture" id=6]
-[ext_resource path="res://SPRITES/UI/ButtonLong.png" type="Texture" id=7]
+[ext_resource path="res://SPRITES/zMisc/icon.png" type="Texture" id=4]
+[ext_resource path="res://MainNavigation/CharacterScreen/HexagonsSpinny.gd" type="Script" id=5]
+[ext_resource path="res://SPRITES/UI/SlotHoverl1.png" type="Texture" id=6]
+[ext_resource path="res://SPRITES/UI/ButtonLong1.png" type="Texture" id=7]
 [ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://SPRITES/Characters/bgtest.png" type="Texture" id=9]
+[ext_resource path="res://SPRITES/UI/SlotNormal1.png" type="Texture" id=10]
+[ext_resource path="res://SPRITES/UI/ButtonLong1Hover.png" type="Texture" id=11]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 color : hint_color = vec4(0.0);
+
+void fragment() {
+	float x = (-UV.x+1.0);
+	COLOR = vec4(x*color.rgb,1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/color = Color( 0.247059, 0.768627, 0.278431, 0 )
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform vec4 color : hint_color = vec4(0.0);
+
+float sdHexagon( in vec2 p, in float r )
+{
+    const vec3 k = vec3(-0.866025404,0.5,0.577350269);
+    p = abs(p);
+    p -= 2.0*min(dot(k.xy,p),0.0)*k.xy;
+    p -= vec2(clamp(p.x, -k.z*r, k.z*r), r);
+    return length(p)*sign(p.y);
+}
+
+void fragment() {
+	float x = abs(sdHexagon(UV-vec2(0.5),0.25));
+	x = clamp(0.001/x,0.0,1.0);
+	vec2 uv = UV + 0.8;
+	COLOR = vec4(x*uv.x*color.r,x*uv.y*color.g,x*color.b,x);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform vec4 color : hint_color = vec4(0.0);
+
+float sdHexagon( in vec2 p, in float r )
+{
+    const vec3 k = vec3(-0.866025404,0.5,0.577350269);
+    p = abs(p);
+    p -= 2.0*min(dot(k.xy,p),0.0)*k.xy;
+    p -= vec2(clamp(p.x, -k.z*r, k.z*r), r);
+    return length(p)*sign(p.y);
+}
+
+void fragment() {
+	float x = abs(sdHexagon(UV-vec2(0.5),0.18));
+	x = clamp(0.001/x,0.0,1.0);
+	COLOR = vec4(x*1.2*color.rgb,x);
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform sampler2D color;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE,UV);
+	//tex.rgb *= texture(color,UV*1.5+vec2(sin(TIME),cos(TIME))*0.1).rgb;
+	tex.rgb *= texture(color,fract(UV*1.5+TIME*0.1)).rgb; 
+	//tex = vec4(step())
+	 
+	COLOR = vec4(tex);
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+shader_param/color = ExtResource( 9 )
+
+[sub_resource type="Shader" id=9]
+code = "shader_type canvas_item;
+
+void fragment() {
+	COLOR = vec4(UV.y)+0.5;
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
+
+[sub_resource type="DynamicFont" id=11]
 size = 50
+font_data = ExtResource( 8 )
+
+[sub_resource type="Shader" id=12]
+code = "shader_type canvas_item;
+
+void fragment() {
+	COLOR = vec4(vec3(0.0),1.0-UV.x);
+}"
+
+[sub_resource type="ShaderMaterial" id=13]
+shader = SubResource( 12 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 42
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 24
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 32
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 24
 font_data = ExtResource( 8 )
 
 [node name="CharacterScreen" type="Control"]
@@ -34,41 +155,81 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BG" type="TextureRect" parent="BG"]
-margin_right = 1280.0
-margin_bottom = 720.0
-texture = ExtResource( 4 )
-expand = true
-
-[node name="CircleMain" type="TextureRect" parent="BG"]
-self_modulate = Color( 1, 1, 1, 0.490196 )
-margin_left = -689.028
-margin_top = -273.724
-margin_right = 542.972
-margin_bottom = 958.276
-texture = ExtResource( 5 )
-expand = true
+[node name="BGColor" type="ColorRect" parent="BG"]
+material = SubResource( 2 )
+margin_left = -203.597
+margin_top = -101.708
+margin_right = 1657.4
+margin_bottom = 944.292
+color = Color( 0.470588, 0.235294, 0.196078, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Hexagons" type="Node2D" parent="BG"]
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+SPEED_HEX_BIG = 0.247
+SPEED_HEX_2 = 0.077
+SPEED_HEX_3 = 0.073
+colorHex = Color( 0.164706, 0.992157, 0.219608, 1 )
+colorBG = Color( 0.172549, 0.294118, 0.192157, 1 )
+
+[node name="Hex1" type="Sprite" parent="BG/Hexagons"]
+material = SubResource( 4 )
+position = Vector2( 246.014, 401.303 )
+scale = Vector2( 32.1375, 32.1375 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Hex2" type="Sprite" parent="BG/Hexagons"]
+material = SubResource( 6 )
+position = Vector2( 246.014, 401.303 )
+scale = Vector2( 29.8849, 29.8849 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Hex3" type="Sprite" parent="BG/Hexagons"]
+material = SubResource( 6 )
+position = Vector2( 246.014, 401.303 )
+scale = Vector2( 39.9774, 39.9774 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="CharacterSprite" type="TextureRect" parent="BG"]
-margin_left = -45.3242
-margin_top = -22.2487
-margin_right = 461.676
-margin_bottom = 871.751
+material = SubResource( 8 )
+margin_left = -18.7621
+margin_top = 16.6055
+margin_right = 465.238
+margin_bottom = 825.606
 texture = ExtResource( 1 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" type="ColorRect" parent="BG"]
+self_modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 10 )
+margin_left = 441.0
+margin_top = 19.0
+margin_right = 1756.0
+margin_bottom = 115.0
+
 [node name="NameLabel" type="Label" parent="BG"]
 margin_left = 524.0
 margin_top = 18.0
 margin_right = 1280.0
 margin_bottom = 115.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 11 )
 text = "Placeholder"
 valign = 1
 __meta__ = {
@@ -141,7 +302,7 @@ __meta__ = {
 }
 
 [node name="LevelRewardsButton" type="TextureButton" parent="Buttons"]
-margin_left = 511.0
+margin_left = 524.0
 margin_top = 480.0
 margin_right = 1028.0
 margin_bottom = 562.0
@@ -149,23 +310,65 @@ texture_normal = ExtResource( 7 )
 expand = true
 
 [node name="StatsButton" type="TextureButton" parent="Buttons"]
-margin_left = 511.0
+margin_left = 524.0
 margin_top = 581.0
 margin_right = 1028.0
 margin_bottom = 680.0
 texture_normal = ExtResource( 7 )
 expand = true
 
-[node name="Level" type="TextureRect" parent="."]
-self_modulate = Color( 1, 0.988235, 0.729412, 1 )
-margin_left = 308.563
-margin_right = 517.563
-margin_bottom = 209.0
-texture = ExtResource( 2 )
-expand = true
+[node name="Info" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="InfoBG" type="ColorRect" parent="Info"]
+visible = false
+material = SubResource( 13 )
+margin_right = 498.0
+margin_bottom = 720.0
+
+[node name="AbilityNameLabel" type="Label" parent="Info"]
+visible = false
+margin_left = 19.0
+margin_top = 18.0
+margin_right = 321.0
+margin_bottom = 209.0
+custom_fonts/font = SubResource( 14 )
+text = "bite"
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AbilityDescription" type="RichTextLabel" parent="Info"]
+visible = false
+margin_left = 19.0
+margin_top = 209.0
+margin_right = 433.0
+margin_bottom = 720.0
+custom_fonts/normal_font = SubResource( 15 )
+
+[node name="EquipButton" type="TextureButton" parent="Info"]
+visible = false
+margin_left = 40.0
+margin_top = 562.0
+margin_right = 478.0
+margin_bottom = 677.0
+texture_normal = ExtResource( 7 )
+texture_hover = ExtResource( 11 )
+expand = true
+
+[node name="Label" type="Label" parent="Info/EquipButton"]
+margin_right = 438.0
+margin_bottom = 115.0
+custom_fonts/font = SubResource( 16 )
+text = "EQUIP"
+align = 1
+valign = 1
 
 [node name="UpperPoint" type="Control" parent="."]
 margin_left = 523.522
@@ -181,44 +384,31 @@ margin_left = 1050.0
 margin_top = 480.0
 margin_right = 1250.0
 margin_bottom = 680.0
-texture_normal = ExtResource( 6 )
+texture_normal = ExtResource( 10 )
+texture_hover = ExtResource( 6 )
+expand = true
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Info" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AbilityNameLabel" type="Label" parent="Info"]
-visible = false
-margin_left = 19.0
-margin_top = 18.0
-margin_right = 384.0
-margin_bottom = 115.0
-text = "NAME"
+[node name="Label" type="Label" parent="BackButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 17 )
+text = "Back"
+align = 1
 valign = 1
+
+[node name="Level" type="TextureRect" parent="."]
+self_modulate = Color( 1, 0.988235, 0.729412, 1 )
+margin_left = 308.563
+margin_right = 517.563
+margin_bottom = 209.0
+texture = ExtResource( 2 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AbilityDescription" type="RichTextLabel" parent="Info"]
-visible = false
-margin_left = 19.0
-margin_top = 209.0
-margin_right = 433.0
-margin_bottom = 720.0
-
-[node name="EquipButton" type="Button" parent="Info"]
-visible = false
-margin_left = 40.0
-margin_top = 562.0
-margin_right = 478.0
-margin_bottom = 677.0
-text = "Equip"
-
-[connection signal="pressed" from="BackButton" to="." method="backButton"]
 [connection signal="pressed" from="Info/EquipButton" to="." method="actionPressed"]
+[connection signal="pressed" from="BackButton" to="." method="backButton"]

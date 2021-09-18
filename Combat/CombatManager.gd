@@ -22,3 +22,10 @@ func _enter_tree():
 	group_enemies = get_node(Path_group_enemies)
 	group_characters = get_node(Path_group_characters)
 
+func exit():
+	var _err = get_tree().change_scene("res://MainNavigation/WorldMap.tscn")
+	for c in characters:
+		if c != null:
+			Controller.charactersAvailable.append(c)
+			Controller.charactersBusy.erase(c)
+	pass

@@ -1,7 +1,33 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://MainNavigation/CharacterChooseScreen.gd" type="Script" id=1]
 [ext_resource path="res://MainNavigation/UIMainButtons.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SPRITES/zMisc/noise.tres" type="Texture" id=3]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform sampler2D noiseTex;
+
+uniform int numOctaves = 1;
+
+float noise ( in vec2 uv )
+{
+    return texture(noiseTex,uv).x;
+}
+
+void fragment() {
+	float r = noise(UV+noise(UV+fract(TIME*-0.1))+fract(TIME*0.05))*0.1;
+	float g = noise(UV+noise(UV+fract(TIME*-0.15))+fract(TIME*0.01))*0.1;
+	float b = noise(UV+noise(UV+fract(TIME*-0.11))+fract(TIME*0.08))*0.1;
+	COLOR = vec4(r+0.1,g+0.1,b+0.1,1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/numOctaves = 1
+shader_param/noiseTex = ExtResource( 3 )
 
 [node name="CharacterChooseScreen" type="Control"]
 anchor_right = 1.0
@@ -14,9 +40,12 @@ __meta__ = {
 Path_group_characters = NodePath("ScrollContainer/Characters")
 
 [node name="BG" type="ColorRect" parent="."]
+material = SubResource( 2 )
+anchor_left = 0.00078125
+anchor_right = 0.00078125
 margin_right = 1280.0
 margin_bottom = 720.0
-color = Color( 0.333333, 0.223529, 0.152941, 1 )
+color = Color( 0.388235, 0.388235, 0.388235, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

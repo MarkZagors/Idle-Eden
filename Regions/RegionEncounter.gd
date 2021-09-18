@@ -1,6 +1,9 @@
-extends Button
+extends TextureButton
 
 export var encounter : Resource = null
+
+func _ready():
+	get_node("IconContainer/TextureRect").texture = encounter.icon
 
 func gotoEncounter() -> void:
 	Controller.transferEncounter = encounter

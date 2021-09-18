@@ -1,7 +1,7 @@
 [gd_scene format=2]
 
 [node name="Slot1" type="Button"]
-self_modulate = Color( 1, 1, 1, 0.192157 )
+self_modulate = Color( 1, 1, 1, 0 )
 margin_left = 5.29724
 margin_top = 4.23798
 margin_right = 114.297
@@ -17,10 +17,10 @@ scale = Vector2( 0.75, 0.75 )
 
 [node name="HealthBar" type="ColorRect" parent="."]
 visible = false
-margin_left = -43.8911
-margin_top = -63.2995
-margin_right = 156.109
-margin_bottom = -43.2994
+margin_left = -41.0
+margin_top = -31.681
+margin_right = 159.0
+margin_bottom = -20.681
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -28,7 +28,7 @@ __meta__ = {
 
 [node name="HealthTemp" type="ColorRect" parent="HealthBar"]
 margin_right = 200.0
-margin_bottom = 20.0
+margin_bottom = 11.0
 color = Color( 0.976471, 0.501961, 0.188235, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -36,5 +36,8 @@ __meta__ = {
 
 [node name="HealthCurrent" type="ColorRect" parent="HealthBar"]
 margin_right = 200.0
-margin_bottom = 20.0
+margin_bottom = 11.0
 color = Color( 0.537255, 0.972549, 0.0627451, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://SPRITES/UI/ButtonSquare.png" type="Texture" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://SPRITES/UI/SlotNormal1.png" type="Texture" id=2]
+[ext_resource path="res://SPRITES/UI/SlotHoverl1.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -13,6 +13,7 @@ margin_right = 12.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 220, 220 )
 texture_normal = ExtResource( 2 )
+texture_hover = ExtResource( 4 )
 expand = true
 
 [node name="Icon" type="TextureRect" parent="."]
@@ -21,8 +22,10 @@ margin_top = 13.7937
 margin_right = 188.65
 margin_bottom = 171.794
 mouse_filter = 2
-texture = ExtResource( 3 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Name" type="Label" parent="."]
 margin_top = 172.0

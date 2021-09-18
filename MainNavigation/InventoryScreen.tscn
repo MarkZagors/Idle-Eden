@@ -1,8 +1,43 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://MainNavigation/UIMainButtons.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MainNavigation/InventoryScreen.gd" type="Script" id=2]
 [ext_resource path="res://SPRITES/zMisc/Circle500px.png" type="Texture" id=3]
+[ext_resource path="res://SPRITES/zMisc/noise.tres" type="Texture" id=4]
+[ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform sampler2D noiseTex;
+
+uniform int numOctaves = 1;
+
+float noise ( in vec2 uv )
+{
+    return texture(noiseTex,uv).x;
+}
+
+void fragment() {
+	float r = noise(UV+noise(UV+fract(TIME*-0.1))+fract(TIME*0.05))*0.1;
+	float g = noise(UV+noise(UV+fract(TIME*-0.15))+fract(TIME*0.01))*0.1;
+	float b = noise(UV+noise(UV+fract(TIME*-0.11))+fract(TIME*0.08))*0.1;
+	COLOR = vec4(r+0.1,g+0.1,b+0.1,1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/numOctaves = 1
+shader_param/noiseTex = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 42
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 24
+font_data = ExtResource( 5 )
 
 [node name="InventoryScreen" type="Control"]
 anchor_right = 1.0
@@ -17,9 +52,10 @@ Path_group_items = NodePath("Items/GridContainer")
 Path_group_info = NodePath("Info")
 
 [node name="BG" type="ColorRect" parent="."]
+material = SubResource( 2 )
 margin_right = 1280.0
 margin_bottom = 720.0
-color = Color( 0.333333, 0.223529, 0.152941, 1 )
+color = Color( 0.388235, 0.388235, 0.388235, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -36,7 +72,7 @@ __meta__ = {
 margin_right = 388.0
 margin_bottom = 720.0
 mouse_filter = 2
-color = Color( 0.32549, 0.160784, 0.0980392, 1 )
+color = Color( 0, 0, 0, 0.270588 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -54,8 +90,13 @@ __meta__ = {
 [node name="NameLabel" type="Label" parent="Info"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 232.0
+margin_right = 229.0
 margin_bottom = 156.0
+custom_fonts/font = SubResource( 3 )
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Description" type="RichTextLabel" parent="Info"]
 margin_left = 20.0
@@ -63,6 +104,7 @@ margin_top = 171.0
 margin_right = 375.0
 margin_bottom = 680.0
 mouse_filter = 2
+custom_fonts/normal_font = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

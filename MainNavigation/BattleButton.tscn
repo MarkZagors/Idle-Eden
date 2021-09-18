@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Database/Encounters/easy.tres" type="Resource" id=1]
+[ext_resource path="res://Regions/RegionEncounter.gd" type="Script" id=2]
+[ext_resource path="res://SPRITES/UI/WorldButton.png" type="Texture" id=3]
+[ext_resource path="res://SPRITES/UI/WorldButtonHover.png" type="Texture" id=4]
+[ext_resource path="res://SPRITES/UI/WorldButtonMask.png" type="Texture" id=5]
+[ext_resource path="res://SPRITES/Characters/poisionboi_face.png" type="Texture" id=6]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform sampler2D mask;
+
+void fragment() {
+	vec4 m = texture(mask,UV);
+	vec4 tex = texture(TEXTURE,UV);
+	COLOR = vec4(m*tex);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/mask = ExtResource( 5 )
+
+[node name="Battle" type="TextureButton"]
+margin_right = 159.0
+margin_bottom = 146.0
+texture_normal = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+expand = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+encounter = ExtResource( 1 )
+
+[node name="IconContainer" type="Node2D" parent="."]
+z_index = -1
+
+[node name="TextureRect" type="TextureRect" parent="IconContainer"]
+material = SubResource( 2 )
+margin_right = 159.0
+margin_bottom = 146.0
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="." to="." method="gotoEncounter"]

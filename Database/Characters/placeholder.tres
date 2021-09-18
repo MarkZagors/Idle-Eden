@@ -5,7 +5,7 @@
 [ext_resource path="res://SPRITES/Characters/stickmanattack.png" type="Texture" id=3]
 [ext_resource path="res://Database/Abilities/smack.tres" type="Resource" id=4]
 [ext_resource path="res://Database/Abilities/slash.tres" type="Resource" id=5]
-[ext_resource path="res://SPRITES/UI/CircleCharacterSelect.png" type="Texture" id=6]
+[ext_resource path="res://SPRITES/Characters/poisionboi_face.png" type="Texture" id=6]
 
 [resource]
 script = ExtResource( 1 )
@@ -18,6 +18,6 @@ abilities = [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource(
 abilityAll = [ ExtResource( 5 ), ExtResource( 4 ) ]
 inventory = [ null, null, null, null ]
 healthBase = 10
-strBase = 5
+strBase = 2
 dexBase = 0
 intBase = 0

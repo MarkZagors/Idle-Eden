@@ -15,7 +15,7 @@ export var Path_upperpoint : NodePath
 onready var upperpoint : Control = get_node(Path_upperpoint)
 
 onready var slotObj = preload("res://MainNavigation/Slot.tscn")
-onready var slotNormalTexture : Texture = preload("res://SPRITES/UI/SlotNormal.png")
+onready var slotNormalTexture : Texture = preload("res://SPRITES/UI/SlotNormal1.png")
 onready var slotPickedAllTexture : Texture = preload("res://SPRITES/UI/SlotPickedAll.png")
 onready var slotPickedCurrentTexture : Texture = preload("res://SPRITES/UI/SlotPickedCurrent.png")
 
@@ -57,10 +57,14 @@ func setupItems() -> void:
 
 func setupItemsAll() -> void:
 	for i in range(len(Controller.inventory)):
-		var allItem = Controller.inventory[i]
+		var allItem : Item = Controller.inventory[i]
 		if allItem.type == Controller.ITEM_TYPE_EQUIPPABLE:
 			var slot = slotObj.instance()
+			var ammount : int = allItem.ammount
 			slot.get_node("Sprite").texture = allItem.icon
+			if ammount > 1:
+				slot.get_node("Ammount").visible = true
+				slot.get_node("Ammount/Label").text = str(ammount)
 			slot.connect("pressed",self,"clickAllItem",[i])
 			group_items.get_node("ItemGrid/GridContainer").add_child(slot)
 
@@ -109,6 +113,7 @@ func clickCurrentItem(index : int) -> void:
 	var item : Item = character.inventory[index]
 	group_info.get_node("AbilityDescription").visible = true
 	group_info.get_node("AbilityNameLabel").visible = true
+	group_info.get_node("InfoBG").visible = true
 	group_info.get_node("EquipButton").visible = false
 	
 	if item != null:
@@ -142,6 +147,8 @@ func setSlotColorItem() -> void:
 func resetSlotColorItem() -> void:
 	for slot in group_items.get_node("CurrentItems").get_children():
 		slot.texture_normal = slotNormalTexture
+	for slot in group_items.get_node("ItemGrid/GridContainer").get_children():
+		slot.texture_normal = slotNormalTexture
 
 func updateItems() -> void:
 	var grid : GridContainer = group_items.get_node("ItemGrid/GridContainer")
@@ -165,6 +172,7 @@ func clickCurrentAbility(index : int) -> void:
 	var ability : Ability = character.abilities[index]
 	group_info.get_node("AbilityDescription").visible = true
 	group_info.get_node("AbilityNameLabel").visible = true
+	group_info.get_node("InfoBG").visible = true
 	group_info.get_node("AbilityDescription").bbcode_text = ability.description
 	group_info.get_node("AbilityNameLabel").text = ability.nameShown
 	group_info.get_node("EquipButton").visible = false
@@ -215,6 +223,7 @@ func actionPressed() -> void:
 func backToMain() -> void:
 	group_info.get_node("AbilityDescription").visible = false
 	group_info.get_node("AbilityNameLabel").visible = false
+	group_info.get_node("InfoBG").visible = false
 	group_abilities.get_node("AbilityGrid").visible = false
 	group_items.get_node("ItemGrid").visible = false
 	group_info.get_node("EquipButton").visible = false

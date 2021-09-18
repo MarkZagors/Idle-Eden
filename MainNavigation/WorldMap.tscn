@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://MainNavigation/WorldMap.gd" type="Script" id=1]
 [ext_resource path="res://MainNavigation/UIMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://SPRITES/Backgrounds/world1.png" type="Texture" id=3]
+[ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 36
+font_data = ExtResource( 4 )
 
 [node name="WorldMap" type="Control"]
 script = ExtResource( 1 )
@@ -15,17 +20,35 @@ position = Vector2( 505.076, 374.535 )
 scale = Vector2( 0.844435, 0.844435 )
 texture = ExtResource( 3 )
 
-[node name="SatrtingButton" type="Button" parent="."]
-modulate = Color( 0.960784, 0.960784, 0.960784, 0.6 )
-margin_left = 455.616
-margin_top = 212.175
-margin_right = 875.616
-margin_bottom = 351.175
+[node name="UIMap" parent="." instance=ExtResource( 2 )]
+
+[node name="StartingZone" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionPolygon2D" parent="StartingZone"]
+polygon = PoolVector2Array( 768, 136.5, 755, 84.5, 736, 67.5, 703.5, 62.5, 684.747, 53.1906, 634.205, 59.1366, 585.5, 52, 579, 73.5, 554, 71, 506.96, 100.759, 475, 131, 473.5, 162, 480, 180.5, 465, 191, 464, 228.5, 477, 238, 470.69, 251.788, 487, 265.5, 488, 293, 526, 339.5, 558, 349.5, 620.5, 352.5, 685, 335.5, 731.5, 297.5, 742.5, 265, 751.5, 233, 752.532, 192.922 )
+
+[node name="Hover" type="Polygon2D" parent="StartingZone"]
+visible = false
+self_modulate = Color( 0.984314, 0.937255, 0.435294, 0.466667 )
+polygon = PoolVector2Array( 768, 136.5, 755, 84.5, 736, 67.5, 703.5, 62.5, 684.747, 53.1906, 634.205, 59.1366, 585.5, 52, 579, 73.5, 554, 71, 506.96, 100.759, 475, 131, 473.5, 162, 480, 180.5, 465, 191, 464, 228.5, 477, 238, 470.69, 251.788, 487, 265.5, 488, 293, 526, 339.5, 558, 349.5, 620.5, 352.5, 685, 335.5, 731.5, 297.5, 742.5, 265, 751.5, 233, 752.532, 192.922 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="StartingZone"]
+margin_left = 439.0
+margin_top = 180.0
+margin_right = 776.0
+margin_bottom = 230.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "STARTING ZONE"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="UIMap" parent="." instance=ExtResource( 2 )]
-
-[connection signal="pressed" from="SatrtingButton" to="." method="gotoStart"]
+[connection signal="input_event" from="StartingZone" to="." method="clickStartingZone"]
+[connection signal="mouse_entered" from="StartingZone" to="." method="enterMouseStartingZone"]
+[connection signal="mouse_exited" from="StartingZone" to="." method="exitMouseStartingZone"]
