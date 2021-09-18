@@ -221,7 +221,7 @@ func actionPressed() -> void:
 		ITEMS:
 			var currentItem : Item = character.inventory[itemSlotPressedCurrent] 
 			if currentItem != null:
-				Controller.addItem(currentItem)
+				Controller.addItem(currentItem,1)
 			character.inventory[itemSlotPressedCurrent] = Controller.inventory[itemSlotPressedAll]
 			var slot : TextureButton = group_items.get_node("CurrentItems").get_child(itemSlotPressedCurrent)
 			slot.get_node("Sprite").texture = character.inventory[itemSlotPressedCurrent].icon

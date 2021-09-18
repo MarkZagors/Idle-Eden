@@ -12,6 +12,10 @@ func win():
 	for ch in GLOBAL.characters:
 		if ch != null:
 			ch.getXp(GLOBAL.encounter.xpGive)
+	
+	for drop in GLOBAL.encounter.drops:
+		if randf() < drop.chance:
+			Controller.addItem(drop.item,drop.ammount)
 
 func lose():
 	table_loseScreen.visible = true

@@ -21,18 +21,17 @@ func _ready():
 	characters.append(placeholder)
 	charactersAvailableIDs.append(placeholder.id)
 	var item : Item = load("res://Database/Items/placeholder.tres")
-	addItem(item)
-	addItem(item)
+	addItem(item,2)
 
-func addItem(item : Item) -> void:
+func addItem(item : Item, ammount : int) -> void:
 	var found : bool = false
 	for i in range(len(inventory)):
 		if inventory[i].id == item.id:
-			inventory[i].ammount += 1
+			inventory[i].ammount += ammount
 			found = true
 			break
 	if not found:
-		item.ammount = 1
+		item.ammount = ammount
 		inventory.append(item)
 		emit_signal("inventory_restructure_add")
 	emit_signal("inventory_changed")

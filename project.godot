@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Global/Character.gd"
 }, {
-"base": "Resource",
+"base": "TextFile",
 "class": "Drop",
 "language": "GDScript",
 "path": "res://Global/Drop.gd"
