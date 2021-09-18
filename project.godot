@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://Global/Character.gd"
 }, {
 "base": "Resource",
+"class": "Drop",
+"language": "GDScript",
+"path": "res://Global/Drop.gd"
+}, {
+"base": "Resource",
 "class": "Encounter",
 "language": "GDScript",
 "path": "res://Global/Encounter.gd"
@@ -37,6 +42,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Ability": "",
 "Character": "",
+"Drop": "",
 "Encounter": "",
 "Enemy": "",
 "Item": ""

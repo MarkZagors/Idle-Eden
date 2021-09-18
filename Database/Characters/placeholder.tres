@@ -9,7 +9,7 @@
 
 [resource]
 script = ExtResource( 1 )
-id = "NULL"
+id = "placeholder"
 nameShown = "Gamerz"
 spriteFace = ExtResource( 6 )
 spriteIdle = ExtResource( 2 )

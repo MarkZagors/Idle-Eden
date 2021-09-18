@@ -13,6 +13,8 @@ export var Path_group_bg: NodePath
 onready var group_bg : Control = get_node(Path_group_bg)
 export var Path_upperpoint : NodePath
 onready var upperpoint : Control = get_node(Path_upperpoint)
+export var Path_levelCircle : NodePath
+onready var levelCircle : Control = get_node(Path_levelCircle)
 
 onready var slotObj = preload("res://MainNavigation/Slot.tscn")
 onready var slotNormalTexture : Texture = preload("res://SPRITES/UI/SlotNormal1.png")
@@ -44,6 +46,7 @@ func _ready():
 	setupItems()
 	setupAbilities()
 	setupInfo()
+	setupLevel()
 
 func setupItems() -> void:
 	for i in range(character.inventorySlotCount):
@@ -87,6 +90,12 @@ func setupAbilities() -> void:
 func setupInfo() -> void:
 	group_bg.get_node("NameLabel").text = character.nameShown
 	group_bg.get_node("CharacterSprite").texture = character.spriteIdle
+
+func setupLevel() -> void:
+	levelCircle.get_node("Label").text = str(character.level)
+	levelCircle.get_node("LevelProgress").value = character.xpCurrent
+	levelCircle.get_node("LevelProgress").min_value = character.xpAll[character.level-1]
+	levelCircle.get_node("LevelProgress").max_value = character.xpAll[character.level]
 
 func backButton() -> void:
 	match state:

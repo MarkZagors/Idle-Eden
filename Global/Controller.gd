@@ -6,8 +6,8 @@ const ITEM_TYPE_EQUIPPABLE = 1
 var characters = []
 var inventory = []
 
-var charactersAvailable = []
-var charactersBusy = []
+var charactersAvailableIDs : Array = []
+var charactersBusyIDs : Array = []
 
 var transferCharacter : Character = null
 var transferEncounter : Encounter = null
@@ -19,7 +19,7 @@ signal inventory_restructure_remove
 func _ready():
 	var placeholder = load("res://Database/Characters/placeholder.tres")
 	characters.append(placeholder)
-	charactersAvailable.append(placeholder)
+	charactersAvailableIDs.append(placeholder.id)
 	var item : Item = load("res://Database/Items/placeholder.tres")
 	addItem(item)
 	addItem(item)
@@ -43,3 +43,9 @@ func removeItemIndex(index : int, ammount : int) -> void:
 		inventory.remove(index)
 		emit_signal("inventory_restructure_remove")
 	emit_signal("inventory_changed")
+
+func findCharacter(lookingID : String) -> Character:
+	for ch in characters:
+		if ch.id == lookingID:
+			return ch
+	return null

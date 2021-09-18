@@ -23,8 +23,9 @@ func setup_connections() -> void:
 func setup_chooseButtons() -> void:
 	for buttonRemove in table_choosePlayer.get_node("Characters").get_children():
 		buttonRemove.queue_free()
-	for character in Controller.charactersAvailable:
+	for characterName in Controller.charactersAvailableIDs:
 		var button = characterChooseButton.instance()
+		var character = Controller.findCharacter(characterName)
 		button.connect("pressed",self,"pressChooseCharacterSlot",[character])
 		button.get_node("Icon").texture = character.spriteFace
 		button.get_node("Name").text = character.nameShown
@@ -32,11 +33,10 @@ func setup_chooseButtons() -> void:
 
 func setupEnemies() -> void:
 	for i in range(3):
-		if Controller.transferEncounter.enemies[i] == null:
+		if GLOBAL.encounter.enemies[i] == null:
 			continue
-		GLOBAL.enemies[i] = Controller.transferEncounter.enemies[i].duplicate()
+		GLOBAL.enemies[i] = GLOBAL.encounter.enemies[i].duplicate()
 		GLOBAL.group_enemies.get_child(i).get_node("Sprite").texture = GLOBAL.enemies[i].spriteIdle
-	Controller.transferEncounter = null
 
 func setupCharacter(index : int) -> void:
 	var character : Character = GLOBAL.characters[index]
@@ -63,14 +63,14 @@ func pressPlayerSlot(index : int) -> void:
 func pressChooseCharacterSlot(character : Character) -> void:
 	var index = pressedPlayerSlotIndex
 	table_choosePlayer.visible = false
-	GLOBAL.characters[index] = clone(character)
+	GLOBAL.characters[index] = character
 	GLOBAL.group_characters.get_child(index).get_node("Sprite").texture = GLOBAL.characters[index].spriteIdle
 	
 	setupCharacter(index)
 	button_startFight.visible = true
 	
-	Controller.charactersAvailable.erase(character)
-	Controller.charactersBusy.append(character)
+	Controller.charactersAvailableIDs.erase(character.id)
+	Controller.charactersBusyIDs.append(character.id)
 	setup_chooseButtons()
 
 func startBattle() -> void:

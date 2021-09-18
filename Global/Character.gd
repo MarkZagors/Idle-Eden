@@ -23,6 +23,12 @@ export var strBase : int = 0
 export var dexBase : int = 0
 export var intBase : int = 0
 
+#LEVEL
+var level : int = 1
+var xpCurrent : int = 0
+var xpNext : int = 5
+var xpAll : PoolIntArray = [0,5,15,35,60,100]
+
 #HIDDEN VARIABLES
 var cooldownAbilityCurrent = 0.0
 var cooldownAbilityTotal = 1.0
@@ -36,3 +42,8 @@ var healthCurrent : int = 10
 var strCurrent : int = 0
 var dexCurrent: int = 0
 var intCurrent : int = 0
+
+func getXp(ammount : int) -> void:
+	xpCurrent += ammount
+	while xpCurrent >= xpAll[level]:
+		level += 1

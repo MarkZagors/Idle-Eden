@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://SPRITES/Characters/stickmanidle.png" type="Texture" id=1]
 [ext_resource path="res://SPRITES/zMisc/Circle500px.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://SPRITES/Characters/bgtest.png" type="Texture" id=9]
 [ext_resource path="res://SPRITES/UI/SlotNormal1.png" type="Texture" id=10]
 [ext_resource path="res://SPRITES/UI/ButtonLong1Hover.png" type="Texture" id=11]
+[ext_resource path="res://SPRITES/UI/level2.png" type="Texture" id=12]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -134,6 +135,10 @@ font_data = ExtResource( 8 )
 size = 24
 font_data = ExtResource( 8 )
 
+[sub_resource type="DynamicFont" id=18]
+size = 100
+font_data = ExtResource( 8 )
+
 [node name="CharacterScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -147,6 +152,7 @@ Path_group_info = NodePath("Info")
 Path_group_buttons = NodePath("Buttons")
 Path_group_bg = NodePath("BG")
 Path_upperpoint = NodePath("UpperPoint")
+Path_levelCircle = NodePath("Level")
 
 [node name="BG" type="Control" parent="."]
 margin_right = 40.0
@@ -329,6 +335,7 @@ visible = false
 material = SubResource( 13 )
 margin_right = 498.0
 margin_bottom = 720.0
+mouse_filter = 2
 
 [node name="AbilityNameLabel" type="Label" parent="Info"]
 visible = false
@@ -400,12 +407,36 @@ align = 1
 valign = 1
 
 [node name="Level" type="TextureRect" parent="."]
-self_modulate = Color( 1, 0.988235, 0.729412, 1 )
-margin_left = 308.563
-margin_right = 517.563
-margin_bottom = 209.0
+self_modulate = Color( 0.956863, 0.956863, 0.956863, 1 )
+margin_left = 309.0
+margin_right = 511.0
+margin_bottom = 202.0
 texture = ExtResource( 2 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Level"]
+self_modulate = Color( 0.2, 0.2, 0.2, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 18 )
+text = "45"
+align = 1
+valign = 1
+
+[node name="LevelProgress" type="TextureProgress" parent="Level"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -48.3784
+margin_top = -49.7568
+margin_right = 49.6216
+margin_bottom = 48.2432
+value = 100.0
+texture_progress = ExtResource( 12 )
+fill_mode = 4
+tint_progress = Color( 0.133333, 1, 0.0588235, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
