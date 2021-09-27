@@ -1,4 +1,19 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Hit"
+length = 0.25
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 53.3878, -0.25, 0, 0.00195823, 61.0851, 77.9929, -0.0435082, 3.45599, 0.0573109, 19.2, 53.5129, -0.0112272, -7.2, 0.062911, -15.6 ),
+"times": PoolRealArray( 0, 0.139986, 0.251177 )
+}
 
 [node name="Slot1" type="Button"]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -12,8 +27,11 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 52.6431, 110.395 )
+position = Vector2( 53.3878, 103.653 )
 scale = Vector2( 0.75, 0.75 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+anims/Hit = SubResource( 1 )
 
 [node name="HealthBar" type="ColorRect" parent="."]
 visible = false

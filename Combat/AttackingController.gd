@@ -28,7 +28,7 @@ func playAbility(charEnemy,node) -> void:
 	node.get_node("Sprite").texture = charEnemy.spriteAttacking
 	currentNodeTimeout = node.get_node("Sprite")
 	currentCharEnemyTimeout = charEnemy
-	get_node("Timer").wait_time = 0.15
+	get_node("Timer").wait_time = 0.25
 	get_node("Timer").start()
 
 func uiUpdateHealth() -> void:
@@ -72,6 +72,10 @@ func damageEnemyPriority(damage : int) -> void:
 		enemy.dead = true
 		MIDBATTLE.getPriority()
 		MIDBATTLE.checkWin()
+	
+	var node = GLOBAL.group_enemies.get_child(MIDBATTLE.highestPriorityEnemyID)
+	node.get_node("Sprite/AnimationPlayer").stop()
+	node.get_node("Sprite/AnimationPlayer").play("Hit")
 
 func damageCharacterPriority(damage : int) -> void:
 	var character = GLOBAL.characters[MIDBATTLE.highestPriorityCharacterID]
