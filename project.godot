@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Global/Character.gd"
 }, {
-"base": "TextFile",
+"base": "Resource",
 "class": "Drop",
 "language": "GDScript",
 "path": "res://Global/Drop.gd"
@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "Item",
 "language": "GDScript",
 "path": "res://Global/Item.gd"
+}, {
+"base": "Resource",
+"class": "Lock",
+"language": "GDScript",
+"path": "res://Global/Lock.gd"
 } ]
 _global_script_class_icons={
 "Ability": "",
@@ -45,7 +50,8 @@ _global_script_class_icons={
 "Drop": "",
 "Encounter": "",
 "Enemy": "",
-"Item": ""
+"Item": "",
+"Lock": ""
 }
 
 [application]

@@ -357,6 +357,7 @@ margin_left = 19.0
 margin_top = 209.0
 margin_right = 433.0
 margin_bottom = 720.0
+mouse_filter = 2
 custom_fonts/normal_font = SubResource( 15 )
 
 [node name="EquipButton" type="TextureButton" parent="Info"]
@@ -374,6 +375,25 @@ margin_right = 438.0
 margin_bottom = 115.0
 custom_fonts/font = SubResource( 16 )
 text = "EQUIP"
+align = 1
+valign = 1
+
+[node name="RemoveButton" type="TextureButton" parent="Info"]
+visible = false
+self_modulate = Color( 1, 0.607843, 0.607843, 1 )
+margin_left = 40.0
+margin_top = 562.0
+margin_right = 478.0
+margin_bottom = 677.0
+texture_normal = ExtResource( 7 )
+texture_hover = ExtResource( 11 )
+expand = true
+
+[node name="Label" type="Label" parent="Info/RemoveButton"]
+margin_right = 438.0
+margin_bottom = 115.0
+custom_fonts/font = SubResource( 16 )
+text = "REMOVE"
 align = 1
 valign = 1
 
@@ -433,6 +453,7 @@ margin_left = -48.3784
 margin_top = -49.7568
 margin_right = 49.6216
 margin_bottom = 48.2432
+mouse_filter = 2
 value = 100.0
 texture_progress = ExtResource( 12 )
 fill_mode = 4
@@ -442,4 +463,5 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="Info/EquipButton" to="." method="actionPressed"]
+[connection signal="pressed" from="Info/RemoveButton" to="." method="removeItem"]
 [connection signal="pressed" from="BackButton" to="." method="backButton"]

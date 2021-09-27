@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Global/Item.gd" type="Script" id=1]
+[ext_resource path="res://SPRITES/zMisc/icon.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+id = "wood"
+nameShown = "Wood"
+description = "Woody wood"
+icon = ExtResource( 2 )
+type = 0
+healthBase = 0
+strBase = 0
+dexBase = 0
+intBase = 0

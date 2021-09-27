@@ -18,6 +18,6 @@ abilities = [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource(
 abilityAll = [ ExtResource( 5 ), ExtResource( 4 ) ]
 inventory = [ null, null, null, null ]
 healthBase = 10
-strBase = 2
+strBase = 50
 dexBase = 0
 intBase = 0

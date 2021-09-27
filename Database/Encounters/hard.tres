@@ -6,4 +6,6 @@
 [resource]
 script = ExtResource( 1 )
 id = "NULL"
+xpGive = -1
 enemies = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
+drops = [  ]

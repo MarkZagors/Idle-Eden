@@ -20,6 +20,9 @@ margin_bottom = 680.0
 texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 2 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="MainButton"]
 anchor_right = 1.0

@@ -128,9 +128,11 @@ func clickCurrentItem(index : int) -> void:
 	if item != null:
 		group_info.get_node("AbilityDescription").bbcode_text = item.description
 		group_info.get_node("AbilityNameLabel").text = item.nameShown
+		group_info.get_node("RemoveButton").visible = true
 	else:
 		group_info.get_node("AbilityNameLabel").text = "Empty space"
 		group_info.get_node("AbilityDescription").visible = false
+		group_info.get_node("RemoveButton").visible = false
 	itemSlotPressedCurrent = index
 	itemSlotPressedAll = -1
 	setSlotColorItem()
@@ -141,6 +143,7 @@ func clickAllItem(index : int) -> void:
 	group_info.get_node("AbilityDescription").visible = true
 	group_info.get_node("AbilityNameLabel").text = item.nameShown
 	group_info.get_node("EquipButton").visible = true
+	group_info.get_node("RemoveButton").visible = false
 	itemSlotPressedAll = index
 	setSlotColorItem()
 
@@ -229,6 +232,15 @@ func actionPressed() -> void:
 			clickCurrentItem(itemSlotPressedCurrent)
 			updateItems()
 
+func removeItem() -> void:
+	var currentItem : Item = character.inventory[itemSlotPressedCurrent]
+	var slot : TextureButton = group_items.get_node("CurrentItems").get_child(itemSlotPressedCurrent)
+	character.inventory[itemSlotPressedCurrent] = null
+	Controller.addItem(currentItem,1)
+	slot.get_node("Sprite").texture = null
+	clickCurrentItem(itemSlotPressedCurrent)
+	updateItems()
+
 func backToMain() -> void:
 	group_info.get_node("AbilityDescription").visible = false
 	group_info.get_node("AbilityNameLabel").visible = false
@@ -242,6 +254,7 @@ func backToMain() -> void:
 	group_items.get_node("CurrentItems").visible = true
 	group_bg.get_node("CharacterSprite").visible = true
 	group_bg.get_node("NameLabel").visible = true
+	group_info.get_node("RemoveButton").visible = false
 	group_buttons.visible = true
 	state = MAIN
 	resetSlotColorItem()

@@ -37,6 +37,9 @@ margin_bottom = 450.0
 texture_normal = ExtResource( 9 )
 texture_hover = ExtResource( 8 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="UIMap/WorldMapButton"]
 anchor_right = 1.0

@@ -11,6 +11,9 @@ var enemies : Array = [null,null,null]
 var enemySlotCount = 3
 var encounter : Encounter = null
 
+var time : float = 0.0
+var timeEnd : float = 0.0
+
 enum {
 	STARTING,
 	FIGHTING,
@@ -33,3 +36,11 @@ func exit():
 			Controller.charactersAvailableIDs.append(ch.id)
 			Controller.charactersBusyIDs.erase(ch.id)
 	pass
+
+func lock() -> void:
+	var _err = get_tree().change_scene("res://MainNavigation/WorldMap.tscn")
+	var characterIds = []
+	for character in characters:
+		if character != null:
+			characterIds.append(character.id)
+	Controller.startLock(timeEnd, encounter, characterIds)

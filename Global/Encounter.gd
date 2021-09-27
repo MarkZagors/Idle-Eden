@@ -7,4 +7,4 @@ export var icon : Texture = null
 export var xpGive : int = -1
 
 export(Array, Resource) var enemies = [null,null,null]
-export(Array, TextFile) var drops = []
+export(Array, Resource) var drops = []

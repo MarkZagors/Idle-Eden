@@ -27,7 +27,7 @@ export var intBase : int = 0
 var level : int = 1
 var xpCurrent : int = 0
 var xpNext : int = 5
-var xpAll : PoolIntArray = [0,5,15,35,60,100]
+var xpAll : PoolIntArray = [0,5,15,35,60,100,9999]
 
 #HIDDEN VARIABLES
 var cooldownAbilityCurrent = 0.0

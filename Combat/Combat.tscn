@@ -264,6 +264,23 @@ text = "EXIT"
 align = 1
 valign = 1
 
+[node name="LockButton" type="TextureButton" parent="CanvasLayer/WinScreen"]
+margin_left = 113.0
+margin_top = 461.077
+margin_right = 597.0
+margin_bottom = 568.077
+texture_normal = ExtResource( 13 )
+texture_hover = ExtResource( 12 )
+expand = true
+
+[node name="Label" type="Label" parent="CanvasLayer/WinScreen/LockButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 7 )
+text = "LOCK"
+align = 1
+valign = 1
+
 [node name="LoseScreen" type="ColorRect" parent="CanvasLayer"]
 visible = false
 margin_right = 695.0
@@ -331,5 +348,6 @@ valign = 1
 [connection signal="pressed" from="CanvasLayer/ExitButton" to="CombatManager" method="exit"]
 [connection signal="pressed" from="CanvasLayer/ChoosePlayer/CloseButton" to="CombatManager/PreBattleController" method="closeChoosePlayer"]
 [connection signal="pressed" from="CanvasLayer/WinScreen/ExitButton" to="CombatManager" method="exit"]
+[connection signal="pressed" from="CanvasLayer/WinScreen/LockButton" to="CombatManager" method="lock"]
 [connection signal="pressed" from="CanvasLayer/LoseScreen/ExitButton" to="CombatManager" method="exit"]
 [connection signal="pressed" from="CanvasLayer/StartFightButton" to="CombatManager/PreBattleController" method="startBattle"]

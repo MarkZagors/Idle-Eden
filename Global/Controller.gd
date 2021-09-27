@@ -5,6 +5,7 @@ const ITEM_TYPE_EQUIPPABLE = 1
 
 var characters = []
 var inventory = []
+var activeLocks = []
 
 var charactersAvailableIDs : Array = []
 var charactersBusyIDs : Array = []
@@ -15,6 +16,7 @@ var transferEncounter : Encounter = null
 signal inventory_changed
 signal inventory_restructure_add
 signal inventory_restructure_remove
+signal lock_complete_signal(drops)
 
 func _ready():
 	var placeholder = load("res://Database/Characters/placeholder.tres")
@@ -22,6 +24,27 @@ func _ready():
 	charactersAvailableIDs.append(placeholder.id)
 	var item : Item = load("res://Database/Items/placeholder.tres")
 	addItem(item,2)
+
+func _process(delta):
+	lockTick(delta)
+
+func lockTick(delta : float) -> void:
+	for lock in activeLocks:
+		lock.timeCurrent += delta
+		if lock.timeCurrent > lock.timeFull:
+			lockComplete(lock)
+
+func lockComplete(lock : Lock) -> void:
+	lock.timeCurrent = 0.0
+	for characterID in lock.characterIDs:
+		findCharacter(characterID).getXp(lock.encounter.xpGive)
+	var showDrops = []
+	for drop in lock.encounter.drops:
+		if randf() < drop.chance:
+			addItem(drop.item,drop.ammount)
+			showDrops.append(drop)
+	emit_signal("lock_complete_signal",showDrops)
+	
 
 func addItem(item : Item, ammount : int) -> void:
 	var found : bool = false
@@ -48,3 +71,12 @@ func findCharacter(lookingID : String) -> Character:
 		if ch.id == lookingID:
 			return ch
 	return null
+
+func startLock(time : float, encounter : Encounter, characterIds) -> void:
+	var lock = Lock.new()
+	lock.timeFull = time
+	lock.timeCurrent = 0.0
+	lock.encounter = encounter
+	lock.characterIDs = characterIds
+	activeLocks.append(lock)
+	pass

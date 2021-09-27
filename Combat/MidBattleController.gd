@@ -13,6 +13,7 @@ func _ready():
 
 func _process(delta):
 	battleTick(delta)
+	GLOBAL.time += delta
 
 func startBattle() -> void:
 	set_process(true)

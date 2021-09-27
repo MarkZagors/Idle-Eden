@@ -1,4 +1,4 @@
-extends TextFile
+extends Resource
 class_name Drop
 
 export var item : Resource = null
