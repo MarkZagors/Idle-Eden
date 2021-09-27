@@ -9,3 +9,4 @@ id = "smack"
 nameShown = "Smack"
 description = "fdfsdsdfsdfsdfsdf"
 icon = ExtResource( 2 )
+unique = true

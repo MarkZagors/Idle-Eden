@@ -7,3 +7,4 @@ script = ExtResource( 1 )
 id = "bite"
 nameShown = "NULL"
 description = "NULL"
+unique = false

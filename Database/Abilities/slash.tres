@@ -9,3 +9,4 @@ id = "slash"
 nameShown = "slash"
 description = "slashslashslashslashslashslash"
 icon = ExtResource( 2 )
+unique = false

@@ -218,6 +218,8 @@ func resetSlotColorAbility() -> void:
 func actionPressed() -> void:
 	match state:
 		ABILITIES:
+			if checkUniqueAbility():
+				return
 			character.abilities[abilitySlotPressedCurrent] = character.abilityAll[abilitySlotPressedAll]
 			var slot : TextureButton = group_abilities.get_node("CurrentAbilities").get_child(abilitySlotPressedCurrent)
 			slot.get_node("Sprite").texture = character.abilities[abilitySlotPressedCurrent].icon
@@ -231,6 +233,23 @@ func actionPressed() -> void:
 			Controller.removeItemIndex(itemSlotPressedAll,1)
 			clickCurrentItem(itemSlotPressedCurrent)
 			updateItems()
+
+func checkUniqueAbility() -> bool:
+	var abilityChosen : Ability = character.abilityAll[abilitySlotPressedAll]
+	
+	if abilityChosen.unique:
+		for index in len(character.abilities):
+			if character.abilities[index].id == abilityChosen.id:
+				character.abilities[index] = character.abilities[abilitySlotPressedCurrent]
+				var slotSwap : TextureButton = group_abilities.get_node("CurrentAbilities").get_child(index)
+				slotSwap.get_node("Sprite").texture = character.abilities[index].icon
+				break
+		character.abilities[abilitySlotPressedCurrent] = abilityChosen
+		var slot : TextureButton = group_abilities.get_node("CurrentAbilities").get_child(abilitySlotPressedCurrent)
+		slot.get_node("Sprite").texture = character.abilities[abilitySlotPressedCurrent].icon
+		return true
+	
+	return false
 
 func removeItem() -> void:
 	var currentItem : Item = character.inventory[itemSlotPressedCurrent]

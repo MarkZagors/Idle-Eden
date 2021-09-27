@@ -7,3 +7,5 @@ export(String,MULTILINE) var description = "NULL"
 
 export var icon : Texture = null
 
+export var unique : bool = false
+
