@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://MainNavigation/BattleButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Database/Encounters/medium.tres" type="Resource" id=2]
 [ext_resource path="res://SPRITES/Backgrounds/world1.png" type="Texture" id=3]
+[ext_resource path="res://SPRITES/UI/ButtonLong1Hover.png" type="Texture" id=4]
+[ext_resource path="res://SPRITES/UI/ButtonLong1.png" type="Texture" id=5]
 [ext_resource path="res://MainNavigation/UIMap.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Regions/StartingZone.gd" type="Script" id=7]
 [ext_resource path="res://SPRITES/UI/SlotHoverl1.png" type="Texture" id=8]
@@ -11,6 +13,14 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
 font_data = ExtResource( 10 )
 
 [node name="StartingZone" type="Control"]
@@ -49,6 +59,74 @@ text = "World map"
 align = 1
 valign = 1
 
+[node name="EncounterScreen" type="ColorRect" parent="UIMap"]
+visible = false
+margin_left = 522.0
+margin_top = 16.0
+margin_right = 1023.0
+margin_bottom = 680.0
+color = Color( 0.145098, 0.14902, 0.12549, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UIMap/EncounterScreen"]
+margin_right = 501.0
+margin_bottom = 94.0
+custom_fonts/font = SubResource( 2 )
+text = "NAME"
+align = 1
+valign = 1
+
+[node name="StartButton" type="TextureButton" parent="UIMap/EncounterScreen"]
+visible = false
+margin_left = 30.0
+margin_top = 536.0
+margin_right = 467.0
+margin_bottom = 646.0
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UIMap/EncounterScreen/StartButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 3 )
+text = "START"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EndButton" type="TextureButton" parent="UIMap/EncounterScreen"]
+visible = false
+self_modulate = Color( 1, 0.529412, 0.529412, 1 )
+margin_left = 30.0
+margin_top = 536.0
+margin_right = 467.0
+margin_bottom = 646.0
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UIMap/EncounterScreen/EndButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 3 )
+text = "END LOCK"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Battle" parent="." instance=ExtResource( 1 )]
 margin_left = 320.463
 margin_top = 198.245
@@ -63,3 +141,5 @@ margin_bottom = 509.335
 encounter = ExtResource( 2 )
 
 [connection signal="pressed" from="UIMap/WorldMapButton" to="." method="gotoWorldMap"]
+[connection signal="pressed" from="UIMap/EncounterScreen/StartButton" to="." method="gotoEncounter"]
+[connection signal="pressed" from="UIMap/EncounterScreen/EndButton" to="." method="endLock"]

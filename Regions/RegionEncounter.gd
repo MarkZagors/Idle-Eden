@@ -4,12 +4,17 @@ const TICK_SPEED = 0.5
 var tickCurr = 0.0
 
 export var encounter : Resource = null
+var screen_encounter : ColorRect = null
+var mainNode : Control = null
 var locked : bool = false
 var lock : Lock = null
 
 func _ready():
+	screen_encounter = get_node("../UIMap/EncounterScreen")
+	mainNode = get_node("..")
 	get_node("IconContainer/TextureRect").texture = encounter.icon
 	var _err = Controller.connect("lock_complete_signal",self,"lockComplete")
+	var _err2 = connect("pressed",self,"openEncounter")
 	checkLock()
 
 func _process(delta):
@@ -44,8 +49,13 @@ func lockComplete(drops) -> void:
 func updateLocked() -> void:
 	get_node("LockProgress").value = lock.timeCurrent
 
-func gotoEncounter() -> void:
+func openEncounter() -> void:
+	screen_encounter.visible = true
+	screen_encounter.get_node("StartButton").visible = false
+	screen_encounter.get_node("EndButton").visible = false
 	if locked:
-		return
-	Controller.transferEncounter = encounter
-	var _err = get_tree().change_scene("res://Combat/Combat.tscn")
+		screen_encounter.get_node("EndButton").visible = true
+	else:
+		screen_encounter.get_node("StartButton").visible = true
+	mainNode.encounterSelected = encounter
+
