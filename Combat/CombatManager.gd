@@ -4,6 +4,10 @@ export var Path_group_characters: NodePath
 var group_characters : Node2D
 export var Path_group_enemies: NodePath
 var group_enemies : Node2D
+export var Path_camera: NodePath
+onready var camera : Camera2D = get_node(Path_camera)
+export var Path_background: NodePath
+onready var background : Sprite = get_node(Path_background)
 
 var characters : Array = [null,null,null]
 var characterSlotCount = 3

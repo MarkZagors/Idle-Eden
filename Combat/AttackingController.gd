@@ -3,6 +3,7 @@ onready var GLOBAL = get_node("../..")
 onready var MIDBATTLE = get_parent()
 
 const HEALTH_TEMP_DECREASE = 50
+const NODE_BACK_POSITION = 70
 
 var currentNodeTimeout = null
 var currentCharEnemyTimeout = null
@@ -28,6 +29,13 @@ func playAbility(charEnemy,node) -> void:
 	node.get_node("Sprite").texture = charEnemy.spriteAttacking
 	currentNodeTimeout = node.get_node("Sprite")
 	currentCharEnemyTimeout = charEnemy
+	GLOBAL.camera.zoom = Vector2(1,1)
+	GLOBAL.background.get_node("HitFilter").visible = true
+	if charEnemy is Character:
+		node.get_node("Sprite").position.x += 50
+	else:
+		node.get_node("Sprite").position.x -= 50
+	
 	get_node("Timer").wait_time = 0.25
 	get_node("Timer").start()
 
@@ -84,13 +92,20 @@ func damageCharacterPriority(damage : int) -> void:
 		character.dead = true
 		MIDBATTLE.getPriority()
 		MIDBATTLE.checkLose()
+	
+	var node = GLOBAL.group_characters.get_child(MIDBATTLE.highestPriorityCharacterID)
+	node.get_node("Sprite/AnimationPlayer").stop()
+	node.get_node("Sprite/AnimationPlayer").play("Hit")
 
 func exitAttacking() -> void:
 	currentNodeTimeout.texture = currentCharEnemyTimeout.spriteIdle
+	currentNodeTimeout.position.x = NODE_BACK_POSITION
 	get_node("Timer").stop()
 	MIDBATTLE.set_process(true)
 	currentNodeTimeout = null
 	currentCharEnemyTimeout = null
+	GLOBAL.camera.zoom = Vector2(1.0,1.0)
+	GLOBAL.background.get_node("HitFilter").visible = false
 
 func ability_slash(character : Character) -> void:
 	var damage = character.strCurrent

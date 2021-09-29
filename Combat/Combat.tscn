@@ -62,6 +62,8 @@ process_priority = -1
 script = ExtResource( 2 )
 Path_group_characters = NodePath("../Characters")
 Path_group_enemies = NodePath("../Enemies")
+Path_camera = NodePath("../Camera2D")
+Path_background = NodePath("../Bg")
 
 [node name="PreBattleController" type="Node" parent="CombatManager"]
 script = ExtResource( 5 )
@@ -82,11 +84,26 @@ Path_table_winScreen = NodePath("../../CanvasLayer/WinScreen")
 Path_table_loseScreen = NodePath("../../CanvasLayer/LoseScreen")
 
 [node name="Bg" type="Sprite" parent="."]
-modulate = Color( 0.956863, 0.956863, 0.956863, 1 )
+modulate = Color( 0.909804, 0.913725, 0.913725, 1 )
 position = Vector2( 637.52, 352.778 )
 scale = Vector2( 0.758095, 0.758095 )
 z_index = -999
 texture = ExtResource( 9 )
+
+[node name="HitFilter" type="ColorRect" parent="Bg"]
+visible = false
+margin_left = -841.0
+margin_top = -500.0
+margin_right = 847.0
+margin_bottom = 500.0
+color = Color( 0.141176, 0.141176, 0.141176, 0.207843 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 638.78, 361.277 )
+current = true
 
 [node name="Enemies" type="Node2D" parent="."]
 
