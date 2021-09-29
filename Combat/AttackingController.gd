@@ -5,8 +5,9 @@ onready var MIDBATTLE = get_parent()
 const HEALTH_TEMP_DECREASE = 50
 const NODE_BACK_POSITION = 70
 
-var currentNodeTimeout = null
+var currentNodeTimeout : TextureButton = null
 var currentCharEnemyTimeout = null
+var currentAbilityTimeout : Ability = null
 
 func _process(delta):
 	updateTempHealth(delta)
@@ -16,6 +17,7 @@ func playAbility(charEnemy,node) -> void:
 		return
 	
 	var ability : Ability = charEnemy.abilities[charEnemy.abilityID]
+	currentAbilityTimeout = ability
 	match ability.id:
 		"slash":
 			ability_slash(charEnemy)
@@ -27,7 +29,7 @@ func playAbility(charEnemy,node) -> void:
 	charEnemy.abilityID = (charEnemy.abilityID + 1) % charEnemy.abilitySlotCount
 	
 	node.get_node("Sprite").texture = charEnemy.spriteAttacking
-	currentNodeTimeout = node.get_node("Sprite")
+	currentNodeTimeout = node
 	currentCharEnemyTimeout = charEnemy
 	GLOBAL.camera.zoom = Vector2(1,1)
 	GLOBAL.background.get_node("HitFilter").visible = true
@@ -82,8 +84,7 @@ func damageEnemyPriority(damage : int) -> void:
 		MIDBATTLE.checkWin()
 	
 	var node = GLOBAL.group_enemies.get_child(MIDBATTLE.highestPriorityEnemyID)
-	node.get_node("Sprite/AnimationPlayer").stop()
-	node.get_node("Sprite/AnimationPlayer").play("Hit")
+	animateDamage(node,damage)
 
 func damageCharacterPriority(damage : int) -> void:
 	var character = GLOBAL.characters[MIDBATTLE.highestPriorityCharacterID]
@@ -94,16 +95,28 @@ func damageCharacterPriority(damage : int) -> void:
 		MIDBATTLE.checkLose()
 	
 	var node = GLOBAL.group_characters.get_child(MIDBATTLE.highestPriorityCharacterID)
+	animateDamage(node,damage)
+
+func animateDamage(node,damage) -> void:
 	node.get_node("Sprite/AnimationPlayer").stop()
 	node.get_node("Sprite/AnimationPlayer").play("Hit")
+	node.get_node("HitSprite").texture = currentAbilityTimeout.hitSprite
+	node.get_node("HitSprite/AnimationPlayer").play("Hit")
+	node.get_node("DamageLabel/Label").text = str(damage)
+	node.get_node("DamageLabel/AnimationPlayer").stop()
+	node.get_node("DamageLabel/AnimationPlayer").play("Show")
 
 func exitAttacking() -> void:
-	currentNodeTimeout.texture = currentCharEnemyTimeout.spriteIdle
-	currentNodeTimeout.position.x = NODE_BACK_POSITION
+	currentNodeTimeout.get_node("Sprite").texture = currentCharEnemyTimeout.spriteIdle
+	currentNodeTimeout.get_node("Sprite").position.x = NODE_BACK_POSITION
+	
 	get_node("Timer").stop()
 	MIDBATTLE.set_process(true)
+	
 	currentNodeTimeout = null
 	currentCharEnemyTimeout = null
+	currentAbilityTimeout = null
+	
 	GLOBAL.camera.zoom = Vector2(1.0,1.0)
 	GLOBAL.background.get_node("HitFilter").visible = false
 
