@@ -27,6 +27,8 @@ func playAbility(charEnemy,node) -> void:
 			ability_enemy_bite()
 	uiUpdateHealth()
 	charEnemy.abilityID = (charEnemy.abilityID + 1) % charEnemy.abilitySlotCount
+	if charEnemy is Character:
+		print(charEnemy.abilityID)
 	
 	node.get_node("Sprite").texture = charEnemy.spriteAttacking
 	currentNodeTimeout = node

@@ -124,15 +124,19 @@ func clickCurrentItem(index : int) -> void:
 	group_info.get_node("AbilityNameLabel").visible = true
 	group_info.get_node("InfoBG").visible = true
 	group_info.get_node("EquipButton").visible = false
+	levelCircle.get_node("Label").visible = false
+	levelCircle.get_node("Icon").visible = true
 	
 	if item != null:
 		group_info.get_node("AbilityDescription").bbcode_text = item.description
 		group_info.get_node("AbilityNameLabel").text = item.nameShown
 		group_info.get_node("RemoveButton").visible = true
+		levelCircle.get_node("Icon").texture = item.icon
 	else:
 		group_info.get_node("AbilityNameLabel").text = "Empty space"
 		group_info.get_node("AbilityDescription").visible = false
 		group_info.get_node("RemoveButton").visible = false
+		levelCircle.get_node("Icon").texture = null
 	itemSlotPressedCurrent = index
 	itemSlotPressedAll = -1
 	setSlotColorItem()
@@ -144,6 +148,7 @@ func clickAllItem(index : int) -> void:
 	group_info.get_node("AbilityNameLabel").text = item.nameShown
 	group_info.get_node("EquipButton").visible = true
 	group_info.get_node("RemoveButton").visible = false
+	levelCircle.get_node("Icon").texture = item.icon
 	itemSlotPressedAll = index
 	setSlotColorItem()
 
@@ -188,6 +193,9 @@ func clickCurrentAbility(index : int) -> void:
 	group_info.get_node("AbilityDescription").bbcode_text = ability.description
 	group_info.get_node("AbilityNameLabel").text = ability.nameShown
 	group_info.get_node("EquipButton").visible = false
+	levelCircle.get_node("Label").visible = false
+	levelCircle.get_node("Icon").texture = ability.icon
+	levelCircle.get_node("Icon").visible = true
 	abilitySlotPressedCurrent = index
 	abilitySlotPressedAll = -1
 	setSlotColorAbility()
@@ -197,6 +205,7 @@ func clickAllAbility(index : int) -> void:
 	group_info.get_node("AbilityDescription").bbcode_text = ability.description
 	group_info.get_node("AbilityNameLabel").text = ability.nameShown
 	group_info.get_node("EquipButton").visible = true
+	levelCircle.get_node("Icon").texture = ability.icon
 	abilitySlotPressedAll = index
 	setSlotColorAbility()
 
@@ -274,6 +283,8 @@ func backToMain() -> void:
 	group_bg.get_node("CharacterSprite").visible = true
 	group_bg.get_node("NameLabel").visible = true
 	group_info.get_node("RemoveButton").visible = false
+	levelCircle.get_node("Label").visible = true
+	levelCircle.get_node("Icon").visible = false
 	group_buttons.visible = true
 	state = MAIN
 	resetSlotColorItem()

@@ -1,7 +1,6 @@
 [gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://SPRITES/Characters/stickmanidle.png" type="Texture" id=1]
-[ext_resource path="res://SPRITES/zMisc/Circle500px.png" type="Texture" id=2]
 [ext_resource path="res://MainNavigation/CharacterScreen/CharacterScreen.gd" type="Script" id=3]
 [ext_resource path="res://SPRITES/zMisc/icon.png" type="Texture" id=4]
 [ext_resource path="res://MainNavigation/CharacterScreen/HexagonsSpinny.gd" type="Script" id=5]
@@ -12,6 +11,7 @@
 [ext_resource path="res://SPRITES/UI/SlotNormal1.png" type="Texture" id=10]
 [ext_resource path="res://SPRITES/UI/ButtonLong1Hover.png" type="Texture" id=11]
 [ext_resource path="res://SPRITES/UI/level2.png" type="Texture" id=12]
+[ext_resource path="res://MainNavigation/CircleIcon.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -426,13 +426,23 @@ text = "Back"
 align = 1
 valign = 1
 
-[node name="Level" type="TextureRect" parent="."]
-self_modulate = Color( 0.956863, 0.956863, 0.956863, 1 )
-margin_left = 309.0
-margin_right = 511.0
-margin_bottom = 202.0
-texture = ExtResource( 2 )
-expand = true
+[node name="Level" parent="." instance=ExtResource( 13 )]
+margin_left = 321.0
+margin_right = 512.0
+margin_bottom = 191.0
+
+[node name="LevelProgress" type="TextureProgress" parent="Level"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -55.4365
+margin_top = -52.9166
+margin_right = 73.5635
+margin_bottom = 76.0837
+mouse_filter = 2
+value = 100.0
+texture_progress = ExtResource( 12 )
+fill_mode = 4
+tint_progress = Color( 0.133333, 1, 0.0588235, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -441,23 +451,12 @@ __meta__ = {
 self_modulate = Color( 0.2, 0.2, 0.2, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 3.05176e-05
+margin_bottom = -3.05176e-05
 custom_fonts/font = SubResource( 18 )
 text = "45"
 align = 1
 valign = 1
-
-[node name="LevelProgress" type="TextureProgress" parent="Level"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -48.3784
-margin_top = -49.7568
-margin_right = 49.6216
-margin_bottom = 48.2432
-mouse_filter = 2
-value = 100.0
-texture_progress = ExtResource( 12 )
-fill_mode = 4
-tint_progress = Color( 0.133333, 1, 0.0588235, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

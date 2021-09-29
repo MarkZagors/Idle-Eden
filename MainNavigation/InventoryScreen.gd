@@ -25,6 +25,7 @@ func setupItems() -> void:
 func showInfo(item : Item) -> void:
 	group_info.get_node("NameLabel").text = item.nameShown
 	group_info.get_node("Description").bbcode_text = item.description
+	group_info.get_node("CircleIcon/Icon").texture = item.icon
 	match item.type:
 		Controller.ITEM_TYPE_COMMON:
 			group_info.get_node("ActionButton").visible = false

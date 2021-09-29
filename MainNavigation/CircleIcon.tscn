@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://SPRITES/zMisc/Circle500px.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+float random (in vec2 st) {
+    return fract(sin(dot(st.xy, vec2(15.9898,15.233)))* 0.3453123);
+}
+
+void fragment() {
+	vec4 col = texture(TEXTURE,UV)*0.95;
+	vec2 uv = UV + sin(TIME*0.1);
+	col.rgb += random(uv)*0.05; 
+	COLOR = vec4(col);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+
+[node name="CircleIcon" type="TextureRect"]
+self_modulate = Color( 0.862745, 0.862745, 0.862745, 1 )
+material = SubResource( 2 )
+margin_right = 171.0
+margin_bottom = 171.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="."]
+margin_left = 14.5352
+margin_top = 20.892
+margin_right = 152.535
+margin_bottom = 158.892
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

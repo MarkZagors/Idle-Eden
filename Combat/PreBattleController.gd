@@ -55,6 +55,9 @@ func setupCharacter(index : int) -> void:
 		character.intCurrent += item.intBase
 	
 	character.healthCurrent = character.healthMax
+	
+	character.abilityID = 0
+	character.cooldownAbilityCurrent = 0.0
 
 func pressPlayerSlot(index : int) -> void:
 	table_choosePlayer.visible = true
