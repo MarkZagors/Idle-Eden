@@ -22,6 +22,7 @@ export var healthBase : int = 10
 export var strBase : int = 0
 export var dexBase : int = 0
 export var intBase : int = 0
+export var speed : float = 0
 
 #LEVEL
 var level : int = 1

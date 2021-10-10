@@ -53,9 +53,17 @@ func openEncounter() -> void:
 	screen_encounter.visible = true
 	screen_encounter.get_node("StartButton").visible = false
 	screen_encounter.get_node("EndButton").visible = false
+	screen_encounter.get_node("NameLabel").text = encounter.nameShown
 	if locked:
 		screen_encounter.get_node("EndButton").visible = true
 	else:
 		screen_encounter.get_node("StartButton").visible = true
 	mainNode.encounterSelected = encounter
+	mainNode.lockSelected = lock
+	mainNode.nodeSelected = self
+
+func endLock() -> void:
+	locked = false
+	get_node("LockProgress").visible = false
+	lock = null
 

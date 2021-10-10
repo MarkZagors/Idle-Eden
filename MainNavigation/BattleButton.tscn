@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Database/Encounters/easy.tres" type="Resource" id=1]
+[ext_resource path="res://Database/Encounters/slimeyEnc.tres" type="Resource" id=1]
 [ext_resource path="res://Regions/RegionEncounter.gd" type="Script" id=2]
 [ext_resource path="res://SPRITES/UI/WorldButton.png" type="Texture" id=3]
 [ext_resource path="res://SPRITES/UI/WorldButtonHover.png" type="Texture" id=4]

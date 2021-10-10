@@ -19,11 +19,15 @@ signal inventory_restructure_remove
 signal lock_complete_signal(drops)
 
 func _ready():
-	var placeholder = load("res://Database/Characters/placeholder.tres")
-	characters.append(placeholder)
-	charactersAvailableIDs.append(placeholder.id)
-	var item : Item = load("res://Database/Items/placeholder.tres")
-	addItem(item,2)
+	var guul = load("res://Database/Characters/guul.tres")
+	characters.append(guul)
+	charactersAvailableIDs.append(guul.id)
+#	addItem(load("res://Database/Items/leatherArmor.tres"),1)
+#	addItem(load("res://Database/Items/banditClothArmor.tres"),5)
+#	addItem(load("res://Database/Items/crimsonArmor.tres"),1)
+#	addItem(load("res://Database/Items/boneDagger.tres"),1)
+#	addItem(load("res://Database/Items/silverDagger.tres"),5)
+#	addItem(load("res://Database/Items/crimsonDagger.tres"),1)
 
 func _process(delta):
 	lockTick(delta)
@@ -80,3 +84,12 @@ func startLock(time : float, encounter : Encounter, characterIds) -> void:
 	lock.characterIDs = characterIds
 	activeLocks.append(lock)
 	pass
+
+func endLock(lock : Lock) -> void:
+	for lockActive in activeLocks:
+		if lock == lockActive:
+			for characterID in lockActive.characterIDs:
+				charactersAvailableIDs.append(characterID)
+				charactersBusyIDs.erase(characterID)
+			activeLocks.erase(lockActive)
+			break

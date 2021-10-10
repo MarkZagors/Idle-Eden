@@ -2,6 +2,7 @@ extends Resource
 class_name Encounter
 
 export var id : String = "NULL"
+export var nameShown : String = "NULL"
 export var icon : Texture = null
 
 export var xpGive : int = -1

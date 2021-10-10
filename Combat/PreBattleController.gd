@@ -37,6 +37,8 @@ func setupEnemies() -> void:
 			continue
 		GLOBAL.enemies[i] = GLOBAL.encounter.enemies[i].duplicate()
 		GLOBAL.group_enemies.get_child(i).get_node("Sprite").texture = GLOBAL.enemies[i].spriteIdle
+		GLOBAL.enemies[i].healthCurrent = GLOBAL.enemies[i].healthMax
+		GLOBAL.enemies[i].cooldownAbilityTotal = 1.0 / GLOBAL.enemies[i].speed
 
 func setupCharacter(index : int) -> void:
 	var character : Character = GLOBAL.characters[index]
@@ -55,9 +57,11 @@ func setupCharacter(index : int) -> void:
 		character.intCurrent += item.intBase
 	
 	character.healthCurrent = character.healthMax
+	character.cooldownAbilityTotal = 1.0 / character.speed
 	
 	character.abilityID = 0
 	character.cooldownAbilityCurrent = 0.0
+	character.dead = false
 
 func pressPlayerSlot(index : int) -> void:
 	table_choosePlayer.visible = true

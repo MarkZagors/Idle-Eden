@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://Database/Abilities/poisionNail.tres" type="Resource" id=1]
+[ext_resource path="res://Database/Abilities/extract.tres" type="Resource" id=2]
+[ext_resource path="res://Global/Character.gd" type="Script" id=3]
+[ext_resource path="res://SPRITES/Characters/poisionboi_face.png" type="Texture" id=4]
+[ext_resource path="res://SPRITES/Characters/poisionboi.png" type="Texture" id=5]
+[ext_resource path="res://SPRITES/Characters/poisionboi_attack.png" type="Texture" id=6]
+[ext_resource path="res://Database/Abilities/miseryLovesCompany.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 3 )
+id = "guul"
+nameShown = "Guul"
+spriteFace = ExtResource( 4 )
+spriteIdle = ExtResource( 5 )
+spriteAttacking = ExtResource( 6 )
+abilities = [ ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ) ]
+abilityAll = [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 7 ) ]
+inventory = [ null, null, null, null ]
+healthBase = 100
+strBase = 10
+dexBase = 10
+intBase = 10
+speed = 0.75

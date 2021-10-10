@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://Global/Ability.gd" type="Script" id=1]
+[ext_resource path="res://SPRITES/Particles/ScrachRed.png" type="Texture" id=2]
+[ext_resource path="res://SPRITES/Abilities/MiseryLovesCompany.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+id = "miseryLovesCompany"
+nameShown = "Misery Loves Company"
+description = "[color=#ffe45e]unique[/color]
+Deal [color=#96f783]0.5x dex[/color] damage
+
+if you are below 50% health, apply [color=#96f783]1.0x dex[/color] poison stacks"
+icon = ExtResource( 3 )
+hitSprite = ExtResource( 2 )
+unique = true

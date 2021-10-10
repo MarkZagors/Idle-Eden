@@ -1,6 +1,5 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=30 format=2]
 
-[ext_resource path="res://SPRITES/Characters/stickmanidle.png" type="Texture" id=1]
 [ext_resource path="res://MainNavigation/CharacterScreen/CharacterScreen.gd" type="Script" id=3]
 [ext_resource path="res://SPRITES/zMisc/icon.png" type="Texture" id=4]
 [ext_resource path="res://MainNavigation/CharacterScreen/HexagonsSpinny.gd" type="Script" id=5]
@@ -216,7 +215,6 @@ margin_left = -18.7621
 margin_top = 16.6055
 margin_right = 465.238
 margin_bottom = 825.606
-texture = ExtResource( 1 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -359,6 +357,7 @@ margin_right = 433.0
 margin_bottom = 720.0
 mouse_filter = 2
 custom_fonts/normal_font = SubResource( 15 )
+bbcode_enabled = true
 
 [node name="EquipButton" type="TextureButton" parent="Info"]
 visible = false
@@ -431,6 +430,11 @@ margin_left = 321.0
 margin_right = 512.0
 margin_bottom = 191.0
 
+[node name="Icon" parent="Level" index="0"]
+margin_left = 0.0
+margin_right = 191.0
+margin_bottom = 191.0
+
 [node name="LevelProgress" type="TextureProgress" parent="Level"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -448,7 +452,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Level"]
-self_modulate = Color( 0.2, 0.2, 0.2, 1 )
+self_modulate = Color( 0.843137, 0.843137, 0.843137, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 3.05176e-05
@@ -464,3 +468,5 @@ __meta__ = {
 [connection signal="pressed" from="Info/EquipButton" to="." method="actionPressed"]
 [connection signal="pressed" from="Info/RemoveButton" to="." method="removeItem"]
 [connection signal="pressed" from="BackButton" to="." method="backButton"]
+
+[editable path="Level"]

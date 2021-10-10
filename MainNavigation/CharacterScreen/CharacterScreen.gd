@@ -128,7 +128,7 @@ func clickCurrentItem(index : int) -> void:
 	levelCircle.get_node("Icon").visible = true
 	
 	if item != null:
-		group_info.get_node("AbilityDescription").bbcode_text = item.description
+		group_info.get_node("AbilityDescription").bbcode_text = item.fullDescription()
 		group_info.get_node("AbilityNameLabel").text = item.nameShown
 		group_info.get_node("RemoveButton").visible = true
 		levelCircle.get_node("Icon").texture = item.icon
@@ -143,7 +143,7 @@ func clickCurrentItem(index : int) -> void:
 
 func clickAllItem(index : int) -> void:
 	var item : Item = Controller.inventory[index]
-	group_info.get_node("AbilityDescription").bbcode_text = item.description
+	group_info.get_node("AbilityDescription").bbcode_text = item.fullDescription()
 	group_info.get_node("AbilityDescription").visible = true
 	group_info.get_node("AbilityNameLabel").text = item.nameShown
 	group_info.get_node("EquipButton").visible = true
@@ -154,10 +154,13 @@ func clickAllItem(index : int) -> void:
 
 func setSlotColorItem() -> void:
 	resetSlotColorItem()
-	if itemSlotPressedCurrent != -1:
+	var childCountCurrent = group_items.get_node("CurrentItems").get_child_count()
+	var childCountAll = group_items.get_node("ItemGrid/GridContainer").get_child_count()
+	#TODO FIX THE BUG ?????
+	if itemSlotPressedCurrent != -1 and itemSlotPressedCurrent < childCountCurrent:
 		var slot = group_items.get_node("CurrentItems").get_child(itemSlotPressedCurrent)
 		slot.texture_normal = slotPickedCurrentTexture
-	if itemSlotPressedAll != -1:
+	if itemSlotPressedAll != -1 and itemSlotPressedAll < childCountAll:
 		var slot = group_items.get_node("ItemGrid/GridContainer").get_child(itemSlotPressedAll)
 		slot.texture_normal = slotPickedAllTexture
 

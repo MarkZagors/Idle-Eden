@@ -16,20 +16,6 @@ func playAbility(charEnemy,node) -> void:
 	if GLOBAL.state == GLOBAL.END:
 		return
 	
-	var ability : Ability = charEnemy.abilities[charEnemy.abilityID]
-	currentAbilityTimeout = ability
-	match ability.id:
-		"slash":
-			ability_slash(charEnemy)
-		"smack":
-			ability_smack(charEnemy)
-		"bite":
-			ability_enemy_bite()
-	uiUpdateHealth()
-	charEnemy.abilityID = (charEnemy.abilityID + 1) % charEnemy.abilitySlotCount
-	if charEnemy is Character:
-		print(charEnemy.abilityID)
-	
 	node.get_node("Sprite").texture = charEnemy.spriteAttacking
 	currentNodeTimeout = node
 	currentCharEnemyTimeout = charEnemy
@@ -39,6 +25,22 @@ func playAbility(charEnemy,node) -> void:
 		node.get_node("Sprite").position.x += 50
 	else:
 		node.get_node("Sprite").position.x -= 50
+	
+	var ability : Ability = charEnemy.abilities[charEnemy.abilityID]
+	currentAbilityTimeout = ability
+	match ability.id:
+		"poisonedNail":
+			ability_posionedNail(charEnemy)
+		"extract":
+			ability_extract(charEnemy)
+		"miseryLovesCompany":
+			ability_miseryLovesCompany(charEnemy)
+		"bite":
+			ability_enemy_bite(charEnemy)
+		_:
+			push_error("NO ABILITY ID FOUND: " + str(ability.id))
+	uiUpdateHealth()
+	charEnemy.abilityID = (charEnemy.abilityID + 1) % charEnemy.abilitySlotCount
 	
 	get_node("Timer").wait_time = 0.25
 	get_node("Timer").start()
@@ -78,26 +80,44 @@ func updateTempHealth(delta) -> void:
 	pass
 
 func damageEnemyPriority(damage : int) -> void:
-	var enemy = GLOBAL.enemies[MIDBATTLE.highestPriorityEnemyID]
+	var enemy : Enemy = GLOBAL.enemies[MIDBATTLE.highestPriorityEnemyID]
 	enemy.healthCurrent -= damage
-	if enemy.healthCurrent < 1:
-		enemy.dead = true
-		MIDBATTLE.getPriority()
-		MIDBATTLE.checkWin()
-	
 	var node = GLOBAL.group_enemies.get_child(MIDBATTLE.highestPriorityEnemyID)
 	animateDamage(node,damage)
-
-func damageCharacterPriority(damage : int) -> void:
-	var character = GLOBAL.characters[MIDBATTLE.highestPriorityCharacterID]
-	character.healthCurrent -= damage
-	if character.healthCurrent < 1:
-		character.dead = true
-		MIDBATTLE.getPriority()
-		MIDBATTLE.checkLose()
+	if enemy.healthCurrent < 1:
+		nodeDead(enemy, node)
 	
+func damageCharacterPriority(damage : int) -> void:
+	var character : Character = GLOBAL.characters[MIDBATTLE.highestPriorityCharacterID]
+	character.healthCurrent -= damage
 	var node = GLOBAL.group_characters.get_child(MIDBATTLE.highestPriorityCharacterID)
 	animateDamage(node,damage)
+	if character.healthCurrent < 1:
+		nodeDead(character, node)
+
+func tickDamage() -> void:
+	for i in range(len(GLOBAL.enemies)):
+		if GLOBAL.enemies[i] == null:
+			continue
+		var enemy : Enemy = GLOBAL.enemies[i]
+		enemy.healthCurrent -= int(enemy.poisonStack / 2.0)
+		if enemy.healthCurrent < 1:
+			var node = GLOBAL.group_enemies.get_child(i)
+			nodeDead(enemy, node)
+
+func poisonStackEnemyPriority(ammount : int) -> void:
+	var enemy : Enemy = GLOBAL.enemies[MIDBATTLE.highestPriorityEnemyID]
+	enemy.poisonStack += ammount
+
+func getPriorityEnemy() -> Enemy:
+	return GLOBAL.enemies[MIDBATTLE.highestPriorityEnemyID]
+
+func nodeDead(charEnemy, node) -> void:
+	node.modulate = Color(1.0,1.0,1.0,0.2)
+	charEnemy.dead = true
+	MIDBATTLE.getPriority()
+	MIDBATTLE.checkLose()
+	MIDBATTLE.checkWin()
 
 func animateDamage(node,damage) -> void:
 	node.get_node("Sprite/AnimationPlayer").stop()
@@ -122,13 +142,26 @@ func exitAttacking() -> void:
 	GLOBAL.camera.zoom = Vector2(1.0,1.0)
 	GLOBAL.background.get_node("HitFilter").visible = false
 
-func ability_slash(character : Character) -> void:
-	var damage = character.strCurrent
+#GUUL
+func ability_posionedNail(character : Character) -> void:
+	var damage = character.dexCurrent * 1
+	var poison = character.dexCurrent * 0.2
+	poisonStackEnemyPriority(poison)
 	damageEnemyPriority(damage)
 
-func ability_smack(character : Character) -> void:
-	var damage = character.strCurrent * 3
+func ability_extract(_character : Character) -> void:
+	var damage = getPriorityEnemy().poisonStack * 3.0
 	damageEnemyPriority(damage)
 
-func ability_enemy_bite() -> void:
-	damageCharacterPriority(1)
+func ability_miseryLovesCompany(character : Character) -> void:
+	var damage = character.dexCurrent * 0.5
+	var poison = 0
+	if float(character.healthCurrent)/float(character.healthMax) <= 0.5:
+		poison = character.dexCurrent * 1.0
+	poisonStackEnemyPriority(poison)
+	damageEnemyPriority(damage)
+
+#ENEMIES
+func ability_enemy_bite(enemy : Enemy) -> void:
+	var damage = enemy.damage
+	damageCharacterPriority(damage)

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Global/Item.gd" type="Script" id=1]
+[ext_resource path="res://SPRITES/Items/banditClothArmor.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+id = "banditClothArmor"
+nameShown = "Bandit Cloth Armor"
+description = ""
+icon = ExtResource( 2 )
+type = 1
+healthBase = 125
+strBase = 0
+dexBase = 5
+intBase = 0

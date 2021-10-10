@@ -6,14 +6,25 @@ var highestPriorityEnemyID : int = -1
 var highestPriorityCharacterID : int = -1
 var selecterPlayerSlotID : int = -1
 
+var tickTimeCurrent : float = 0.0
+var tickTimeMax : float = 0.5
+
 var charEnemyArray : Array
+var ended : bool = false
 
 func _ready():
 	set_process(false)
 
 func _process(delta):
+	if ended:
+		return
 	battleTick(delta)
 	GLOBAL.time += delta
+	tickTimeCurrent += delta
+	if tickTimeCurrent > tickTimeMax:
+		ATTACKING.tickDamage()
+		ATTACKING.uiUpdateHealth()
+		tickTimeCurrent = 0.0
 
 func startBattle() -> void:
 	set_process(true)
@@ -76,11 +87,13 @@ func checkLose() -> void:
 		loseBattle()
 
 func winBattle() -> void:
+	ended = true
 	get_node("../EndBattleController").win()
 	set_process(false)
 	GLOBAL.state = GLOBAL.END
 
 func loseBattle() -> void:
+	ended = true
 	get_node("../EndBattleController").lose()
 	set_process(false)
 	GLOBAL.state = GLOBAL.END

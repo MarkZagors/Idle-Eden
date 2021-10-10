@@ -1,6 +1,8 @@
 extends Control
 
 var encounterSelected : Encounter = null
+var lockSelected : Lock = null
+var nodeSelected : TextureButton = null
 
 #func gotoBattle1():
 #	var _err = get_tree().change_scene("res://Combat/Combat.tscn")
@@ -13,4 +15,9 @@ func gotoEncounter() -> void:
 	var _err = get_tree().change_scene("res://Combat/Combat.tscn")
 
 func endLock() -> void:
-	print("end")
+	nodeSelected.endLock()
+	Controller.endLock(lockSelected)
+	get_node("UIMap/EncounterScreen").visible = false
+
+func closeEncounterScreen() -> void:
+	get_node("UIMap/EncounterScreen").visible = false

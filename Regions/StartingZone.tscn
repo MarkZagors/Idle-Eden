@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://MainNavigation/BattleButton.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Database/Encounters/medium.tres" type="Resource" id=2]
+[ext_resource path="res://Database/Encounters/banditsEnc.tres" type="Resource" id=2]
 [ext_resource path="res://SPRITES/Backgrounds/world1.png" type="Texture" id=3]
 [ext_resource path="res://SPRITES/UI/ButtonLong1Hover.png" type="Texture" id=4]
 [ext_resource path="res://SPRITES/UI/ButtonLong1.png" type="Texture" id=5]
@@ -10,6 +10,7 @@
 [ext_resource path="res://SPRITES/UI/SlotHoverl1.png" type="Texture" id=8]
 [ext_resource path="res://SPRITES/UI/SlotNormal1.png" type="Texture" id=9]
 [ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Database/Encounters/swordWeaverEnc.tres" type="Resource" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -20,6 +21,10 @@ size = 50
 font_data = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 32
 font_data = ExtResource( 10 )
 
@@ -70,7 +75,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UIMap/EncounterScreen"]
+[node name="NameLabel" type="Label" parent="UIMap/EncounterScreen"]
 margin_right = 501.0
 margin_bottom = 94.0
 custom_fonts/font = SubResource( 2 )
@@ -127,6 +132,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CloseButton" type="TextureButton" parent="UIMap/EncounterScreen"]
+margin_left = 450.71
+margin_top = -16.0
+margin_right = 521.71
+margin_bottom = 55.0
+texture_normal = ExtResource( 9 )
+texture_hover = ExtResource( 8 )
+expand = true
+
+[node name="Label" type="Label" parent="UIMap/EncounterScreen/CloseButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 4 )
+text = "X"
+align = 1
+valign = 1
+
 [node name="Battle" parent="." instance=ExtResource( 1 )]
 margin_left = 320.463
 margin_top = 198.245
@@ -134,12 +156,20 @@ margin_right = 479.463
 margin_bottom = 344.245
 
 [node name="Battle2" parent="." instance=ExtResource( 1 )]
-margin_left = 412.533
-margin_top = 363.335
-margin_right = 571.533
-margin_bottom = 509.335
+margin_left = 458.912
+margin_top = 395.444
+margin_right = 617.912
+margin_bottom = 541.444
 encounter = ExtResource( 2 )
+
+[node name="Battle3" parent="." instance=ExtResource( 1 )]
+margin_left = 712.213
+margin_top = 194.245
+margin_right = 871.213
+margin_bottom = 340.245
+encounter = ExtResource( 11 )
 
 [connection signal="pressed" from="UIMap/WorldMapButton" to="." method="gotoWorldMap"]
 [connection signal="pressed" from="UIMap/EncounterScreen/StartButton" to="." method="gotoEncounter"]
 [connection signal="pressed" from="UIMap/EncounterScreen/EndButton" to="." method="endLock"]
+[connection signal="pressed" from="UIMap/EncounterScreen/CloseButton" to="." method="closeEncounterScreen"]
