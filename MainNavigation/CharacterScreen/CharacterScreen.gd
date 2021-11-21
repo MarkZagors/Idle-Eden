@@ -15,11 +15,16 @@ export var Path_upperpoint : NodePath
 onready var upperpoint : Control = get_node(Path_upperpoint)
 export var Path_levelCircle : NodePath
 onready var levelCircle : Control = get_node(Path_levelCircle)
+export var Path_group_rewards : NodePath
+onready var group_rewards : VBoxContainer = get_node(Path_group_rewards)
+export var Path_button_stats : NodePath
+onready var button_stats : Button = get_node(Path_button_stats)
 
 onready var slotObj = preload("res://MainNavigation/Slot.tscn")
 onready var slotNormalTexture : Texture = preload("res://SPRITES/UI/SlotNormal1.png")
 onready var slotPickedAllTexture : Texture = preload("res://SPRITES/UI/SlotPickedAll.png")
 onready var slotPickedCurrentTexture : Texture = preload("res://SPRITES/UI/SlotPickedCurrent.png")
+onready var rewardSlot = preload("res://MainNavigation/CharacterScreen/Reward.tscn")
 
 onready var startingPosAbilities : Vector2 = group_abilities.get_node("CurrentAbilities").rect_position
 onready var startingPosItems : Vector2 = group_items.get_node("CurrentItems").rect_position
@@ -28,6 +33,7 @@ var abilitySlotPressedCurrent : int = -1
 var abilitySlotPressedAll : int = -1
 var itemSlotPressedCurrent : int = -1
 var itemSlotPressedAll : int = -1
+var statsOpened : bool = false
 
 enum {
 	MAIN,
@@ -43,12 +49,7 @@ func _ready():
 	Controller.transferCharacter = null
 #	Controller.connect("inventory_restructure_add",self,"onRestructureAdd")
 #	Controller.connect("inventory_restructure_remove",self,"onRestructureRemove")
-	setupItems()
-	setupAbilities()
-	setupInfo()
-	setupLevel()
-
-func setupItems() -> void:
+	#Setup items
 	for i in range(character.inventorySlotCount):
 		var slot = slotObj.instance()
 		var item : Item = character.inventory[i]
@@ -57,21 +58,7 @@ func setupItems() -> void:
 		slot.connect("pressed",self,"openItems",[i])
 		group_items.get_node("CurrentItems").add_child(slot)
 	setupItemsAll()
-
-func setupItemsAll() -> void:
-	for i in range(len(Controller.inventory)):
-		var allItem : Item = Controller.inventory[i]
-		if allItem.type == Controller.ITEM_TYPE_EQUIPPABLE:
-			var slot = slotObj.instance()
-			var ammount : int = allItem.ammount
-			slot.get_node("Sprite").texture = allItem.icon
-			if ammount > 1:
-				slot.get_node("Ammount").visible = true
-				slot.get_node("Ammount/Label").text = str(ammount)
-			slot.connect("pressed",self,"clickAllItem",[i])
-			group_items.get_node("ItemGrid/GridContainer").add_child(slot)
-
-func setupAbilities() -> void:
+	#Setup Abilities
 	for i in range(character.abilitySlotCount):
 		var slot = slotObj.instance()
 		var ability : Ability = character.abilities[i]
@@ -86,25 +73,71 @@ func setupAbilities() -> void:
 			slot.get_node("Sprite").texture = ability.icon
 		slot.connect("pressed",self,"clickAllAbility",[i])
 		group_abilities.get_node("AbilityGrid/GridContainer").add_child(slot)
-
-func setupInfo() -> void:
+	#Setup Info
 	group_bg.get_node("NameLabel").text = character.nameShown
 	group_bg.get_node("CharacterSprite").texture = character.spriteIdle
-
-func setupLevel() -> void:
+	#Setup level
 	levelCircle.get_node("Label").text = str(character.level)
 	levelCircle.get_node("LevelProgress").value = character.xpCurrent
 	levelCircle.get_node("LevelProgress").min_value = character.xpAll[character.level-1]
 	levelCircle.get_node("LevelProgress").max_value = character.xpAll[character.level]
+	#Setup level rewards
+	for reward in character.rewards:
+		var rewSlot = rewardSlot.instance()
+		rewSlot.get_node("Name").text = reward.name
+		rewSlot.get_node("Level").text = "Lv. " + str(reward.level)
+		rewSlot.get_node("Icon").texture = reward.icon
+		
+		if character.level >= reward.level:
+			rewSlot.color = Color("47302e")
+		
+		group_rewards.add_child(rewSlot)
+
+func setupItemsAll() -> void:
+	for i in range(len(Controller.inventory)):
+		var allItem : Item = Controller.inventory[i]
+		if allItem.type == Controller.ITEM_TYPE_EQUIPPABLE:
+			var slot = slotObj.instance()
+			var ammount : int = allItem.ammount
+			slot.get_node("Sprite").texture = allItem.icon
+			if ammount > 1:
+				slot.get_node("Ammount").visible = true
+				slot.get_node("Ammount/Label").text = str(ammount)
+			slot.connect("pressed",self,"clickAllItem",[i])
+			group_items.get_node("ItemGrid/GridContainer").add_child(slot)
 
 func backButton() -> void:
 	match state:
 		MAIN:
-			var _err = get_tree().change_scene("res://MainNavigation/CharacterChooseScreen.tscn")
-		ABILITIES:
-			backToMain()
-		ITEMS:
-			backToMain()
+			var _err = get_tree().change_scene("res://MainNavigation/CharacterChooseScreen/CharacterChooseScreen.tscn")
+		ABILITIES, ITEMS:
+			group_info.get_node("AbilityDescription").visible = false
+			group_info.get_node("AbilityNameLabel").visible = false
+			group_info.get_node("InfoBG").visible = false
+			group_abilities.get_node("AbilityGrid").visible = false
+			group_items.get_node("ItemGrid").visible = false
+			group_info.get_node("EquipButton").visible = false
+			group_abilities.get_node("CurrentAbilities").visible = true
+			group_abilities.get_node("CurrentAbilities").rect_position = startingPosAbilities
+			group_items.get_node("CurrentItems").rect_position = startingPosItems
+			group_items.get_node("CurrentItems").visible = true
+			group_bg.get_node("CharacterSprite").visible = true
+			group_bg.get_node("NameLabel").visible = true
+			group_info.get_node("RemoveButton").visible = false
+			levelCircle.get_node("Label").visible = true
+			levelCircle.get_node("Icon").visible = false
+			group_buttons.visible = true
+			button_stats.visible = true
+			statsOpened = false
+			state = MAIN
+			resetSlotColorItem()
+			resetSlotColorAbility()
+		LEVELREWARDS:
+			group_abilities.visible = true
+			group_items.visible = true
+			group_buttons.visible = true
+			group_rewards.visible = false
+			state = MAIN
 
 func openItems(index : int) -> void:
 	if state != ITEMS:
@@ -117,6 +150,7 @@ func openItems(index : int) -> void:
 	
 	state = ITEMS
 	clickCurrentItem(index)
+	button_stats.visible = false
 
 func clickCurrentItem(index : int) -> void:
 	var item : Item = character.inventory[index]
@@ -187,6 +221,7 @@ func openAbilities(index : int) -> void:
 	
 	state = ABILITIES
 	clickCurrentAbility(index)
+	button_stats.visible = false
 
 func clickCurrentAbility(index : int) -> void:
 	var ability : Ability = character.abilities[index]
@@ -272,29 +307,43 @@ func removeItem() -> void:
 	clickCurrentItem(itemSlotPressedCurrent)
 	updateItems()
 
-func backToMain() -> void:
-	group_info.get_node("AbilityDescription").visible = false
-	group_info.get_node("AbilityNameLabel").visible = false
-	group_info.get_node("InfoBG").visible = false
-	group_abilities.get_node("AbilityGrid").visible = false
-	group_items.get_node("ItemGrid").visible = false
-	group_info.get_node("EquipButton").visible = false
-	group_abilities.get_node("CurrentAbilities").visible = true
-	group_abilities.get_node("CurrentAbilities").rect_position = startingPosAbilities
-	group_items.get_node("CurrentItems").rect_position = startingPosItems
-	group_items.get_node("CurrentItems").visible = true
-	group_bg.get_node("CharacterSprite").visible = true
-	group_bg.get_node("NameLabel").visible = true
-	group_info.get_node("RemoveButton").visible = false
-	levelCircle.get_node("Label").visible = true
-	levelCircle.get_node("Icon").visible = false
-	group_buttons.visible = true
-	state = MAIN
-	resetSlotColorItem()
-	resetSlotColorAbility()
+func openLevelRewards() -> void:
+	group_abilities.visible = false
+	group_items.visible = false
+	group_buttons.visible = false
+	state = LEVELREWARDS
+	
+	group_rewards.visible = true
 
-func onRestructureAdd() -> void:
-	print("added")
+func openStats() -> void:
+	if not statsOpened:
+		statsOpened = true
+		group_info.get_node("InfoBG").visible = true
+		group_info.get_node("AbilityNameLabel").visible = true
+		group_info.get_node("AbilityNameLabel").text = "Stats"
+		group_info.get_node("AbilityDescription").visible = true
+		group_info.get_node("AbilityDescription").bbcode_text = """Health : %s
+[color=#d6463a]Strength : %s[/color]
+[color=#96f783]Dextirity : %s[/color]
+[color=#4eb6f2]Intelligence : %s[/color]
+""" % getStats()
+		group_bg.get_node("CharacterSprite").visible = false
+	else:
+		statsOpened = false
+		group_info.get_node("InfoBG").visible = false
+		group_info.get_node("AbilityNameLabel").visible = false
+		group_info.get_node("AbilityDescription").visible = false
+		group_bg.get_node("CharacterSprite").visible = true
 
-func onRestructureRemove() -> void:
-	print("removed")
+func getStats():
+	var health : int = character.healthBase
+	var stren : int = character.strBase
+	var dex : int = character.dexBase
+	var intel : int = character.intBase
+	for item in character.inventory:
+		if item != null:
+			health += item.healthBase
+			stren += item.strBase
+			dex += item.dexBase
+			intel += item.intBase
+	return [health, stren, dex, intel]

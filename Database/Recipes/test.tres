@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://Global/Recipe.gd" type="Script" id=1]
+[ext_resource path="res://SPRITES/Abilities/Extract.png" type="Texture" id=2]
+[ext_resource path="res://Database/Items/boneDagger.tres" type="Resource" id=3]
+[ext_resource path="res://Database/Items/crimsonArmor.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+name = "test"
+icon = ExtResource( 2 )
+result = ExtResource( 4 )
+type = "base"
+ingredients = [ ExtResource( 3 ) ]
+ingredientsAmmount = PoolIntArray( 50 )
+strength = 0
+dexterity = 0
+intelligence = 0

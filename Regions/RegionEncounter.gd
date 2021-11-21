@@ -15,25 +15,20 @@ func _ready():
 	get_node("IconContainer/TextureRect").texture = encounter.icon
 	var _err = Controller.connect("lock_complete_signal",self,"lockComplete")
 	var _err2 = connect("pressed",self,"openEncounter")
-	checkLock()
-
-func _process(delta):
-	tickCurr += delta
-	if tickCurr > TICK_SPEED:
-		tick()
-		tickCurr = 0.0
-
-func tick():
-	if locked:
-		updateLocked()
-
-func checkLock() -> void:
+	#check lock
 	for lockInController in Controller.activeLocks:
 		if lockInController.encounter == encounter:
 			self.lock = lockInController
 			locked = true
 			get_node("LockProgress").visible = true
 			get_node("LockProgress").max_value = lock.timeFull
+
+func _process(delta):
+	tickCurr += delta
+	if tickCurr > TICK_SPEED:
+		if locked:
+			get_node("LockProgress").value = lock.timeCurrent
+		tickCurr = 0.0
 
 func lockComplete(drops) -> void:
 	if locked:
@@ -44,10 +39,7 @@ func lockComplete(drops) -> void:
 		get_node("DropLabel").text = text
 		get_node("DropLabel/AnimationPlayer").stop()
 		get_node("DropLabel/AnimationPlayer").play("Drop")
-		updateLocked()
-
-func updateLocked() -> void:
-	get_node("LockProgress").value = lock.timeCurrent
+		get_node("LockProgress").value = lock.timeCurrent
 
 func openEncounter() -> void:
 	screen_encounter.visible = true

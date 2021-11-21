@@ -12,13 +12,18 @@ var pressedPlayerSlotIndex : int = -1
 
 func _ready():
 	set_process(false)
-	setup_connections()
-	setup_chooseButtons()
-	setupEnemies()
-
-func setup_connections() -> void:
+#	Setup connections
 	for character in GLOBAL.group_characters.get_children():
 		character.connect("pressed",self,"pressPlayerSlot",[character.get_index()])
+#	Setup enemies
+	for i in range(3):
+			if GLOBAL.encounter.enemies[i] == null:
+				continue
+			GLOBAL.enemies[i] = GLOBAL.encounter.enemies[i].duplicate()
+			GLOBAL.group_enemies.get_child(i).get_node("Sprite").texture = GLOBAL.enemies[i].spriteIdle
+			GLOBAL.enemies[i].healthCurrent = GLOBAL.enemies[i].healthMax
+			GLOBAL.enemies[i].cooldownAbilityTotal = 1.0 / GLOBAL.enemies[i].speed
+	setup_chooseButtons()
 
 func setup_chooseButtons() -> void:
 	for buttonRemove in table_choosePlayer.get_node("Characters").get_children():
@@ -31,17 +36,18 @@ func setup_chooseButtons() -> void:
 		button.get_node("Name").text = character.nameShown
 		table_choosePlayer.get_node("Characters").add_child(button)
 
-func setupEnemies() -> void:
-	for i in range(3):
-		if GLOBAL.encounter.enemies[i] == null:
-			continue
-		GLOBAL.enemies[i] = GLOBAL.encounter.enemies[i].duplicate()
-		GLOBAL.group_enemies.get_child(i).get_node("Sprite").texture = GLOBAL.enemies[i].spriteIdle
-		GLOBAL.enemies[i].healthCurrent = GLOBAL.enemies[i].healthMax
-		GLOBAL.enemies[i].cooldownAbilityTotal = 1.0 / GLOBAL.enemies[i].speed
+func pressPlayerSlot(index : int) -> void:
+	table_choosePlayer.visible = true
+	pressedPlayerSlotIndex = index
 
-func setupCharacter(index : int) -> void:
-	var character : Character = GLOBAL.characters[index]
+func pressChooseCharacterSlot(character : Character) -> void:
+	var index = pressedPlayerSlotIndex
+	table_choosePlayer.visible = false
+	GLOBAL.characters[index] = character
+	GLOBAL.group_characters.get_child(index).get_node("Sprite").texture = GLOBAL.characters[index].spriteIdle
+	
+#	Setup character
+#	var character : Character = GLOBAL.characters[index]
 	character.healthMax = character.healthBase
 	character.strCurrent = character.strBase
 	character.dexCurrent = character.dexBase
@@ -62,18 +68,7 @@ func setupCharacter(index : int) -> void:
 	character.abilityID = 0
 	character.cooldownAbilityCurrent = 0.0
 	character.dead = false
-
-func pressPlayerSlot(index : int) -> void:
-	table_choosePlayer.visible = true
-	pressedPlayerSlotIndex = index
-
-func pressChooseCharacterSlot(character : Character) -> void:
-	var index = pressedPlayerSlotIndex
-	table_choosePlayer.visible = false
-	GLOBAL.characters[index] = character
-	GLOBAL.group_characters.get_child(index).get_node("Sprite").texture = GLOBAL.characters[index].spriteIdle
-	
-	setupCharacter(index)
+#	Setup character end
 	button_startFight.visible = true
 	
 	Controller.charactersAvailableIDs.erase(character.id)
@@ -104,9 +99,9 @@ func startBattle() -> void:
 func closeChoosePlayer():
 	table_choosePlayer.visible = false
 
-func clone(character : Character) -> Character:
-	var clonedChar : Character = character.duplicate()
-	clonedChar.abilities = [] + character.abilities
-	return clonedChar
+#func clone(character : Character) -> Character:
+#	var clonedChar : Character = character.duplicate()
+#	clonedChar.abilities = [] + character.abilities
+#	return clonedChar
 
 

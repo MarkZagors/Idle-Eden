@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://MainNavigation/UIMainButtons.tscn" type="PackedScene" id=1]
-[ext_resource path="res://MainNavigation/InventoryScreen.gd" type="Script" id=2]
+[ext_resource path="res://MainNavigation/InventoryScreen/InventoryScreen.gd" type="Script" id=2]
 [ext_resource path="res://MainNavigation/CircleIcon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://SPRITES/zMisc/noise.tres" type="Texture" id=4]
 [ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=5]
@@ -130,7 +130,5 @@ custom_constants/hseparation = 10
 columns = 5
 
 [connection signal="pressed" from="Info/ActionButton" to="." method="pressAction"]
-[connection signal="pressed" from="UIMainButtons/BackButton" to="." method="backToMain"]
-[connection signal="pressed" from="UIMainButtons/CharacterButton" to="." method="gotoCharacterChooseScreen"]
 
 [editable path="UIMainButtons"]

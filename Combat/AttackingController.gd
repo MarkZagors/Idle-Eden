@@ -10,7 +10,20 @@ var currentCharEnemyTimeout = null
 var currentAbilityTimeout : Ability = null
 
 func _process(delta):
-	updateTempHealth(delta)
+	#Update temp health
+	for i in range(GLOBAL.enemySlotCount):
+		if GLOBAL.enemies[i] != null:
+			var enemyHpTemp = GLOBAL.group_enemies.get_child(i).get_node("HealthBar/HealthTemp")
+			var enemyHpCurrent = GLOBAL.group_enemies.get_child(i).get_node("HealthBar/HealthCurrent")
+			if enemyHpTemp.rect_size.x > enemyHpCurrent.rect_size.x:
+				enemyHpTemp.rect_size.x -= delta * HEALTH_TEMP_DECREASE
+	for i in range(GLOBAL.characterSlotCount):
+		if GLOBAL.characters[i] != null:
+			var characterHpTemp = GLOBAL.group_characters.get_child(i).get_node("HealthBar/HealthTemp")
+			var characterHpCurrent = GLOBAL.group_characters.get_child(i).get_node("HealthBar/HealthCurrent")
+			if characterHpTemp.rect_size.x > characterHpCurrent.rect_size.x:
+				characterHpTemp.rect_size.x -= delta * HEALTH_TEMP_DECREASE
+	pass
 
 func playAbility(charEnemy,node) -> void:
 	if GLOBAL.state == GLOBAL.END:
@@ -39,45 +52,17 @@ func playAbility(charEnemy,node) -> void:
 			ability_enemy_bite(charEnemy)
 		_:
 			push_error("NO ABILITY ID FOUND: " + str(ability.id))
+	
 	uiUpdateHealth()
 	charEnemy.abilityID = (charEnemy.abilityID + 1) % charEnemy.abilitySlotCount
 	
 	get_node("Timer").wait_time = 0.25
 	get_node("Timer").start()
 
-func uiUpdateHealth() -> void:
-	for i in range(GLOBAL.enemySlotCount):
-		if GLOBAL.enemies[i] != null:
-			var enemy = GLOBAL.group_enemies.get_child(i)
-			setHealth(enemy,GLOBAL.enemies[i])
-	for i in range(GLOBAL.characterSlotCount):
-		if GLOBAL.characters[i] != null:
-			var character = GLOBAL.group_characters.get_child(i)
-			setHealth(character,GLOBAL.characters[i])
-
-func setHealth(node,charEnemy) -> void:
-	node.get_node("HealthBar/HealthCurrent").rect_size.x = getHealthBarSize(charEnemy)
-#	node.get_node("HealthBar/HealthTemp").rect_size.x = getHealthBarSize(charEnemy)
-
 func getHealthBarSize(charEnemy) -> int:
 	var ratio : float = float(charEnemy.healthCurrent) / float(charEnemy.healthMax)
 	ratio = clamp(ratio,0.0,1.0)
 	return int(ratio * 200)
-
-func updateTempHealth(delta) -> void:
-	for i in range(GLOBAL.enemySlotCount):
-		if GLOBAL.enemies[i] != null:
-			var enemyHpTemp = GLOBAL.group_enemies.get_child(i).get_node("HealthBar/HealthTemp")
-			var enemyHpCurrent = GLOBAL.group_enemies.get_child(i).get_node("HealthBar/HealthCurrent")
-			if enemyHpTemp.rect_size.x > enemyHpCurrent.rect_size.x:
-				enemyHpTemp.rect_size.x -= delta * HEALTH_TEMP_DECREASE
-	for i in range(GLOBAL.characterSlotCount):
-		if GLOBAL.characters[i] != null:
-			var characterHpTemp = GLOBAL.group_characters.get_child(i).get_node("HealthBar/HealthTemp")
-			var characterHpCurrent = GLOBAL.group_characters.get_child(i).get_node("HealthBar/HealthCurrent")
-			if characterHpTemp.rect_size.x > characterHpCurrent.rect_size.x:
-				characterHpTemp.rect_size.x -= delta * HEALTH_TEMP_DECREASE
-	pass
 
 func damageEnemyPriority(damage : int) -> void:
 	var enemy : Enemy = GLOBAL.enemies[MIDBATTLE.highestPriorityEnemyID]
@@ -141,6 +126,16 @@ func exitAttacking() -> void:
 	
 	GLOBAL.camera.zoom = Vector2(1.0,1.0)
 	GLOBAL.background.get_node("HitFilter").visible = false
+
+func uiUpdateHealth() -> void:
+	for i in range(GLOBAL.enemySlotCount):
+		if GLOBAL.enemies[i] != null:
+			var enemy = GLOBAL.group_enemies.get_child(i)
+			enemy.get_node("HealthBar/HealthCurrent").rect_size.x = getHealthBarSize(GLOBAL.enemies[i])
+	for i in range(GLOBAL.characterSlotCount):
+		if GLOBAL.characters[i] != null:
+			var character = GLOBAL.group_characters.get_child(i)
+			character.get_node("HealthBar/HealthCurrent").rect_size.x = getHealthBarSize(GLOBAL.characters[i])
 
 #GUUL
 func ability_posionedNail(character : Character) -> void:

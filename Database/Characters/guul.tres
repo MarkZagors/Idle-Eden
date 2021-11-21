@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=8 format=2]
+[gd_resource type="Resource" load_steps=13 format=2]
 
 [ext_resource path="res://Database/Abilities/poisionNail.tres" type="Resource" id=1]
 [ext_resource path="res://Database/Abilities/extract.tres" type="Resource" id=2]
@@ -7,6 +7,25 @@
 [ext_resource path="res://SPRITES/Characters/poisionboi.png" type="Texture" id=5]
 [ext_resource path="res://SPRITES/Characters/poisionboi_attack.png" type="Texture" id=6]
 [ext_resource path="res://Database/Abilities/miseryLovesCompany.tres" type="Resource" id=7]
+[ext_resource path="res://Global/LevelReward.gd" type="Script" id=8]
+[ext_resource path="res://SPRITES/Abilities/MiseryLovesCompany.png" type="Texture" id=9]
+[ext_resource path="res://SPRITES/Abilities/Extract.png" type="Texture" id=10]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 8 )
+name = "[Ability] Extract"
+icon = ExtResource( 10 )
+level = 2
+isAbility = true
+ability = ExtResource( 2 )
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 8 )
+name = "[Ability] Misery Loves Company"
+icon = ExtResource( 9 )
+level = 5
+isAbility = true
+ability = ExtResource( 7 )
 
 [resource]
 script = ExtResource( 3 )
@@ -16,8 +35,9 @@ spriteFace = ExtResource( 4 )
 spriteIdle = ExtResource( 5 )
 spriteAttacking = ExtResource( 6 )
 abilities = [ ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ) ]
-abilityAll = [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 7 ) ]
+abilityAll = [  ]
 inventory = [ null, null, null, null ]
+rewards = [ SubResource( 1 ), SubResource( 2 ) ]
 healthBase = 100
 strBase = 10
 dexBase = 10

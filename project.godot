@@ -40,9 +40,19 @@ _global_script_classes=[ {
 "path": "res://Global/Item.gd"
 }, {
 "base": "Resource",
+"class": "LevelReward",
+"language": "GDScript",
+"path": "res://Global/LevelReward.gd"
+}, {
+"base": "Resource",
 "class": "Lock",
 "language": "GDScript",
 "path": "res://Global/Lock.gd"
+}, {
+"base": "Resource",
+"class": "Recipe",
+"language": "GDScript",
+"path": "res://Global/Recipe.gd"
 } ]
 _global_script_class_icons={
 "Ability": "",
@@ -51,7 +61,9 @@ _global_script_class_icons={
 "Encounter": "",
 "Enemy": "",
 "Item": "",
-"Lock": ""
+"LevelReward": "",
+"Lock": "",
+"Recipe": ""
 }
 
 [application]
@@ -70,6 +82,10 @@ window/size/width=1280
 window/size/height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[global]
+
+window=false
 
 [importer_defaults]
 

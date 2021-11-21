@@ -10,9 +10,6 @@ func exitMouseStartingZone():
 
 func clickStartingZone(_viewport:Node,event:InputEvent,_indx:int):
 	if event is InputEventMouseButton and event.pressed:
-		gotoStartingZone()
-
-func gotoStartingZone():
-	var _err = get_tree().change_scene("res://Regions/StartingZone.tscn")
+		var _err = get_tree().change_scene("res://Regions/StartingZone.tscn")
 
 

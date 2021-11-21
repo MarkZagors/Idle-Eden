@@ -17,6 +17,9 @@ var inventorySlotCount = 4
 export(Array,Resource) var abilityAll = [null]
 export(Array,Resource) var inventory = [null,null,null,null]
 
+#REWARDS
+export(Array,Resource) var rewards
+
 #STATS
 export var healthBase : int = 10
 export var strBase : int = 0
@@ -48,3 +51,7 @@ func getXp(ammount : int) -> void:
 	xpCurrent += ammount
 	while xpCurrent >= xpAll[level]:
 		level += 1
+		for reward in rewards:
+			if reward.level == level:
+				if reward.isAbility:
+					abilityAll.append(reward.ability)

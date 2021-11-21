@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://MainNavigation/CharacterChooseScreen.gd" type="Script" id=1]
+[ext_resource path="res://MainNavigation/CharacterChooseScreen/CharacterChooseScreen.gd" type="Script" id=1]
 [ext_resource path="res://MainNavigation/UIMainButtons.tscn" type="PackedScene" id=2]
 [ext_resource path="res://SPRITES/zMisc/noise.tres" type="Texture" id=3]
 
@@ -72,8 +72,5 @@ size_flags_vertical = 3
 custom_constants/vseparation = 15
 custom_constants/hseparation = 15
 columns = 4
-
-[connection signal="pressed" from="UIMainButtons/BackButton" to="." method="backToMain"]
-[connection signal="pressed" from="UIMainButtons/InventoryButton" to="." method="gotoInventory"]
 
 [editable path="UIMainButtons"]

@@ -108,30 +108,30 @@ shader = SubResource( 9 )
 size = 50
 font_data = ExtResource( 8 )
 
-[sub_resource type="Shader" id=12]
+[sub_resource type="DynamicFont" id=12]
+size = 24
+font_data = ExtResource( 8 )
+
+[sub_resource type="Shader" id=13]
 code = "shader_type canvas_item;
 
 void fragment() {
 	COLOR = vec4(vec3(0.0),1.0-UV.x);
 }"
 
-[sub_resource type="ShaderMaterial" id=13]
-shader = SubResource( 12 )
+[sub_resource type="ShaderMaterial" id=14]
+shader = SubResource( 13 )
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=15]
 size = 42
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=15]
-size = 24
-font_data = ExtResource( 8 )
-
 [sub_resource type="DynamicFont" id=16]
-size = 32
+size = 24
 font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=17]
-size = 24
+size = 32
 font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=18]
@@ -152,6 +152,8 @@ Path_group_buttons = NodePath("Buttons")
 Path_group_bg = NodePath("BG")
 Path_upperpoint = NodePath("UpperPoint")
 Path_levelCircle = NodePath("Level")
+Path_group_rewards = NodePath("LevelRewards/Container")
+Path_button_stats = NodePath("StatsButton")
 
 [node name="BG" type="Control" parent="."]
 margin_right = 40.0
@@ -311,15 +313,34 @@ margin_top = 480.0
 margin_right = 1028.0
 margin_bottom = 562.0
 texture_normal = ExtResource( 7 )
+texture_hover = ExtResource( 11 )
 expand = true
 
+[node name="Label" type="Label" parent="Buttons/LevelRewardsButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 12 )
+text = "Level up rewards"
+align = 1
+valign = 1
+
 [node name="StatsButton" type="TextureButton" parent="Buttons"]
+visible = false
 margin_left = 524.0
 margin_top = 581.0
 margin_right = 1028.0
 margin_bottom = 680.0
 texture_normal = ExtResource( 7 )
+texture_hover = ExtResource( 11 )
 expand = true
+
+[node name="Label" type="Label" parent="Buttons/StatsButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 12 )
+text = "Stats"
+align = 1
+valign = 1
 
 [node name="Info" type="Control" parent="."]
 margin_right = 40.0
@@ -330,7 +351,7 @@ __meta__ = {
 
 [node name="InfoBG" type="ColorRect" parent="Info"]
 visible = false
-material = SubResource( 13 )
+material = SubResource( 14 )
 margin_right = 498.0
 margin_bottom = 720.0
 mouse_filter = 2
@@ -341,7 +362,7 @@ margin_left = 19.0
 margin_top = 18.0
 margin_right = 321.0
 margin_bottom = 209.0
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 15 )
 text = "bite"
 valign = 1
 autowrap = true
@@ -356,7 +377,7 @@ margin_top = 209.0
 margin_right = 433.0
 margin_bottom = 720.0
 mouse_filter = 2
-custom_fonts/normal_font = SubResource( 15 )
+custom_fonts/normal_font = SubResource( 16 )
 bbcode_enabled = true
 
 [node name="EquipButton" type="TextureButton" parent="Info"]
@@ -372,7 +393,7 @@ expand = true
 [node name="Label" type="Label" parent="Info/EquipButton"]
 margin_right = 438.0
 margin_bottom = 115.0
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = SubResource( 17 )
 text = "EQUIP"
 align = 1
 valign = 1
@@ -391,7 +412,7 @@ expand = true
 [node name="Label" type="Label" parent="Info/RemoveButton"]
 margin_right = 438.0
 margin_bottom = 115.0
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = SubResource( 17 )
 text = "REMOVE"
 align = 1
 valign = 1
@@ -420,7 +441,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="BackButton"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 17 )
+custom_fonts/font = SubResource( 12 )
 text = "Back"
 align = 1
 valign = 1
@@ -465,8 +486,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="LevelRewards" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="VBoxContainer" parent="LevelRewards"]
+visible = false
+margin_left = 526.553
+margin_top = 130.502
+margin_right = 1249.55
+margin_bottom = 678.502
+rect_pivot_offset = Vector2( -1715.72, -15.9224 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatsButton" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 498.0
+margin_bottom = 720.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Buttons/LevelRewardsButton" to="." method="openLevelRewards"]
 [connection signal="pressed" from="Info/EquipButton" to="." method="actionPressed"]
 [connection signal="pressed" from="Info/RemoveButton" to="." method="removeItem"]
 [connection signal="pressed" from="BackButton" to="." method="backButton"]
+[connection signal="pressed" from="StatsButton" to="." method="openStats"]
 
 [editable path="Level"]

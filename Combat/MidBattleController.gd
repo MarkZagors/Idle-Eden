@@ -18,7 +18,24 @@ func _ready():
 func _process(delta):
 	if ended:
 		return
-	battleTick(delta)
+#	Battle tikck
+	for i in range(len(charEnemyArray)):
+		var charEnemy = charEnemyArray[i]
+		if charEnemy != null and charEnemy.dead == false:
+			charEnemy.cooldownAbilityCurrent += delta
+			if charEnemy.cooldownAbilityCurrent > charEnemy.cooldownAbilityTotal:
+				charEnemy.cooldownAbilityCurrent = 0.0
+				#Pay ability
+				var node = null
+				if charEnemy is Character:
+					node = GLOBAL.group_characters.get_child(i)
+				elif charEnemy is Enemy:
+					node = GLOBAL.group_enemies.get_child(i-GLOBAL.characterSlotCount)
+				if node == null:
+					push_error("MidBattleController, playAbility() node is null")
+				ATTACKING.playAbility(charEnemy,node)
+				set_process(false)
+				break
 	GLOBAL.time += delta
 	tickTimeCurrent += delta
 	if tickTimeCurrent > tickTimeMax:
@@ -32,29 +49,30 @@ func startBattle() -> void:
 	charEnemyArray = GLOBAL.characters + GLOBAL.enemies
 	selecterPlayerSlotID = 0
 
-func battleTick(delta) -> void:
-	for i in range(len(charEnemyArray)):
-		var charEnemy = charEnemyArray[i]
-		if charEnemy != null and charEnemy.dead == false:
-			charEnemy.cooldownAbilityCurrent += delta
-			if charEnemy.cooldownAbilityCurrent > charEnemy.cooldownAbilityTotal:
-				charEnemy.cooldownAbilityCurrent = 0.0
-				playAbility(charEnemy,i)
-				break
-
-func playAbility(charEnemy,index) -> void:
-	var node = null
-	if charEnemy is Character:
-		node = GLOBAL.group_characters.get_child(index)
-	elif charEnemy is Enemy:
-		node = GLOBAL.group_enemies.get_child(index-GLOBAL.characterSlotCount)
-	if node == null:
-		push_error("MidBattleController, playAbility() node is null")
-	ATTACKING.playAbility(charEnemy,node)
-	set_process(false)
-
 func pressPlayerSlot(index : int) -> void:
 	selecterPlayerSlotID = index
+
+func checkWin() -> void:
+	for i in range(GLOBAL.enemySlotCount):
+		if GLOBAL.enemies[i] != null and GLOBAL.enemies[i].dead == false:
+			return
+	if GLOBAL.state == GLOBAL.FIGHTING:
+#		Win battle
+		ended = true
+		get_node("../EndBattleController").win()
+		set_process(false)
+		GLOBAL.state = GLOBAL.END
+
+func checkLose() -> void:
+	for i in range(GLOBAL.characterSlotCount):
+		if GLOBAL.characters[i] != null and GLOBAL.characters[i].dead == false:
+			return
+	if GLOBAL.state == GLOBAL.FIGHTING:
+#		Lose battle
+		ended = true
+		get_node("../EndBattleController").lose()
+		set_process(false)
+		GLOBAL.state = GLOBAL.END
 
 func getPriority() -> void:
 	var maxPriority = -1
@@ -71,30 +89,3 @@ func getPriority() -> void:
 			if character.priority > maxPriority:
 				maxPriority = character.priority
 				highestPriorityCharacterID = i
-
-func checkWin() -> void:
-	for i in range(GLOBAL.enemySlotCount):
-		if GLOBAL.enemies[i] != null and GLOBAL.enemies[i].dead == false:
-			return
-	if GLOBAL.state == GLOBAL.FIGHTING:
-		winBattle()
-
-func checkLose() -> void:
-	for i in range(GLOBAL.characterSlotCount):
-		if GLOBAL.characters[i] != null and GLOBAL.characters[i].dead == false:
-			return
-	if GLOBAL.state == GLOBAL.FIGHTING:
-		loseBattle()
-
-func winBattle() -> void:
-	ended = true
-	get_node("../EndBattleController").win()
-	set_process(false)
-	GLOBAL.state = GLOBAL.END
-
-func loseBattle() -> void:
-	ended = true
-	get_node("../EndBattleController").lose()
-	set_process(false)
-	GLOBAL.state = GLOBAL.END
-
