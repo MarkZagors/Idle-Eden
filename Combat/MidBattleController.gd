@@ -2,9 +2,12 @@ extends Node
 onready var GLOBAL = get_parent()
 onready var ATTACKING = get_node("AttackingController")
 
+export var Path_group_consumables: NodePath
+onready var group_consumables : HBoxContainer = get_node(Path_group_consumables)
+
 var highestPriorityEnemyID : int = -1
 var highestPriorityCharacterID : int = -1
-var selecterPlayerSlotID : int = -1
+var selectedPlayerSlotID : int = -1
 
 var tickTimeCurrent : float = 0.0
 var tickTimeMax : float = 0.5
@@ -47,10 +50,16 @@ func startBattle() -> void:
 	set_process(true)
 	getPriority()
 	charEnemyArray = GLOBAL.characters + GLOBAL.enemies
-	selecterPlayerSlotID = 0
+#	group_consumables.visible = true
+	selectedPlayerSlotID = 0
+	while true:
+		if GLOBAL.characters[selectedPlayerSlotID] != null:
+			break
+		selectedPlayerSlotID += 1
 
 func pressPlayerSlot(index : int) -> void:
-	selecterPlayerSlotID = index
+	if GLOBAL.characters[index] != null:
+		selectedPlayerSlotID = index
 
 func checkWin() -> void:
 	for i in range(GLOBAL.enemySlotCount):

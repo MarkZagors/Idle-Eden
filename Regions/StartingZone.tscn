@@ -66,7 +66,7 @@ valign = 1
 
 [node name="EncounterScreen" type="ColorRect" parent="UIMap"]
 visible = false
-margin_left = 522.0
+margin_left = 78.0
 margin_top = 16.0
 margin_right = 1023.0
 margin_bottom = 680.0
@@ -76,7 +76,7 @@ __meta__ = {
 }
 
 [node name="NameLabel" type="Label" parent="UIMap/EncounterScreen"]
-margin_right = 501.0
+margin_right = 945.0
 margin_bottom = 94.0
 custom_fonts/font = SubResource( 2 )
 text = "NAME"
@@ -87,7 +87,7 @@ valign = 1
 visible = false
 margin_left = 30.0
 margin_top = 536.0
-margin_right = 467.0
+margin_right = 926.0
 margin_bottom = 646.0
 texture_normal = ExtResource( 5 )
 texture_hover = ExtResource( 4 )
@@ -112,7 +112,7 @@ visible = false
 self_modulate = Color( 1, 0.529412, 0.529412, 1 )
 margin_left = 30.0
 margin_top = 536.0
-margin_right = 467.0
+margin_right = 926.0
 margin_bottom = 646.0
 texture_normal = ExtResource( 5 )
 texture_hover = ExtResource( 4 )
@@ -133,10 +133,10 @@ __meta__ = {
 }
 
 [node name="CloseButton" type="TextureButton" parent="UIMap/EncounterScreen"]
-margin_left = 450.71
-margin_top = -16.0
-margin_right = 521.71
-margin_bottom = 55.0
+margin_left = 907.126
+margin_top = -3.716
+margin_right = 978.126
+margin_bottom = 67.284
 texture_normal = ExtResource( 9 )
 texture_hover = ExtResource( 8 )
 expand = true

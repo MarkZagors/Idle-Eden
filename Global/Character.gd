@@ -28,9 +28,9 @@ export var intBase : int = 0
 export var speed : float = 0
 
 #LEVEL
-var level : int = 1
-var xpCurrent : int = 0
-var xpNext : int = 5
+export var level : int = 1
+export var xpCurrent : int = 0
+export var xpNext : int = 5
 var xpAll : PoolIntArray = [0,5,15,35,60,100,9999]
 
 #HIDDEN VARIABLES

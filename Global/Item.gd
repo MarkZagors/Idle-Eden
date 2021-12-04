@@ -19,8 +19,8 @@ export var strBase : int = 0
 export var dexBase : int = 0
 export var intBase : int = 0
 
-#HIDDEN
-var ammount : int = 0
+#AMMOUNT
+export var ammount : int = 0
 
 func fullDescription() -> String:
 	var text = description

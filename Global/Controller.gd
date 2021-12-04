@@ -19,16 +19,13 @@ signal inventory_restructure_remove
 signal lock_complete_signal(drops)
 
 func _ready():
-	var guul : Character = load("res://Database/Characters/guul.tres")
-	guul.abilityAll.append(load("res://Database/Abilities/poisionNail.tres"))
-	characters.append(guul)
-	charactersAvailableIDs.append(guul.id)
-	addItem(load("res://Database/Items/boneDagger.tres"),1000)
+#	addItem(load("res://Database/Items/boneDagger.tres"),1000)
 #	addItem(load("res://Database/Items/banditClothArmor.tres"),5)
 #	addItem(load("res://Database/Items/crimsonArmor.tres"),1)
 #	addItem(load("res://Database/Items/boneDagger.tres"),1)
 #	addItem(load("res://Database/Items/silverDagger.tres"),5)
 #	addItem(load("res://Database/Items/crimsonDagger.tres"),1)
+	pass
 
 func _process(delta):
 	#lock Tick
@@ -102,3 +99,13 @@ func findCharacter(lookingID : String) -> Character:
 		if ch.id == lookingID:
 			return ch
 	return null
+
+func setupActiveCharacters() -> void:
+	for character in characters:
+		charactersAvailableIDs.append(character.id)
+
+func addStartingCharacter() -> void:
+	var guul : Character = load("res://Database/Characters/guul.tres")
+	guul.abilityAll.append(load("res://Database/Abilities/poisionNail.tres"))
+	characters.append(guul)
+	charactersAvailableIDs.append(guul.id)

@@ -94,6 +94,8 @@ func startBattle() -> void:
 	
 	for button in GLOBAL.group_characters.get_children():
 		button.self_modulate = Color(0.0,0.0,0.0,0.0)
+	
+	
 	midController.startBattle()
 
 func closeChoosePlayer():

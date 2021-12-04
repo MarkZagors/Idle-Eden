@@ -43,3 +43,6 @@ strBase = 10
 dexBase = 10
 intBase = 10
 speed = 0.75
+level = 1
+xpCurrent = 0
+xpNext = 5

@@ -1,5 +1,8 @@
 extends Control
 
+func _ready():
+	SavingManager.save_game()
+
 func enterMouseStartingZone():
 	var button : Area2D = get_node("StartingZone")
 	button.get_node("Hover").visible = true

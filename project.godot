@@ -69,12 +69,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Idle Eden"
-run/main_scene="res://MainNavigation/WorldMap.tscn"
+run/main_scene="res://MainNavigation/MainMenu.tscn"
 config/icon="res://SPRITES/zMisc/icon.png"
 
 [autoload]
 
 Controller="*res://Global/Controller.gd"
+SavingManager="*res://Global/SavingManager.gd"
 
 [display]
 
