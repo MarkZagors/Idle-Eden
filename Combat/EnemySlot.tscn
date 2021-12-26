@@ -1,7 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://SPRITES/Particles/BloodSplatter.png" type="Texture" id=2]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Hit"
@@ -18,7 +26,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.15, 0.25 )
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "Hit"
 length = 0.25
 tracks/0/type = "value"
@@ -46,13 +54,13 @@ tracks/1/keys = {
 "values": [ Vector2( 1.4, 1.4 ), Vector2( 2, 2 ) ]
 }
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=3]
 size = 50
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "Show"
 length = 0.5
 tracks/0/type = "value"
@@ -78,9 +86,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 70, 103.653 )
 scale = Vector2( 0.75, 0.75 )
+frames = SubResource( 5 )
+playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Hit = SubResource( 1 )
@@ -117,7 +127,7 @@ position = Vector2( 70, 103.653 )
 scale = Vector2( 1.5, 1.5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HitSprite"]
-anims/Hit = SubResource( 4 )
+anims/Hit = SubResource( 2 )
 
 [node name="DamageLabel" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -132,7 +142,7 @@ margin_top = -79.73
 margin_right = 184.134
 margin_bottom = -11.73
 rect_rotation = 30.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 3 )
 text = "5"
 align = 1
 valign = 1
@@ -141,4 +151,4 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DamageLabel"]
-anims/Show = SubResource( 6 )
+anims/Show = SubResource( 4 )

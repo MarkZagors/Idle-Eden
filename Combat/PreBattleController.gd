@@ -20,7 +20,11 @@ func _ready():
 			if GLOBAL.encounter.enemies[i] == null:
 				continue
 			GLOBAL.enemies[i] = GLOBAL.encounter.enemies[i].duplicate()
-			GLOBAL.group_enemies.get_child(i).get_node("Sprite").texture = GLOBAL.enemies[i].spriteIdle
+			GLOBAL.group_enemies.get_child(i).get_node("Sprite").frames = GLOBAL.enemies[i].sprites
+			GLOBAL.group_enemies.get_child(i).get_node("Sprite").animation = "idle"
+			GLOBAL.group_enemies.get_child(i).get_node("Sprite").flip_h = GLOBAL.enemies[i].spriteFlip
+			GLOBAL.group_enemies.get_child(i).get_node("Sprite").scale = Vector2(GLOBAL.enemies[i].spriteScale,GLOBAL.enemies[i].spriteScale)
+			GLOBAL.group_enemies.get_child(i).get_node("Sprite").offset = GLOBAL.enemies[i].spriteOffset
 			GLOBAL.enemies[i].healthCurrent = GLOBAL.enemies[i].healthMax
 			GLOBAL.enemies[i].cooldownAbilityTotal = 1.0 / GLOBAL.enemies[i].speed
 	setup_chooseButtons()

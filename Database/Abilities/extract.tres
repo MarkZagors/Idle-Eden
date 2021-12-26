@@ -12,4 +12,4 @@ description = "[color=#ffe45e]unique[/color]
 Deal 3 damage for each stack of poison on the enemy"
 icon = ExtResource( 3 )
 hitSprite = ExtResource( 2 )
-unique = true
+unique = false

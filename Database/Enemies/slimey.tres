@@ -1,16 +1,17 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://Global/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Database/Abilities/Enemy/bite.tres" type="Resource" id=2]
-[ext_resource path="res://SPRITES/Enemies/slimey.png" type="Texture" id=3]
-[ext_resource path="res://SPRITES/Enemies/slimey_attacling.png" type="Texture" id=4]
+[ext_resource path="res://Database/SpriteAtlases/goodboi.tres" type="SpriteFrames" id=3]
 
 [resource]
 script = ExtResource( 1 )
 id = "slimey"
-spriteIdle = ExtResource( 3 )
-spriteAttacking = ExtResource( 4 )
 healthMax = 100
 damage = 10
 speed = 0.5
 abilities = [ ExtResource( 2 ), ExtResource( 2 ) ]
+sprites = ExtResource( 3 )
+spriteScale = 1
+spriteFlip = true
+spriteOffset = Vector2( 0, 50 )

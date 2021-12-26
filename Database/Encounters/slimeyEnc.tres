@@ -24,6 +24,7 @@ script = ExtResource( 4 )
 id = "easy"
 nameShown = "Slimey"
 icon = ExtResource( 9 )
+difficulty = 1
 xpGive = 15
 enemies = [ ExtResource( 2 ), null, null ]
 drops = [ SubResource( 1 ), SubResource( 2 ) ]

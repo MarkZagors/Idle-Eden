@@ -14,5 +14,6 @@ type = "base"
 ingredients = [ ExtResource( 3 ) ]
 ingredientsAmmount = PoolIntArray( 50 )
 strength = 0
-dexterity = 0
+dexterity = 50
 intelligence = 0
+effect = true

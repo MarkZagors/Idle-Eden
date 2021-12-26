@@ -1,16 +1,15 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://Global/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Database/Abilities/Enemy/bite.tres" type="Resource" id=2]
-[ext_resource path="res://SPRITES/Enemies/SwordWeaver_attack.png" type="Texture" id=3]
-[ext_resource path="res://SPRITES/Enemies/SwordWeaver.png" type="Texture" id=4]
 
 [resource]
 script = ExtResource( 1 )
 id = "swordWeaver"
-spriteIdle = ExtResource( 4 )
-spriteAttacking = ExtResource( 3 )
 healthMax = 2200
 damage = 15
 speed = 1.4
 abilities = [ ExtResource( 2 ), ExtResource( 2 ) ]
+spriteScale = 1
+spriteFlip = false
+spriteOffset = Vector2( 0, 0 )

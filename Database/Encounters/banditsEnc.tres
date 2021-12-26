@@ -24,6 +24,7 @@ script = ExtResource( 1 )
 id = "bandits"
 nameShown = "Bandits"
 icon = ExtResource( 2 )
+difficulty = 2
 xpGive = 30
 enemies = [ ExtResource( 3 ), ExtResource( 3 ), ExtResource( 3 ) ]
 drops = [ SubResource( 1 ), SubResource( 2 ) ]

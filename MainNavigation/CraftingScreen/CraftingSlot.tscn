@@ -51,8 +51,10 @@ margin_top = 38.5269
 margin_right = 443.218
 margin_bottom = 73.5269
 custom_fonts/font = SubResource( 1 )
-text = "+10 str"
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Recipe" type="HBoxContainer" parent="."]
 margin_left = 390.0

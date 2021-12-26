@@ -24,6 +24,7 @@ script = ExtResource( 1 )
 id = "swordWeaver"
 nameShown = "Sword Weaver"
 icon = ExtResource( 2 )
+difficulty = 3
 xpGive = 50
 enemies = [ ExtResource( 3 ), null, null ]
 drops = [ SubResource( 1 ), SubResource( 2 ) ]

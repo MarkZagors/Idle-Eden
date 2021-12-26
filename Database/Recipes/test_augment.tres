@@ -14,3 +14,4 @@ ingredientsAmmount = PoolIntArray( 10 )
 strength = 0
 dexterity = 10
 intelligence = 0
+effect = false

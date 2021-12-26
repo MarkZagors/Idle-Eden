@@ -46,6 +46,17 @@ func render(type: String, funcName: String) -> void:
 			rButton.get_node("Icon").texture = recipe.icon
 			rButton.get_node("NameLabel").text = recipe.name
 			rButton.connect("pressed",self,funcName,[recipe])
+#			Add text
+			var text : String = ""
+			if recipe.strength != 0:
+				text += str(recipe.strength) + " STR "
+			if recipe.dexterity != 0:
+				text += str(recipe.dexterity) + " DEX "
+			if recipe.intelligence != 0:
+				text += str(recipe.intelligence) + " INT "
+			if recipe.effect == true:
+				text += " +EFFECT "
+			rButton.get_node("StatsLabel").text = text
 			for i in range(len(recipe.ingredients)):
 				var ingredient = rButton.get_node("Recipe").get_child(i)
 				ingredient.visible = true

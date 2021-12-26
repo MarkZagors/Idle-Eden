@@ -46,6 +46,7 @@ func openEncounter() -> void:
 	screen_encounter.get_node("StartButton").visible = false
 	screen_encounter.get_node("EndButton").visible = false
 	screen_encounter.get_node("NameLabel").text = encounter.nameShown
+	screen_encounter.get_node("DifficultyLabel").text = "Difficulty : " + str(encounter.difficulty)
 	if locked:
 		screen_encounter.get_node("EndButton").visible = true
 	else:

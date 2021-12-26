@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://MainNavigation/BattleButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Database/Encounters/banditsEnc.tres" type="Resource" id=2]
@@ -26,6 +26,10 @@ font_data = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 32
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
 font_data = ExtResource( 10 )
 
 [node name="StartingZone" type="Control"]
@@ -146,6 +150,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 4 )
 text = "X"
+align = 1
+valign = 1
+
+[node name="DifficultyLabel" type="Label" parent="UIMap/EncounterScreen"]
+margin_top = 94.0
+margin_right = 945.0
+margin_bottom = 134.0
+custom_fonts/font = SubResource( 5 )
+text = "Difficulty : 1"
 align = 1
 valign = 1
 

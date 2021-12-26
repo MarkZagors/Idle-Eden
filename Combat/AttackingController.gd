@@ -29,15 +29,17 @@ func playAbility(charEnemy,node) -> void:
 	if GLOBAL.state == GLOBAL.END:
 		return
 	
-	node.get_node("Sprite").texture = charEnemy.spriteAttacking
+#	node.get_node("Sprite").texture = charEnemy.spriteAttacking #CHANGE THIS LATER
 	currentNodeTimeout = node
 	currentCharEnemyTimeout = charEnemy
 	GLOBAL.camera.zoom = Vector2(1,1)
 	GLOBAL.background.get_node("HitFilter").visible = true
 	if charEnemy is Character:
 		node.get_node("Sprite").position.x += 50
+		node.get_node("Sprite").texture = charEnemy.spriteAttacking
 	else:
 		node.get_node("Sprite").position.x -= 50
+		node.get_node("Sprite").animation = "attack"
 	
 	var ability : Ability = charEnemy.abilities[charEnemy.abilityID]
 	currentAbilityTimeout = ability
@@ -114,7 +116,9 @@ func animateDamage(node,damage) -> void:
 	node.get_node("DamageLabel/AnimationPlayer").play("Show")
 
 func exitAttacking() -> void:
-	currentNodeTimeout.get_node("Sprite").texture = currentCharEnemyTimeout.spriteIdle
+	if currentCharEnemyTimeout is Enemy:
+		currentNodeTimeout.get_node("Sprite").animation = "idle"
+#	currentNodeTimeout.get_node("Sprite").texture = currentCharEnemyTimeout.spriteIdle
 	currentNodeTimeout.get_node("Sprite").position.x = NODE_BACK_POSITION
 	
 	get_node("Timer").stop()

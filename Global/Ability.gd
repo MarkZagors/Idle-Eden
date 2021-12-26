@@ -9,4 +9,3 @@ export var icon : Texture = null
 export var hitSprite : Texture = null
 
 export var unique : bool = false
-
