@@ -48,7 +48,8 @@ func pressChooseCharacterSlot(character : Character) -> void:
 	var index = pressedPlayerSlotIndex
 	table_choosePlayer.visible = false
 	GLOBAL.characters[index] = character
-	GLOBAL.group_characters.get_child(index).get_node("Sprite").texture = GLOBAL.characters[index].spriteIdle
+	GLOBAL.group_characters.get_child(index).get_node("Sprite").frames = GLOBAL.characters[index].sprites
+	GLOBAL.group_characters.get_child(index).get_node("Sprite").animation = "idle"
 	
 #	Setup character
 #	var character : Character = GLOBAL.characters[index]

@@ -7,8 +7,7 @@ export var nameShown : String = "NULL"
 
 #SPRITES
 export var spriteFace : Texture = null
-export var spriteIdle : Texture = null
-export var spriteAttacking : Texture = null
+export var sprites : Resource = null
 
 #ABILITIES INVENTORY
 var abilitySlotCount = 6

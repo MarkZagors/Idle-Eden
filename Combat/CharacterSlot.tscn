@@ -1,31 +1,19 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://SPRITES/UI/buttoncombat.png" type="Texture" id=1]
-[ext_resource path="res://SPRITES/Characters/bgtest.png" type="Texture" id=2]
 [ext_resource path="res://SPRITES/UI/buttoncombatHover.png" type="Texture" id=3]
 [ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://SPRITES/Particles/BloodSplatter.png" type="Texture" id=5]
 
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-render_mode unshaded;
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
-uniform sampler2D color;
-
-void fragment() {
-	vec4 tex = texture(TEXTURE,UV);
-	//tex.rgb *= texture(color,UV*1.5+vec2(sin(TIME),cos(TIME))*0.1).rgb;
-	tex.rgb *= texture(color,fract(UV*1.5+TIME*0.1)).rgb; 
-	//tex = vec4(step())
-	 
-	COLOR = vec4(tex);
-}"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-shader_param/color = ExtResource( 2 )
-
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "Hit"
 length = 0.25
 step = 0.05
@@ -40,7 +28,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.15, 0.25 )
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "Hit"
 length = 0.25
 tracks/0/type = "value"
@@ -68,13 +56,13 @@ tracks/1/keys = {
 "values": [ Vector2( 1.4, 1.4 ), Vector2( 2, 2 ) ]
 }
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 50
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "Show"
 length = 0.5
 tracks/0/type = "value"
@@ -101,13 +89,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 2 )
+[node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 77.6889, 158.681 )
 scale = Vector2( 0.6, 0.6 )
+frames = SubResource( 1 )
+playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-anims/Hit = SubResource( 3 )
+anims/Hit = SubResource( 2 )
 
 [node name="HealthBar" type="ColorRect" parent="."]
 visible = false
@@ -139,7 +128,7 @@ position = Vector2( 67.4238, 158.681 )
 scale = Vector2( 1.5, 1.5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HitSprite"]
-anims/Hit = SubResource( 4 )
+anims/Hit = SubResource( 3 )
 
 [node name="DamageLabel" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -154,7 +143,7 @@ margin_top = -79.73
 margin_right = 184.134
 margin_bottom = -11.73
 rect_rotation = 30.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "5"
 align = 1
 valign = 1
@@ -163,4 +152,4 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DamageLabel"]
-anims/Show = SubResource( 6 )
+anims/Show = SubResource( 5 )
