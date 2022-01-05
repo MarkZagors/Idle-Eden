@@ -29,7 +29,6 @@ func playAbility(charEnemy,node) -> void:
 	if GLOBAL.state == GLOBAL.END:
 		return
 	
-	node.get_node("Sprite").animation = "attack"
 	currentNodeTimeout = node
 	currentCharEnemyTimeout = charEnemy
 	GLOBAL.camera.zoom = Vector2(1,1)
@@ -54,7 +53,7 @@ func playAbility(charEnemy,node) -> void:
 			push_error("NO ABILITY ID FOUND: " + str(ability.id))
 	
 	uiUpdateHealth()
-	charEnemy.abilityID = (charEnemy.abilityID + 1) % charEnemy.abilitySlotCount
+	charEnemy.abilityID = (charEnemy.abilityID + 1) % len(charEnemy.abilities)
 	
 	get_node("Timer").wait_time = 0.25
 	get_node("Timer").start()
@@ -62,7 +61,7 @@ func playAbility(charEnemy,node) -> void:
 func getHealthBarSize(charEnemy) -> int:
 	var ratio : float = float(charEnemy.healthCurrent) / float(charEnemy.healthMax)
 	ratio = clamp(ratio,0.0,1.0)
-	return int(ratio * 200)
+	return int(ratio * 150)
 
 func damageEnemyPriority(damage : int) -> void:
 	var enemy : Enemy = GLOBAL.enemies[MIDBATTLE.highestPriorityEnemyID]
@@ -114,7 +113,6 @@ func animateDamage(node,damage) -> void:
 	node.get_node("DamageLabel/AnimationPlayer").play("Show")
 
 func exitAttacking() -> void:
-	currentNodeTimeout.get_node("Sprite").animation = "idle"
 	currentNodeTimeout.get_node("Sprite").position.x = NODE_BACK_POSITION
 	
 	get_node("Timer").stop()

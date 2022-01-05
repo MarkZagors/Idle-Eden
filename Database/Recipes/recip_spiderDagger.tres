@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://Global/Recipe.gd" type="Script" id=1]
+[ext_resource path="res://Database/Items/spiderDagger.tres" type="Resource" id=2]
+[ext_resource path="res://SPRITES/Items/boneDagger.png" type="Texture" id=3]
+[ext_resource path="res://Database/Items/spiderFang.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+name = "Spider Dagger"
+icon = ExtResource( 3 )
+result = ExtResource( 2 )
+type = "base"
+ingredients = [ ExtResource( 4 ) ]
+ingredientsAmmount = PoolIntArray( 50 )
+strength = 0
+dexterity = 10
+intelligence = 0
+health = 0
+effect = false

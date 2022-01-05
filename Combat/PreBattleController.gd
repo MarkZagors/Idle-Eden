@@ -20,11 +20,12 @@ func _ready():
 			if GLOBAL.encounter.enemies[i] == null:
 				continue
 			GLOBAL.enemies[i] = GLOBAL.encounter.enemies[i].duplicate()
-			GLOBAL.group_enemies.get_child(i).get_node("Sprite").frames = GLOBAL.enemies[i].sprites
-			GLOBAL.group_enemies.get_child(i).get_node("Sprite").animation = "idle"
+			GLOBAL.group_enemies.get_child(i).get_node("Sprite").texture = GLOBAL.enemies[i].spriteIdle
 			GLOBAL.group_enemies.get_child(i).get_node("Sprite").flip_h = GLOBAL.enemies[i].spriteFlip
 			GLOBAL.group_enemies.get_child(i).get_node("Sprite").scale = Vector2(GLOBAL.enemies[i].spriteScale,GLOBAL.enemies[i].spriteScale)
 			GLOBAL.group_enemies.get_child(i).get_node("Sprite").offset = GLOBAL.enemies[i].spriteOffset
+			GLOBAL.group_enemies.get_child(i).get_node("HealthBar").rect_position += GLOBAL.enemies[i].hpbarOffset
+			GLOBAL.group_enemies.get_child(i).get_node("Elipse").visible = true
 			GLOBAL.enemies[i].healthCurrent = GLOBAL.enemies[i].healthMax
 			GLOBAL.enemies[i].cooldownAbilityTotal = 1.0 / GLOBAL.enemies[i].speed
 	setup_chooseButtons()
@@ -48,8 +49,11 @@ func pressChooseCharacterSlot(character : Character) -> void:
 	var index = pressedPlayerSlotIndex
 	table_choosePlayer.visible = false
 	GLOBAL.characters[index] = character
-	GLOBAL.group_characters.get_child(index).get_node("Sprite").frames = GLOBAL.characters[index].sprites
-	GLOBAL.group_characters.get_child(index).get_node("Sprite").animation = "idle"
+	GLOBAL.group_characters.get_child(index).get_node("Sprite").texture = GLOBAL.characters[index].spriteIdle
+	GLOBAL.group_characters.get_child(index).get_node("Sprite").scale = Vector2(GLOBAL.characters[index].spriteScale, GLOBAL.characters[index].spriteScale)
+	GLOBAL.group_characters.get_child(index).get_node("Sprite").offset = GLOBAL.characters[index].spriteOffset
+	GLOBAL.group_characters.get_child(index).get_node("HealthBar").rect_position += GLOBAL.characters[index].hpbarOffset
+	GLOBAL.group_characters.get_child(index).get_node("Elipse").visible = true
 	
 #	Setup character
 #	var character : Character = GLOBAL.characters[index]

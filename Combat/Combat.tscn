@@ -8,7 +8,7 @@
 [ext_resource path="res://Combat/MidBattleController.gd" type="Script" id=6]
 [ext_resource path="res://Combat/EndBattleController.gd" type="Script" id=7]
 [ext_resource path="res://Combat/AttackingController.gd" type="Script" id=8]
-[ext_resource path="res://SPRITES/Backgrounds/bg1.png" type="Texture" id=9]
+[ext_resource path="res://SPRITES/Backgrounds/bg1pixel.png" type="Texture" id=9]
 [ext_resource path="res://SPRITES/UI/SlotNormal1.png" type="Texture" id=10]
 [ext_resource path="res://SPRITES/UI/SlotHoverl1.png" type="Texture" id=11]
 [ext_resource path="res://SPRITES/UI/ButtonLong1Hover.png" type="Texture" id=12]
@@ -87,8 +87,8 @@ Path_table_loseScreen = NodePath("../../CanvasLayer/LoseScreen")
 
 [node name="Bg" type="Sprite" parent="."]
 modulate = Color( 0.909804, 0.913725, 0.913725, 1 )
-position = Vector2( 637.52, 352.778 )
-scale = Vector2( 0.758095, 0.758095 )
+position = Vector2( 674.267, 373.816 )
+scale = Vector2( 3.76263, 3.76263 )
 z_index = -999
 texture = ExtResource( 9 )
 

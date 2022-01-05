@@ -14,12 +14,13 @@ var abilitySlotCount = 2
 export(Array,Resource) var abilities = [null,null]
 
 #SPRITES
-export var sprites : Resource = null
+export var spriteIdle : Texture = null
 
 #SPRITE CONTROLS
-export var spriteScale : int = 1
+export var spriteScale : float = 1
 export var spriteFlip : bool = false
 export var spriteOffset : Vector2 = Vector2.ZERO
+export var hpbarOffset : Vector2 = Vector2.ZERO
 
 #HIDDEN VARIABLES
 var cooldownAbilityCurrent = 0.0

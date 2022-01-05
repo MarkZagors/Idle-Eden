@@ -10,4 +10,5 @@ export var ingredientsAmmount: PoolIntArray
 export var strength: int
 export var dexterity: int
 export var intelligence: int
+export var health: int
 export var effect: bool

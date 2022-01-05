@@ -19,7 +19,7 @@ signal inventory_restructure_remove
 signal lock_complete_signal(drops)
 
 func _ready():
-#	addItem(load("res://Database/Items/boneDagger.tres"),1000)
+	addItem(load("res://Database/Items/weakCloth.tres"),1000)
 #	addItem(load("res://Database/Items/banditClothArmor.tres"),5)
 #	addItem(load("res://Database/Items/crimsonArmor.tres"),1)
 #	addItem(load("res://Database/Items/boneDagger.tres"),1)

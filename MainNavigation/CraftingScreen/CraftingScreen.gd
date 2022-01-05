@@ -14,9 +14,22 @@ onready var type_select : Label = get_node(Path_type_select)
 onready var recipeButton = preload("res://MainNavigation/CraftingScreen/CraftingSlot.tscn")
 
 onready var recipes = [
-	preload("res://Database/Recipes/test.tres"),
-	preload("res://Database/Recipes/test_augment.tres"),
-	preload("res://Database/Recipes/test_augment2.tres"),
+	preload("res://Database/Recipes/recip_hardenedArmor.tres"),
+	preload("res://Database/Recipes/recip_leatherArmor.tres"),
+	preload("res://Database/Recipes/recip_spiderDagger.tres"),
+	preload("res://Database/Recipes/recip_sturdyArmor.tres"),
+	preload("res://Database/Recipes/recip_tigerDagger.tres"),
+	preload("res://Database/Recipes/recip_waterstoneArmor.tres"),
+	preload("res://Database/Recipes/recip_waterstoneDagger.tres"),
+	preload("res://Database/Recipes/recip_woodenBow.tres"),
+	preload("res://Database/Recipes/recip_woodenSword.tres"),
+	preload("res://Database/Recipes/augm_hardenedStrength.tres"),
+	preload("res://Database/Recipes/augm_leatherStrength.tres"),
+	preload("res://Database/Recipes/augm_ratStrength.tres"),
+	preload("res://Database/Recipes/augm_spiderBite.tres"),
+	preload("res://Database/Recipes/augm_splinterSpikes.tres"),
+	preload("res://Database/Recipes/augm_tigerBite.tres"),
+	preload("res://Database/Recipes/augm_waterFlow.tres"),
 ]
 
 var base: Recipe = null
@@ -54,6 +67,8 @@ func render(type: String, funcName: String) -> void:
 				text += str(recipe.dexterity) + " DEX "
 			if recipe.intelligence != 0:
 				text += str(recipe.intelligence) + " INT "
+			if recipe.health != 0:
+				text += str(recipe.health) + " HP "
 			if recipe.effect == true:
 				text += " +EFFECT "
 			rButton.get_node("StatsLabel").text = text

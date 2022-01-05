@@ -5,10 +5,6 @@ class_name Character
 export var id : String = "NULL"
 export var nameShown : String = "NULL"
 
-#SPRITES
-export var spriteFace : Texture = null
-export var sprites : Resource = null
-
 #ABILITIES INVENTORY
 var abilitySlotCount = 6
 export(Array,Resource) var abilities = [null,null,null,null,null,null]
@@ -31,6 +27,16 @@ export var level : int = 1
 export var xpCurrent : int = 0
 export var xpNext : int = 5
 var xpAll : PoolIntArray = [0,5,15,35,60,100,9999]
+
+#SPRITES
+export var spriteFace : Texture = null
+export var spriteIdle : Texture = null
+
+#SPRITE CONTROLS
+export var spriteScale : float = 1
+export var spriteFlip : bool = false
+export var spriteOffset : Vector2 = Vector2.ZERO
+export var hpbarOffset : Vector2 = Vector2.ZERO
 
 #HIDDEN VARIABLES
 var cooldownAbilityCurrent = 0.0

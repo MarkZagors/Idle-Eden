@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://Global/Recipe.gd" type="Script" id=1]
+[ext_resource path="res://SPRITES/Items/HardenedArmor.png" type="Texture" id=2]
+[ext_resource path="res://Database/Items/hardenedCloth.tres" type="Resource" id=3]
+[ext_resource path="res://Database/Items/hardenedArmor.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+name = "Hardened Armor"
+icon = ExtResource( 2 )
+result = ExtResource( 4 )
+type = "base"
+ingredients = [ ExtResource( 3 ) ]
+ingredientsAmmount = PoolIntArray( 50 )
+strength = 0
+dexterity = 0
+intelligence = 0
+health = 0
+effect = false

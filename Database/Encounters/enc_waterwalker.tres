@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://Global/Encounter.gd" type="Script" id=1]
+[ext_resource path="res://Global/Drop.gd" type="Script" id=2]
+[ext_resource path="res://Database/Items/waterstone.tres" type="Resource" id=3]
+[ext_resource path="res://SPRITES/Enemies/goodboi.png" type="Texture" id=4]
+[ext_resource path="res://Database/Enemies/waterwalker.tres" type="Resource" id=7]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+item = ExtResource( 3 )
+ammount = 1
+chance = 1.0
+
+[resource]
+script = ExtResource( 1 )
+id = "waterwalker"
+nameShown = "Waterwalker"
+icon = ExtResource( 4 )
+difficulty = 4
+xpGive = 1
+enemies = [ ExtResource( 7 ), null, null ]
+drops = [ SubResource( 1 ) ]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://MainNavigation/CharacterScreen/CharacterScreen.gd" type="Script" id=3]
 [ext_resource path="res://SPRITES/zMisc/icon.png" type="Texture" id=4]
@@ -6,7 +6,6 @@
 [ext_resource path="res://SPRITES/UI/SlotHoverl1.png" type="Texture" id=6]
 [ext_resource path="res://SPRITES/UI/ButtonLong1.png" type="Texture" id=7]
 [ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://SPRITES/Characters/bgtest.png" type="Texture" id=9]
 [ext_resource path="res://SPRITES/UI/SlotNormal1.png" type="Texture" id=10]
 [ext_resource path="res://SPRITES/UI/ButtonLong1Hover.png" type="Texture" id=11]
 [ext_resource path="res://SPRITES/UI/level2.png" type="Texture" id=12]
@@ -74,25 +73,6 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=6]
 shader = SubResource( 5 )
 shader_param/color = Color( 0, 0, 0, 0 )
-
-[sub_resource type="Shader" id=7]
-code = "shader_type canvas_item;
-render_mode unshaded;
-
-uniform sampler2D color;
-
-void fragment() {
-	vec4 tex = texture(TEXTURE,UV);
-	//tex.rgb *= texture(color,UV*1.5+vec2(sin(TIME),cos(TIME))*0.1).rgb;
-	tex.rgb *= texture(color,fract(UV*1.5+TIME*0.1)).rgb; 
-	//tex = vec4(step())
-	 
-	COLOR = vec4(tex);
-}"
-
-[sub_resource type="ShaderMaterial" id=8]
-shader = SubResource( 7 )
-shader_param/color = ExtResource( 9 )
 
 [sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
@@ -212,11 +192,10 @@ __meta__ = {
 }
 
 [node name="CharacterSprite" type="TextureRect" parent="BG"]
-material = SubResource( 8 )
-margin_left = -18.7621
-margin_top = 16.6055
-margin_right = 465.238
-margin_bottom = 825.606
+margin_left = -179.0
+margin_top = 17.0
+margin_right = 524.0
+margin_bottom = 826.0
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false

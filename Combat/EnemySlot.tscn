@@ -1,15 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://SPRITES/Particles/BloodSplatter.png" type="Texture" id=2]
-
-[sub_resource type="SpriteFrames" id=5]
-animations = [ {
-"frames": [  ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
+[ext_resource path="res://SPRITES/Particles/BloodSplaterPixel.png" type="Texture" id=2]
+[ext_resource path="res://SPRITES/zMisc/elipse.png" type="Texture" id=3]
+[ext_resource path="res://SPRITES/UI/HpBorder1.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Hit"
@@ -86,41 +80,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="AnimatedSprite" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 70, 103.653 )
 scale = Vector2( 0.75, 0.75 )
-frames = SubResource( 5 )
-playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Hit = SubResource( 1 )
-
-[node name="HealthBar" type="ColorRect" parent="."]
-visible = false
-margin_left = -41.0
-margin_top = -54.6983
-margin_right = 159.0
-margin_bottom = -43.6983
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HealthTemp" type="ColorRect" parent="HealthBar"]
-margin_right = 200.0
-margin_bottom = 11.0
-color = Color( 0.976471, 0.501961, 0.188235, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HealthCurrent" type="ColorRect" parent="HealthBar"]
-margin_right = 200.0
-margin_bottom = 11.0
-color = Color( 0.537255, 0.972549, 0.0627451, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HitSprite" type="Sprite" parent="."]
 position = Vector2( 70, 103.653 )
@@ -129,18 +94,32 @@ scale = Vector2( 1.5, 1.5 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HitSprite"]
 anims/Hit = SubResource( 2 )
 
-[node name="DamageLabel" type="Sprite" parent="."]
+[node name="Elipse" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.94902, 0.94902, 0.94902, 0.156863 )
+position = Vector2( 56.8141, 253.974 )
+scale = Vector2( 4.18497, 2.11363 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="DamageLabel" type="TextureRect" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 57.5432, 114.69 )
-rotation = -0.0586887
-scale = Vector2( 1.17461, 1.17461 )
+margin_left = -31.1814
+margin_top = 81.9629
+margin_right = 118.819
+margin_bottom = 231.963
+rect_rotation = -7.62112
 texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="DamageLabel"]
-margin_left = -90.8656
-margin_top = -79.73
-margin_right = 184.134
-margin_bottom = -11.73
+margin_left = -15.2484
+margin_top = -6.69336
+margin_right = 259.751
+margin_bottom = 61.3066
 rect_rotation = 30.0
 custom_fonts/font = SubResource( 3 )
 text = "5"
@@ -152,3 +131,36 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DamageLabel"]
 anims/Show = SubResource( 4 )
+
+[node name="HealthBar" type="ColorRect" parent="."]
+visible = false
+margin_left = -9.83515
+margin_top = -16.5796
+margin_right = 140.165
+margin_bottom = 1.42045
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthTemp" type="ColorRect" parent="HealthBar"]
+margin_right = 150.0
+margin_bottom = 18.0
+color = Color( 0.976471, 0.501961, 0.188235, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthCurrent" type="ColorRect" parent="HealthBar"]
+margin_right = 150.0
+margin_bottom = 18.0
+color = Color( 0.537255, 0.972549, 0.0627451, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="HealthBar"]
+margin_right = 150.0
+margin_bottom = 18.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

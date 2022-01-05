@@ -48,7 +48,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-Path_group_recipes = NodePath("Recipes")
+Path_group_recipes = NodePath("RecipeScrollContainer/Recipes")
 Path_button_base = NodePath("BaseSlot")
 Path_group_augments = NodePath("Augments")
 Path_button_craft = NodePath("CraftButton")
@@ -103,15 +103,6 @@ margin_right = 795.881
 margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
 
-[node name="Recipes" type="VBoxContainer" parent="."]
-margin_left = 28.9782
-margin_top = 188.815
-margin_right = 1028.98
-margin_bottom = 258.815
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="TypeSelect" type="ColorRect" parent="."]
 margin_top = 141.925
 margin_right = 1050.0
@@ -128,6 +119,20 @@ margin_left = 15.0
 custom_fonts/font = SubResource( 3 )
 text = "Select a base:"
 valign = 1
+
+[node name="RecipeScrollContainer" type="ScrollContainer" parent="."]
+margin_left = 29.0
+margin_top = 189.0
+margin_right = 1029.0
+margin_bottom = 680.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Recipes" type="VBoxContainer" parent="RecipeScrollContainer"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CraftButton" type="TextureButton" parent="."]
 visible = false
