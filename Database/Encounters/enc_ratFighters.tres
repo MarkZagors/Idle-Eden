@@ -13,12 +13,14 @@ script = ExtResource( 2 )
 item = ExtResource( 6 )
 ammount = 1
 chance = 1.0
+extraDrop = 2
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
 item = ExtResource( 5 )
 ammount = 1
 chance = 0.5
+extraDrop = 2
 
 [resource]
 script = ExtResource( 1 )
@@ -26,6 +28,6 @@ id = "ratFighters"
 nameShown = "Rat Fighters"
 icon = ExtResource( 7 )
 difficulty = 2
-xpGive = 1
+xpGive = 3
 enemies = [ ExtResource( 3 ), ExtResource( 4 ), null ]
 drops = [ SubResource( 1 ), SubResource( 2 ) ]

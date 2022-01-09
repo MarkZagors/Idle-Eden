@@ -34,7 +34,7 @@ func lockComplete(drops) -> void:
 	if locked:
 		var text : String = ""
 		for drop in drops:
-			text += str(drop.item.nameShown) + " (%d)\n"%drop.ammount
+			text += str(drop.item.nameShown) + " (%d)\n"%drop.tempAmmount
 		text.erase(text.length()-1,1)
 		get_node("DropLabel").text = text
 		get_node("DropLabel/AnimationPlayer").stop()

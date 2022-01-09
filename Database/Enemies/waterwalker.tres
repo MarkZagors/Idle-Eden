@@ -7,9 +7,9 @@
 [resource]
 script = ExtResource( 1 )
 id = "waterwalker"
-healthMax = 10
-damage = 10
-speed = 1.0
+healthMax = 3500
+damage = 100
+speed = 0.4
 abilities = [ ExtResource( 2 ) ]
 spriteIdle = ExtResource( 3 )
 spriteScale = 2.0

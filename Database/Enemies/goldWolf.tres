@@ -7,9 +7,9 @@
 [resource]
 script = ExtResource( 1 )
 id = "goldWolf"
-healthMax = 10
-damage = 10
-speed = 1.0
+healthMax = 450
+damage = 35
+speed = 1.2
 abilities = [ ExtResource( 2 ) ]
 spriteIdle = ExtResource( 3 )
 spriteScale = 2.0

@@ -12,6 +12,6 @@ icon = ExtResource( 2 )
 type = 1
 healthBase = 0
 strBase = 0
-dexBase = 0
+dexBase = 15
 intBase = 0
 ammount = 0

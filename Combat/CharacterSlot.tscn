@@ -7,13 +7,13 @@
 [ext_resource path="res://SPRITES/Particles/BloodSplaterPixel.png" type="Texture" id=5]
 [ext_resource path="res://SPRITES/UI/HpBorder1.png" type="Texture" id=6]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 50
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "Show"
 length = 0.5
 tracks/0/type = "value"
@@ -29,7 +29,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 length = 0.25
 step = 0.05
 tracks/0/type = "bezier"
@@ -43,7 +43,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.15, 0.25 )
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 length = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:self_modulate")
@@ -100,7 +100,7 @@ margin_top = -6.69336
 margin_right = 259.751
 margin_bottom = 61.3066
 rect_rotation = 30.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "5"
 align = 1
 valign = 1
@@ -109,14 +109,15 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DamageLabel"]
-anims/Show = SubResource( 4 )
+anims/Show = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 67.4238, 158.681 )
+position = Vector2( 70, 158.681 )
 scale = Vector2( 0.6, 0.6 )
+z_index = -1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-anims/Hit = SubResource( 5 )
+anims/Hit = SubResource( 3 )
 
 [node name="HealthBar" type="ColorRect" parent="."]
 visible = false
@@ -154,10 +155,10 @@ __meta__ = {
 [node name="HitSprite" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0.927305 )
 position = Vector2( 67.4238, 158.681 )
-scale = Vector2( 1.5, 1.5 )
+scale = Vector2( 1.4, 1.4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HitSprite"]
-anims/Hit = SubResource( 6 )
+anims/Hit = SubResource( 4 )
 
 [node name="Elipse" type="Sprite" parent="."]
 visible = false

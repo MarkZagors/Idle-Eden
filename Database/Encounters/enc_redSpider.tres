@@ -11,6 +11,7 @@ script = ExtResource( 2 )
 item = ExtResource( 4 )
 ammount = 1
 chance = 1.0
+extraDrop = 1
 
 [resource]
 script = ExtResource( 1 )
@@ -18,6 +19,6 @@ id = "redSpider"
 nameShown = "Red Spider"
 icon = ExtResource( 5 )
 difficulty = 2
-xpGive = 1
+xpGive = 3
 enemies = [ ExtResource( 3 ), null, null ]
 drops = [ SubResource( 1 ) ]

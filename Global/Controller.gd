@@ -3,6 +3,8 @@ extends Node
 const ITEM_TYPE_COMMON = 0
 const ITEM_TYPE_EQUIPPABLE = 1
 
+const ITEM_MULTIPLIER = 1
+
 var characters = []
 var inventory = []
 var activeLocks = []
@@ -19,12 +21,19 @@ signal inventory_restructure_remove
 signal lock_complete_signal(drops)
 
 func _ready():
-	addItem(load("res://Database/Items/weakCloth.tres"),1000)
-#	addItem(load("res://Database/Items/banditClothArmor.tres"),5)
-#	addItem(load("res://Database/Items/crimsonArmor.tres"),1)
-#	addItem(load("res://Database/Items/boneDagger.tres"),1)
-#	addItem(load("res://Database/Items/silverDagger.tres"),5)
-#	addItem(load("res://Database/Items/crimsonDagger.tres"),1)
+	randomize()
+#	addItem(load("res://Database/Items/woodPlanks.tres"),1000)
+#	addItem(load("res://Database/Items/weakCloth.tres"),1000)
+#	addItem(load("res://Database/Items/hardenedCloth.tres"),1000)
+#	addItem(load("res://Database/Items/ratString.tres"),1000)
+#	addItem(load("res://Database/Items/spiderFang.tres"),1000)
+#	addItem(load("res://Database/Items/strongCloth.tres"),1000)
+#	addItem(load("res://Database/Items/tigerTooth.tres"),1000)
+#	addItem(load("res://Database/Items/waterstone.tres"),1000)
+#	addItem(load("res://Database/Items/weakCloth.tres"),1000)
+#	addItem(load("res://Database/Items/weakCloth.tres"),1000)
+#	addItem(load("res://Database/Items/weakCloth.tres"),1000)
+#	addItem(load("res://Database/Items/weakCloth.tres"),1000)
 	pass
 
 func _process(delta):
@@ -39,7 +48,8 @@ func _process(delta):
 			var showDrops = []
 			for drop in lock.encounter.drops:
 				if randf() < drop.chance:
-					addItem(drop.item,drop.ammount)
+					drop.tempAmmount = drop.ammount + randi() % (drop.extraDrop+1)
+					addItem(drop.item,drop.tempAmmount)
 					showDrops.append(drop)
 			emit_signal("lock_complete_signal",showDrops)
 
@@ -47,11 +57,11 @@ func addItem(item : Item, ammount : int) -> void:
 	var found : bool = false
 	for i in range(len(inventory)):
 		if inventory[i].id == item.id:
-			inventory[i].ammount += ammount
+			inventory[i].ammount += ammount * ITEM_MULTIPLIER
 			found = true
 			break
 	if not found:
-		item.ammount = ammount
+		item.ammount = ammount * ITEM_MULTIPLIER
 		inventory.append(item)
 		emit_signal("inventory_restructure_add")
 	emit_signal("inventory_changed")
@@ -65,6 +75,9 @@ func removeItemIndex(index : int, ammount : int) -> void:
 
 func removeItem(item : Item, ammount : int) -> void:
 	for index in range(len(inventory)):
+		if index >= len(inventory):
+			print("BUGGY INTERACTION IN CONTROLLER REMOVE ITEM SCRIPT!!!!, index: ", index)
+			return
 		if inventory[index].id == item.id:
 			inventory[index].ammount -= ammount
 			if inventory[index].ammount < 1:

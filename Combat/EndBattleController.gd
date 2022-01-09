@@ -17,6 +17,7 @@ func win():
 	
 	for drop in GLOBAL.encounter.drops:
 		if randf() < drop.chance:
+			var ammount = drop.ammount + randi() % (drop.extraDrop+1)
 			Controller.addItem(drop.item,drop.ammount)
 	MIDBATTLE.set_process(false)
 	GLOBAL.timeEnd = GLOBAL.time

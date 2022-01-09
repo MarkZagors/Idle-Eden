@@ -7,9 +7,9 @@
 [resource]
 script = ExtResource( 1 )
 id = "ratRanger"
-healthMax = 10
-damage = 10
-speed = 1.0
+healthMax = 1000
+damage = 30
+speed = 0.5
 abilities = [ ExtResource( 2 ) ]
 spriteIdle = ExtResource( 3 )
 spriteScale = 2.0

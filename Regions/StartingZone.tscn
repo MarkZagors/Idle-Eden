@@ -33,7 +33,7 @@ size = 32
 font_data = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 20
+size = 32
 font_data = ExtResource( 10 )
 
 [node name="StartingZone" type="Control"]
@@ -203,9 +203,9 @@ encounter = ExtResource( 14 )
 
 [node name="Waterwalker" parent="." instance=ExtResource( 1 )]
 margin_left = 675.289
-margin_top = -0.131104
+margin_top = 45.0588
 margin_right = 834.289
-margin_bottom = 145.869
+margin_bottom = 191.059
 encounter = ExtResource( 15 )
 
 [connection signal="pressed" from="UIMap/WorldMapButton" to="." method="gotoWorldMap"]

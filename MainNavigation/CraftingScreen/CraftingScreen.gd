@@ -14,20 +14,20 @@ onready var type_select : Label = get_node(Path_type_select)
 onready var recipeButton = preload("res://MainNavigation/CraftingScreen/CraftingSlot.tscn")
 
 onready var recipes = [
-	preload("res://Database/Recipes/recip_hardenedArmor.tres"),
 	preload("res://Database/Recipes/recip_leatherArmor.tres"),
-	preload("res://Database/Recipes/recip_spiderDagger.tres"),
+	preload("res://Database/Recipes/recip_woodenSword.tres"),
 	preload("res://Database/Recipes/recip_sturdyArmor.tres"),
+	preload("res://Database/Recipes/recip_woodenBow.tres"),
+	preload("res://Database/Recipes/recip_spiderDagger.tres"),
+	preload("res://Database/Recipes/recip_hardenedArmor.tres"),
 	preload("res://Database/Recipes/recip_tigerDagger.tres"),
 	preload("res://Database/Recipes/recip_waterstoneArmor.tres"),
 	preload("res://Database/Recipes/recip_waterstoneDagger.tres"),
-	preload("res://Database/Recipes/recip_woodenBow.tres"),
-	preload("res://Database/Recipes/recip_woodenSword.tres"),
-	preload("res://Database/Recipes/augm_hardenedStrength.tres"),
 	preload("res://Database/Recipes/augm_leatherStrength.tres"),
+	preload("res://Database/Recipes/augm_splinterSpikes.tres"),
 	preload("res://Database/Recipes/augm_ratStrength.tres"),
 	preload("res://Database/Recipes/augm_spiderBite.tres"),
-	preload("res://Database/Recipes/augm_splinterSpikes.tres"),
+	preload("res://Database/Recipes/augm_hardenedStrength.tres"),
 	preload("res://Database/Recipes/augm_tigerBite.tres"),
 	preload("res://Database/Recipes/augm_waterFlow.tres"),
 ]
@@ -54,6 +54,11 @@ func render(type: String, funcName: String) -> void:
 	
 	for _recipe in recipes:
 		var recipe: Recipe = _recipe
+		if recipe.type == "base":
+			 recipe.health = _recipe.result.healthBase
+			 recipe.dexterity = _recipe.result.dexBase
+			 recipe.strength = _recipe.result.strBase
+			 recipe.intelligence = _recipe.result.intBase
 		if recipe.type == type:
 			var rButton = recipeButton.instance()
 			rButton.get_node("Icon").texture = recipe.icon
@@ -159,6 +164,7 @@ func craftItem() -> void:
 		item.strBase += augment.strength
 		item.dexBase += augment.dexterity
 		item.intBase += augment.intelligence
+		item.healthBase += augment.health
 	item.id = id
 	
 	Controller.addItem(item,1)
