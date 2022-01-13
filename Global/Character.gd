@@ -38,12 +38,18 @@ export var spriteFlip : bool = false
 export var spriteOffset : Vector2 = Vector2.ZERO
 export var hpbarOffset : Vector2 = Vector2.ZERO
 
+#BG CONTROLS
+export var screenBGCol : Color = Color.black
+export var screenFORECol : Color = Color.black
+
 #HIDDEN VARIABLES
 var cooldownAbilityCurrent = 0.0
 var cooldownAbilityTotal = 1.0
 var abilityID = 0
 var priority : int = 0
 var dead : bool = false
+var position : int = -1
+var effects = []
 
 #HIDDEN STATS
 var healthMax : int = 10

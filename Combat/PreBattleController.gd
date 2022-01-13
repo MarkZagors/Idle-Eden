@@ -77,6 +77,8 @@ func pressChooseCharacterSlot(character : Character) -> void:
 	character.abilityID = 0
 	character.cooldownAbilityCurrent = 0.0
 	character.dead = false
+	character.position = index
+	character.effects = []
 #	Setup character end
 	button_startFight.visible = true
 	

@@ -9,6 +9,9 @@ var currentNodeTimeout : TextureButton = null
 var currentCharEnemyTimeout = null
 var currentAbilityTimeout : Ability = null
 
+onready var damageSplashSprite = preload("res://SPRITES/Particles/BloodSplaterPixel.png")
+onready var healSplashSprite = preload("res://SPRITES/Particles/HealSplash.png")
+
 func _process(delta):
 	#Update temp health
 	for i in range(GLOBAL.enemySlotCount):
@@ -47,6 +50,10 @@ func playAbility(charEnemy,node) -> void:
 			ability_extract(charEnemy)
 		"miseryLovesCompany":
 			ability_miseryLovesCompany(charEnemy)
+		"peacefulMelody":
+			ability_peacefulMelody(charEnemy)
+		"powerChord":
+			ability_powerChord(charEnemy)
 		"bite":
 			ability_enemy_bite(charEnemy)
 		_:
@@ -93,6 +100,20 @@ func poisonStackEnemyPriority(ammount : int) -> void:
 	var enemy : Enemy = GLOBAL.enemies[MIDBATTLE.highestPriorityEnemyID]
 	enemy.poisonStack += ammount
 
+func healLowestHp(ammount : int) -> void:
+	var lowest = 2.0
+	var lowChar : Character = null
+	for character in GLOBAL.characters:
+		if character != null and character.dead != true:
+			var hp = float(character.healthCurrent)/float(character.healthMax)
+			if hp < lowest:
+				lowest = hp
+				lowChar = character
+	lowChar.healthCurrent += ammount
+	lowChar.healthCurrent = clamp(lowChar.healthCurrent,0,lowChar.healthMax)
+	var node = GLOBAL.group_characters.get_child(lowChar.position)
+	animateHeal(node,ammount)
+
 func getPriorityEnemy() -> Enemy:
 	return GLOBAL.enemies[MIDBATTLE.highestPriorityEnemyID]
 
@@ -104,11 +125,18 @@ func nodeDead(charEnemy, node) -> void:
 	MIDBATTLE.checkWin()
 
 func animateDamage(node,damage) -> void:
+	node.get_node("DamageLabel").texture = damageSplashSprite
 	node.get_node("Sprite/AnimationPlayer").stop()
 	node.get_node("Sprite/AnimationPlayer").play("Hit")
 	node.get_node("HitSprite").texture = currentAbilityTimeout.hitSprite
 	node.get_node("HitSprite/AnimationPlayer").play("Hit")
 	node.get_node("DamageLabel/Label").text = str(damage)
+	node.get_node("DamageLabel/AnimationPlayer").stop()
+	node.get_node("DamageLabel/AnimationPlayer").play("Show")
+
+func animateHeal(node,heal) -> void:
+	node.get_node("DamageLabel").texture = healSplashSprite
+	node.get_node("DamageLabel/Label").text = str(heal)
 	node.get_node("DamageLabel/AnimationPlayer").stop()
 	node.get_node("DamageLabel/AnimationPlayer").play("Show")
 
@@ -152,6 +180,15 @@ func ability_miseryLovesCompany(character : Character) -> void:
 	if float(character.healthCurrent)/float(character.healthMax) <= 0.5:
 		poison = character.dexCurrent * 1.0
 	poisonStackEnemyPriority(poison)
+	damageEnemyPriority(damage)
+
+#LAUU
+func ability_peacefulMelody(character : Character) -> void:
+	var heal = character.intCurrent * 0.5
+	healLowestHp(heal)
+
+func ability_powerChord(character : Character) -> void:
+	var damage = character.intCurrent * 1
 	damageEnemyPriority(damage)
 
 #ENEMIES

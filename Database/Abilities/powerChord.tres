@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://Global/Ability.gd" type="Script" id=1]
+[ext_resource path="res://SPRITES/Particles/ScrachRed.png" type="Texture" id=2]
+[ext_resource path="res://SPRITES/Abilities/powerChord.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+id = "powerChord"
+nameShown = "Power Chord"
+description = "[color=#ffe45e]Chord[/color]
+Deal [color=#4eb6f2]0.7x int[/color] damage"
+icon = ExtResource( 3 )
+hitSprite = ExtResource( 2 )
+unique = false

@@ -1,10 +1,11 @@
-[gd_resource type="Resource" load_steps=12 format=2]
+[gd_resource type="Resource" load_steps=13 format=2]
 
-[ext_resource path="res://Database/Abilities/poisionNail.tres" type="Resource" id=1]
+[ext_resource path="res://Database/Abilities/peacefulMelody.tres" type="Resource" id=1]
 [ext_resource path="res://Database/Abilities/extract.tres" type="Resource" id=2]
 [ext_resource path="res://Global/Character.gd" type="Script" id=3]
-[ext_resource path="res://SPRITES/Characters/poisionboi_face.png" type="Texture" id=4]
-[ext_resource path="res://SPRITES/Characters/guul.png" type="Texture" id=5]
+[ext_resource path="res://SPRITES/Characters/lauu.png" type="Texture" id=4]
+[ext_resource path="res://SPRITES/Characters/lauu_face.png" type="Texture" id=5]
+[ext_resource path="res://Database/Abilities/powerChord.tres" type="Resource" id=6]
 [ext_resource path="res://Database/Abilities/miseryLovesCompany.tres" type="Resource" id=7]
 [ext_resource path="res://Global/LevelReward.gd" type="Script" id=8]
 [ext_resource path="res://SPRITES/Abilities/MiseryLovesCompany.png" type="Texture" id=9]
@@ -28,25 +29,25 @@ ability = ExtResource( 7 )
 
 [resource]
 script = ExtResource( 3 )
-id = "guul"
-nameShown = "Guul"
-abilities = [ ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ) ]
+id = "lauu"
+nameShown = "Lauu"
+abilities = [ ExtResource( 1 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 6 ) ]
 abilityAll = [  ]
 inventory = [ null, null, null, null ]
 rewards = [ SubResource( 1 ), SubResource( 2 ) ]
 healthBase = 100
 strBase = 10
 dexBase = 10
-intBase = 10
-speed = 0.75
+intBase = 25
+speed = 0.5
 level = 1
 xpCurrent = 0
 xpNext = 5
-spriteFace = ExtResource( 4 )
-spriteIdle = ExtResource( 5 )
+spriteFace = ExtResource( 5 )
+spriteIdle = ExtResource( 4 )
 spriteScale = 2.0
 spriteFlip = false
 spriteOffset = Vector2( 0, 18 )
 hpbarOffset = Vector2( 0, 45 )
-screenBGCol = Color( 0.172549, 0.294118, 0.192157, 1 )
-screenFORECol = Color( 0.164706, 0.992157, 0.219608, 1 )
+screenBGCol = Color( 0.172549, 0.215686, 0.294118, 1 )
+screenFORECol = Color( 0.886275, 0.698039, 0.12549, 1 )

@@ -13,14 +13,14 @@ func save_game() -> void:
 	if not directoryCharacters.dir_exists("user://characters"):
 		directoryCharacters.make_dir("user://characters")
 	var directoryInventory = Directory.new()
-	if not directoryCharacters.dir_exists("user://inventory"):
-		directoryCharacters.make_dir("user://inventory")
+	if not directoryInventory.dir_exists("user://inventory"):
+		directoryInventory.make_dir("user://inventory")
 	
 	for i in range(charactersAmmount):
-		ResourceSaver.save("user://characters/character%s.tres" % i, Controller.characters[i])
+		var _e = ResourceSaver.save("user://characters/character%s.tres" % i, Controller.characters[i])
 	
 	for i in range(inventoryAmmount):
-		ResourceSaver.save("user://inventory/item%s.tres" % i, Controller.inventory[i])
+		var _e = ResourceSaver.save("user://inventory/item%s.tres" % i, Controller.inventory[i])
 	
 	print("saved!")
 

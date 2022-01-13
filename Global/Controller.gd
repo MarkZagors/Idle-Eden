@@ -122,3 +122,9 @@ func addStartingCharacter() -> void:
 	guul.abilityAll.append(load("res://Database/Abilities/poisionNail.tres"))
 	characters.append(guul)
 	charactersAvailableIDs.append(guul.id)
+	
+	var lauu : Character = load("res://Database/Characters/lauu.tres")
+	lauu.abilityAll.append(load("res://Database/Abilities/peacefulMelody.tres"))
+	lauu.abilityAll.append(load("res://Database/Abilities/powerChord.tres"))
+	characters.append(lauu)
+	charactersAvailableIDs.append(lauu.id)
