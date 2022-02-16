@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/gd-sheets/data_document.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+data = [ [ "ID", "Gamer", "Header 2", "Header", "", "", "", "", "", "", "" ], [ "ID", "Gamer", "", "", "", "", "", "", "", "", "" ], [ "ID 2", "Gamer", "", "", "", "", "", "", "", "", "" ], [ "ID 3", "", "", "", "", "", "", "", "", "", "" ], [ "ID 4", "hello", "kjheq", "qwe", "", "", "", "", "", "", "" ], [ "ID 5", "hsjdh", "dhjs", "hjdkah", "", "", "", "", "", "", "" ] ]
+hash_map = {
+"ID": {
+"Gamer": "Gamer"
+},
+"ID 2": {
+"Gamer": "Gamer"
+},
+"ID 3": {
+},
+"ID 4": {
+"Gamer": "hello",
+"Header": "qwe",
+"Header 2": "kjheq"
+},
+"ID 5": {
+"Gamer": "hsjdh",
+"Header": "hjdkah",
+"Header 2": "dhjs"
+}
+}

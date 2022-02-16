@@ -5,6 +5,10 @@ onready var MIDBATTLE = get_parent()
 const HEALTH_TEMP_DECREASE = 50
 const NODE_BACK_POSITION = 70
 
+enum EFFECTS {
+	ENCHANT_CHORD
+}
+
 var currentNodeTimeout : TextureButton = null
 var currentCharEnemyTimeout = null
 var currentAbilityTimeout : Ability = null
@@ -163,6 +167,12 @@ func uiUpdateHealth() -> void:
 			var character = GLOBAL.group_characters.get_child(i)
 			character.get_node("HealthBar/HealthCurrent").rect_size.x = getHealthBarSize(GLOBAL.characters[i])
 
+func checkEffect(charEnemy,effect) -> bool:
+	for e in charEnemy.effects:
+		if e == effect:
+			return true
+	return false
+
 #GUUL
 func ability_posionedNail(character : Character) -> void:
 	var damage = character.dexCurrent * 1
@@ -186,10 +196,17 @@ func ability_miseryLovesCompany(character : Character) -> void:
 func ability_peacefulMelody(character : Character) -> void:
 	var heal = character.intCurrent * 0.5
 	healLowestHp(heal)
+	if character.effects.has(EFFECTS.ENCHANT_CHORD):
+		character.effects.remove(EFFECTS.ENCHANT_CHORD)
+	character.effects.append(EFFECTS.ENCHANT_CHORD)
 
 func ability_powerChord(character : Character) -> void:
-	var damage = character.intCurrent * 1
+	var damage = character.intCurrent * 1.5
+	if character.effects.has(EFFECTS.ENCHANT_CHORD):
+		damage *= 2
 	damageEnemyPriority(damage)
+	if character.effects.has(EFFECTS.ENCHANT_CHORD):
+		character.effects.remove(EFFECTS.ENCHANT_CHORD)
 
 #ENEMIES
 func ability_enemy_bite(enemy : Enemy) -> void:

@@ -1,6 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://SPRITES/Backgrounds/world1.png" type="Texture" id=3]
+[ext_resource path="res://MainNavigation/BattleButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Database/Encounters/Owlshore/enc_commonPalewing.tres" type="Resource" id=2]
+[ext_resource path="res://SPRITES/Backgrounds/worldmap.png" type="Texture" id=3]
 [ext_resource path="res://SPRITES/UI/ButtonLong1Hover.png" type="Texture" id=4]
 [ext_resource path="res://SPRITES/UI/ButtonLong1.png" type="Texture" id=5]
 [ext_resource path="res://MainNavigation/UIMap.tscn" type="PackedScene" id=6]
@@ -8,6 +10,9 @@
 [ext_resource path="res://SPRITES/UI/SlotHoverl1.png" type="Texture" id=8]
 [ext_resource path="res://SPRITES/UI/SlotNormal1.png" type="Texture" id=9]
 [ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Database/Encounters/Owlshore/enc_waterLyna.tres" type="Resource" id=11]
+[ext_resource path="res://Database/Encounters/Owlshore/enc_stoneEaters.tres" type="Resource" id=12]
+[ext_resource path="res://Database/Encounters/Owlshore/enc_redmouth.tres" type="Resource" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -29,7 +34,7 @@ font_data = ExtResource( 10 )
 size = 32
 font_data = ExtResource( 10 )
 
-[node name="StartingZone" type="Control"]
+[node name="Owlshore" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 7 )
@@ -38,8 +43,8 @@ __meta__ = {
 }
 
 [node name="BG" type="Sprite" parent="."]
-position = Vector2( 394.682, 1089.06 )
-scale = Vector2( 3.03184, 3.03184 )
+position = Vector2( 181.135, 145.355 )
+scale = Vector2( 1.30867, 1.30867 )
 z_index = -4096
 texture = ExtResource( 3 )
 
@@ -158,6 +163,34 @@ custom_fonts/font = SubResource( 5 )
 text = "Difficulty : 1"
 align = 1
 valign = 1
+
+[node name="CommonPalewing" parent="." instance=ExtResource( 1 )]
+margin_left = 557.161
+margin_top = 528.389
+margin_right = 692.161
+margin_bottom = 657.389
+encounter = ExtResource( 2 )
+
+[node name="WaterLyna" parent="." instance=ExtResource( 1 )]
+margin_left = 393.161
+margin_top = 327.0
+margin_right = 528.161
+margin_bottom = 456.0
+encounter = ExtResource( 11 )
+
+[node name="StoneEaters" parent="." instance=ExtResource( 1 )]
+margin_left = 162.161
+margin_top = 264.0
+margin_right = 297.161
+margin_bottom = 393.0
+encounter = ExtResource( 12 )
+
+[node name="Redmouth" parent="." instance=ExtResource( 1 )]
+margin_left = 234.161
+margin_top = 26.0
+margin_right = 369.161
+margin_bottom = 155.0
+encounter = ExtResource( 13 )
 
 [connection signal="pressed" from="UIMap/WorldMapButton" to="." method="gotoWorldMap"]
 [connection signal="pressed" from="UIMap/EncounterScreen/StartButton" to="." method="gotoEncounter"]

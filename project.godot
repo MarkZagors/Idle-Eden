@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Global/Ability.gd"
 }, {
+"base": "LineEdit",
+"class": "Cell",
+"language": "GDScript",
+"path": "res://addons/gd-sheets/scripts/cell.gd"
+}, {
 "base": "Resource",
 "class": "Character",
 "language": "GDScript",
@@ -34,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Global/Enemy.gd"
 }, {
+"base": "Reference",
+"class": "GDSheets",
+"language": "GDScript",
+"path": "res://addons/gd-sheets/scripts/GDSheets.gd"
+}, {
 "base": "Resource",
 "class": "Item",
 "language": "GDScript",
@@ -53,17 +63,31 @@ _global_script_classes=[ {
 "class": "Recipe",
 "language": "GDScript",
 "path": "res://Global/Recipe.gd"
+}, {
+"base": "Resource",
+"class": "SheetsDataDocument",
+"language": "GDScript",
+"path": "res://addons/gd-sheets/data_document.gd"
+}, {
+"base": "Reference",
+"class": "SheetsUtility",
+"language": "GDScript",
+"path": "res://addons/gd-sheets/scripts/utility.gd"
 } ]
 _global_script_class_icons={
 "Ability": "",
+"Cell": "",
 "Character": "",
 "Drop": "",
 "Encounter": "",
 "Enemy": "",
+"GDSheets": "",
 "Item": "",
 "LevelReward": "",
 "Lock": "",
-"Recipe": ""
+"Recipe": "",
+"SheetsDataDocument": "",
+"SheetsUtility": ""
 }
 
 [application]
@@ -83,6 +107,10 @@ window/size/width=1280
 window/size/height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/gd-sheets/plugin.cfg" )
 
 [global]
 
