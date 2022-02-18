@@ -55,10 +55,12 @@ func render(type: String, funcName: String) -> void:
 	for _recipe in recipes:
 		var recipe: Recipe = _recipe
 		if recipe.type == "base":
-			 recipe.health = _recipe.result.healthBase
-			 recipe.dexterity = _recipe.result.dexBase
-			 recipe.strength = _recipe.result.strBase
-			 recipe.intelligence = _recipe.result.intBase
+			recipe.health = _recipe.result.healthBase
+			recipe.dexterity = _recipe.result.dexBase
+			recipe.strength = _recipe.result.strBase
+			recipe.intelligence = _recipe.result.intBase
+			recipe.icon = _recipe.result.icon
+			recipe.name = _recipe.result.nameShown
 		if recipe.type == type:
 			var rButton = recipeButton.instance()
 			rButton.get_node("Icon").texture = recipe.icon
