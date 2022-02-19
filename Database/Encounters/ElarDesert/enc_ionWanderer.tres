@@ -1,14 +1,12 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://Global/Encounter.gd" type="Script" id=1]
 [ext_resource path="res://Global/Drop.gd" type="Script" id=2]
 [ext_resource path="res://Database/Enemies/ElarDesert/ionWanderer.tres" type="Resource" id=3]
-[ext_resource path="res://Database/Items/spiderFang.tres" type="Resource" id=4]
 [ext_resource path="res://SPRITES/Enemies/ElarDesert/tier2str.png" type="Texture" id=5]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
-item = ExtResource( 4 )
 ammount = 1
 chance = 1.0
 extraDrop = 0

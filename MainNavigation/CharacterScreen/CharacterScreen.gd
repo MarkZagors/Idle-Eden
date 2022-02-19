@@ -20,7 +20,7 @@ onready var group_rewards : VBoxContainer = get_node(Path_group_rewards)
 export var Path_button_stats : NodePath
 onready var button_stats : Button = get_node(Path_button_stats)
 
-onready var slotObj = preload("res://MainNavigation/Slot.tscn")
+onready var slotObj = preload("res://MainNavigation/InventoryScreen/Slot.tscn")
 onready var slotNormalTexture : Texture = preload("res://SPRITES/UI/SlotNormal1.png")
 onready var slotPickedAllTexture : Texture = preload("res://SPRITES/UI/SlotPickedAll.png")
 onready var slotPickedCurrentTexture : Texture = preload("res://SPRITES/UI/SlotPickedCurrent.png")

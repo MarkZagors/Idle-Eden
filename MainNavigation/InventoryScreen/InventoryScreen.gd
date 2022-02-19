@@ -6,7 +6,7 @@ onready var group_items : GridContainer = get_node(Path_group_items)
 export var Path_group_info : NodePath
 onready var group_info : Control = get_node(Path_group_info)
 
-onready var slotObj = preload("res://MainNavigation/Slot.tscn")
+onready var slotObj = preload("res://MainNavigation/InventoryScreen/Slot.tscn")
 
 func _ready():
 	#Setup items

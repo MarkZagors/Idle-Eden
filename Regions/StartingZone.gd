@@ -8,7 +8,7 @@ var nodeSelected : TextureButton = null
 #	var _err = get_tree().change_scene("res://Combat/Combat.tscn")
 #
 func gotoWorldMap():
-	var _err = get_tree().change_scene("res://MainNavigation/WorldMap.tscn")
+	var _err = get_tree().change_scene("res://MainNavigation/WorldMap/WorldMap.tscn")
 
 func gotoEncounter() -> void:
 	Controller.transferEncounter = encounterSelected

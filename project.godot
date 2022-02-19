@@ -65,6 +65,11 @@ _global_script_classes=[ {
 "path": "res://Global/Recipe.gd"
 }, {
 "base": "Resource",
+"class": "Recruit",
+"language": "GDScript",
+"path": "res://Global/Recruit.gd"
+}, {
+"base": "Resource",
 "class": "SheetsDataDocument",
 "language": "GDScript",
 "path": "res://addons/gd-sheets/data_document.gd"
@@ -86,6 +91,7 @@ _global_script_class_icons={
 "LevelReward": "",
 "Lock": "",
 "Recipe": "",
+"Recruit": "",
 "SheetsDataDocument": "",
 "SheetsUtility": ""
 }
@@ -93,13 +99,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Idle Eden"
-run/main_scene="res://MainNavigation/MainMenu.tscn"
+run/main_scene="res://MainNavigation/MainMenu/MainMenu.tscn"
 config/icon="res://SPRITES/zMisc/icon.png"
 
 [autoload]
 
 Controller="*res://Global/Controller.gd"
 SavingManager="*res://Global/SavingManager.gd"
+LoadedData="*res://Global/LoadedData.gd"
 
 [display]
 

@@ -13,31 +13,13 @@ onready var type_select : Label = get_node(Path_type_select)
 
 onready var recipeButton = preload("res://MainNavigation/CraftingScreen/CraftingSlot.tscn")
 
-onready var recipes = [
-	preload("res://Database/Recipes/recip_leatherArmor.tres"),
-	preload("res://Database/Recipes/recip_woodenSword.tres"),
-	preload("res://Database/Recipes/recip_sturdyArmor.tres"),
-	preload("res://Database/Recipes/recip_woodenBow.tres"),
-	preload("res://Database/Recipes/recip_spiderDagger.tres"),
-	preload("res://Database/Recipes/recip_hardenedArmor.tres"),
-	preload("res://Database/Recipes/recip_tigerDagger.tres"),
-	preload("res://Database/Recipes/recip_waterstoneArmor.tres"),
-	preload("res://Database/Recipes/recip_waterstoneDagger.tres"),
-	preload("res://Database/Recipes/augm_leatherStrength.tres"),
-	preload("res://Database/Recipes/augm_splinterSpikes.tres"),
-	preload("res://Database/Recipes/augm_ratStrength.tres"),
-	preload("res://Database/Recipes/augm_spiderBite.tres"),
-	preload("res://Database/Recipes/augm_hardenedStrength.tres"),
-	preload("res://Database/Recipes/augm_tigerBite.tres"),
-	preload("res://Database/Recipes/augm_waterFlow.tres"),
-]
-
 var base: Recipe = null
 var augments = [null,null,null,null]
 var full: bool = false
 
 func _ready():
 	render("base", "addBase")
+	get_node("RecipeScrollContainer").get_v_scrollbar().rect_min_size.x = 50
 
 func _exit_tree():
 	removeRecipe(false, 0)
@@ -52,7 +34,7 @@ func render(type: String, funcName: String) -> void:
 	else:
 		type_select.text = "Select an augment"
 	
-	for _recipe in recipes:
+	for _recipe in LoadedData.recipes:
 		var recipe: Recipe = _recipe
 		if recipe.type == "base":
 			recipe.health = _recipe.result.healthBase

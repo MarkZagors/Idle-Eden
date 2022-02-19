@@ -1,0 +1,237 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://MainNavigation/Recruitment/RecruitmentScreen.gd" type="Script" id=1]
+[ext_resource path="res://SPRITES/UI/shadeUIHover.png" type="Texture" id=3]
+[ext_resource path="res://SPRITES/UI/recruitshadeUI.png" type="Texture" id=4]
+[ext_resource path="res://SPRITES/UI/shadeUI.png" type="Texture" id=5]
+[ext_resource path="res://SPRITES/UI/SlotHoverl1.png" type="Texture" id=6]
+[ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://SPRITES/UI/SlotNormal1.png" type="Texture" id=10]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 color : hint_color = vec4(0.0);
+
+void fragment() {
+	float x = (-UV.x+1.0);
+	COLOR = vec4(x*color.rgb,1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/color = Color( 0.247059, 0.768627, 0.278431, 0 )
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+void fragment() {
+	COLOR = vec4(UV.y)+0.5;
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 50
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 35
+font_data = ExtResource( 8 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "Fade"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="DynamicFont" id=6]
+size = 24
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 50
+font_data = ExtResource( 8 )
+
+[node name="RecruitmentScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BGColor" type="ColorRect" parent="BG"]
+material = SubResource( 2 )
+margin_left = -610.0
+margin_top = -42.0
+margin_right = 1331.0
+margin_bottom = 783.0
+color = Color( 0.470588, 0.235294, 0.196078, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CharacterSprite" type="TextureRect" parent="BG"]
+margin_left = -179.0
+margin_top = 17.0
+margin_right = 524.0
+margin_bottom = 826.0
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+self_modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 4 )
+margin_left = 441.0
+margin_top = 19.0
+margin_right = 1756.0
+margin_bottom = 115.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameLabel" type="Label" parent="BG"]
+margin_left = 524.0
+margin_top = 18.0
+margin_right = 1280.0
+margin_bottom = 115.0
+custom_fonts/font = SubResource( 5 )
+text = "Placeholder"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="RichTextLabel" parent="."]
+margin_left = 441.0
+margin_top = 115.0
+margin_right = 1250.0
+margin_bottom = 480.0
+custom_fonts/normal_font = SubResource( 7 )
+visible_characters = 0
+percent_visible = 0.0
+text = "DDSFH JJ DHFKDSKF JHDKSJ FHKSDJF HKDSJ HFSKDJ FHKD SJFHSDK JFH"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Text"]
+anims/Fade = SubResource( 8 )
+
+[node name="BackButton" type="TextureButton" parent="."]
+margin_left = 1050.0
+margin_top = 480.0
+margin_right = 1250.0
+margin_bottom = 680.0
+texture_normal = ExtResource( 10 )
+texture_hover = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="BackButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 6 )
+text = "Back"
+align = 1
+valign = 1
+
+[node name="Items" type="ScrollContainer" parent="."]
+margin_left = 441.0
+margin_top = 480.0
+margin_right = 1050.0
+margin_bottom = 680.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="VBoxContainer" parent="Items"]
+
+[node name="NextButton" type="TextureButton" parent="."]
+visible = false
+margin_left = 441.0
+margin_top = 480.0
+margin_right = 1038.0
+margin_bottom = 680.0
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="NextButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 9 )
+text = "NEXT"
+align = 1
+valign = 1
+
+[node name="TurnInButton" type="TextureButton" parent="."]
+visible = false
+margin_left = 441.0
+margin_top = 480.0
+margin_right = 1038.0
+margin_bottom = 680.0
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TurnInButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 9 )
+text = "TURN IN"
+align = 1
+valign = 1
+
+[node name="RecruitButton" type="TextureButton" parent="."]
+visible = false
+margin_left = 441.0
+margin_top = 480.0
+margin_right = 1038.0
+margin_bottom = 680.0
+texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="RecruitButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 9 )
+text = "RECRUIT"
+align = 1
+valign = 1
+
+[connection signal="pressed" from="BackButton" to="." method="backButton"]
+[connection signal="pressed" from="NextButton" to="." method="nextButton"]

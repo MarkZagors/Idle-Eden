@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://MainNavigation/Worldmap/RecruitButton.gd" type="Script" id=1]
+[ext_resource path="res://SPRITES/Characters/poisionboi_face.png" type="Texture" id=3]
+[ext_resource path="res://SPRITES/UI/RecruitButton.png" type="Texture" id=4]
+[ext_resource path="res://SPRITES/UI/WorldButtonMask.png" type="Texture" id=6]
+[ext_resource path="res://SPRITES/UI/RecruitButtonHover.png" type="Texture" id=7]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform sampler2D mask;
+
+void fragment() {
+	vec4 m = texture(mask,UV);
+	vec4 tex = texture(TEXTURE,UV);
+	COLOR = vec4(m*tex);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/mask = ExtResource( 6 )
+
+[node name="RecruitButton" type="TextureButton"]
+margin_right = 135.0
+margin_bottom = 124.0
+texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 7 )
+expand = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IconContainer" type="Node2D" parent="."]
+z_index = 1
+
+[node name="TextureRect" type="TextureRect" parent="IconContainer"]
+material = SubResource( 2 )
+margin_right = 135.0
+margin_bottom = 124.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="." to="." method="gotoRecruit"]

@@ -13,7 +13,7 @@
 [ext_resource path="res://SPRITES/UI/SlotHoverl1.png" type="Texture" id=11]
 [ext_resource path="res://SPRITES/UI/ButtonLong1Hover.png" type="Texture" id=12]
 [ext_resource path="res://SPRITES/UI/ButtonLong1.png" type="Texture" id=13]
-[ext_resource path="res://MainNavigation/Slot.tscn" type="PackedScene" id=14]
+[ext_resource path="res://MainNavigation/InventoryScreen/Slot.tscn" type="PackedScene" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24

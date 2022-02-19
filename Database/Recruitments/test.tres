@@ -1,0 +1,37 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://Global/Recruit.gd" type="Script" id=1]
+[ext_resource path="res://SPRITES/Characters/guul.png" type="Texture" id=2]
+[ext_resource path="res://SPRITES/Abilities/Extract.png" type="Texture" id=3]
+[ext_resource path="res://Database/Items/Resources/ElarDesert/silverOre.tres" type="Resource" id=4]
+[ext_resource path="res://Database/Items/Resources/ElarDesert/emeraldOre.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 1 )
+characterName = "TEST"
+characterId = "grunk"
+icon = ExtResource( 3 )
+characterSprite = ExtResource( 2 )
+start = "Hello sdhfjhsdjkhsdfjkhsd s jkhfjksdhjk sdhhs jkdhdf jkjsdhf jkshdf kjshdf kjhsd kjjhfh skjdhf sdjkh fsjk jdhfkjsdh ks jdhf skdj hfskd jhfsdkj hfhjkdsjkhhs dfjkhskdj hsjkd hfs df"
+end = "endd"
+quest1 = "quest 1"
+quest2 = "quest 2 !!!!"
+quest3 = ""
+quest4 = ""
+quest5 = ""
+greeting = ""
+questItems1 = [ ExtResource( 4 ), ExtResource( 5 ) ]
+questAmmount1 = [ 50, 60 ]
+questItems2 = [ null ]
+questAmmount2 = [ null ]
+questItems3 = [ null ]
+questAmmount3 = [ null ]
+questItems4 = [ null ]
+questAmmount4 = [ null ]
+questItems5 = [ null ]
+questAmmount5 = [ null ]
+reward1 = [ null ]
+reward2 = [ null ]
+reward3 = [ null ]
+reward4 = [ null ]
+reward5 = [ null ]

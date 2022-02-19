@@ -1,11 +1,11 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://MainNavigation/BattleButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://MainNavigation/Worldmap/BattleButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Database/Encounters/Lowlands/enc_raxFighter.tres" type="Resource" id=2]
 [ext_resource path="res://SPRITES/Backgrounds/worldmap.png" type="Texture" id=3]
 [ext_resource path="res://SPRITES/UI/ButtonLong1Hover.png" type="Texture" id=4]
 [ext_resource path="res://SPRITES/UI/ButtonLong1.png" type="Texture" id=5]
-[ext_resource path="res://MainNavigation/UIMap.tscn" type="PackedScene" id=6]
+[ext_resource path="res://MainNavigation/Worldmap/UIMap.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Regions/StartingZone.gd" type="Script" id=7]
 [ext_resource path="res://SPRITES/UI/SlotHoverl1.png" type="Texture" id=8]
 [ext_resource path="res://SPRITES/UI/SlotNormal1.png" type="Texture" id=9]

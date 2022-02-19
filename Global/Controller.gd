@@ -14,6 +14,13 @@ var charactersBusyIDs : Array = []
 
 var transferCharacter : Character = null
 var transferEncounter : Encounter = null
+var transferRecruit : Recruit = null
+
+var questCompletion = {
+	"grunk" : 0,
+	"guul" : 0,
+	"lauu" : 0,
+}
 
 signal inventory_changed
 signal inventory_restructure_add
@@ -22,18 +29,7 @@ signal lock_complete_signal(drops)
 
 func _ready():
 	randomize()
-#	addItem(load("res://Database/Items/woodPlanks.tres"),1000)
-#	addItem(load("res://Database/Items/weakCloth.tres"),1000)
-#	addItem(load("res://Database/Items/hardenedCloth.tres"),1000)
-#	addItem(load("res://Database/Items/ratString.tres"),1000)
-#	addItem(load("res://Database/Items/spiderFang.tres"),1000)
-#	addItem(load("res://Database/Items/strongCloth.tres"),1000)
-#	addItem(load("res://Database/Items/tigerTooth.tres"),1000)
-#	addItem(load("res://Database/Items/waterstone.tres"),1000)
-#	addItem(load("res://Database/Items/weakCloth.tres"),1000)
-#	addItem(load("res://Database/Items/weakCloth.tres"),1000)
-#	addItem(load("res://Database/Items/weakCloth.tres"),1000)
-#	addItem(load("res://Database/Items/weakCloth.tres"),1000)
+	addItem(load("res://Database/Items/Resources/ElarDesert/silverOre.tres"),1000)
 	pass
 
 func _process(delta):
