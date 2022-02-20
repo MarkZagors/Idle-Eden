@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://Global/Encounter.gd" type="Script" id=1]
 [ext_resource path="res://Global/Drop.gd" type="Script" id=2]
 [ext_resource path="res://Database/Enemies/Lowlands/raxElder.tres" type="Resource" id=3]
-[ext_resource path="res://SPRITES/Enemies/Lowlands/tier3dex.png" type="Texture" id=5]
+[ext_resource path="res://SPRITES/Enemies/Lowlands/tier3dex/face_tier3dex.png" type="Texture" id=4]
+[ext_resource path="res://SPRITES/Enemies/Lowlands/tier3dex/tier3dex.png" type="Texture" id=5]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
@@ -13,9 +14,10 @@ extraDrop = 0
 
 [resource]
 script = ExtResource( 1 )
-id = "raxWorker"
-nameShown = "Rax Worker"
-icon = ExtResource( 5 )
+id = "raxElder"
+nameShown = "Rax Elder"
+icon = ExtResource( 4 )
+spriteFull = ExtResource( 5 )
 difficulty = 1
 xpGive = 1
 enemies = [ ExtResource( 3 ), null, null ]

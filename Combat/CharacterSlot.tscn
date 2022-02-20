@@ -113,7 +113,6 @@ anims/Show = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 70, 158.681 )
-scale = Vector2( 0.6, 0.6 )
 z_index = -1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]

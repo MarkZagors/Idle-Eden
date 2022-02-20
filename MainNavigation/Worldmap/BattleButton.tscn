@@ -8,7 +8,7 @@
 [ext_resource path="res://SPRITES/zMisc/pixel.png" type="Texture" id=7]
 [ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=8]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
 
 uniform sampler2D mask;
@@ -20,7 +20,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+shader = SubResource( 6 )
 shader_param/mask = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=3]

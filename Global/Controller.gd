@@ -30,6 +30,7 @@ signal lock_complete_signal(drops)
 func _ready():
 	randomize()
 	addItem(load("res://Database/Items/Resources/ElarDesert/silverOre.tres"),1000)
+	addItem(load("res://Database/Items/Resources/ElarDesert/emeraldOre.tres"),1000)
 	pass
 
 func _process(delta):
@@ -85,6 +86,12 @@ func checkItem(item : Item, ammount : int) -> bool:
 			return true
 	return false
 
+func getItemAmmount(item : Item) -> int:
+	for i in range(len(inventory)):
+		if inventory[i].id == item.id:
+			return inventory[i].ammount
+	return 0
+
 func startLock(time : float, encounter : Encounter, characterIds) -> void:
 	var lock = Lock.new()
 	lock.timeFull = time
@@ -119,8 +126,12 @@ func addStartingCharacter() -> void:
 	characters.append(guul)
 	charactersAvailableIDs.append(guul.id)
 	
-	var lauu : Character = load("res://Database/Characters/lauu.tres")
-	lauu.abilityAll.append(load("res://Database/Abilities/peacefulMelody.tres"))
-	lauu.abilityAll.append(load("res://Database/Abilities/powerChord.tres"))
-	characters.append(lauu)
-	charactersAvailableIDs.append(lauu.id)
+#	var lauu : Character = load("res://Database/Characters/lauu.tres")
+#	lauu.abilityAll.append(load("res://Database/Abilities/peacefulMelody.tres"))
+#	lauu.abilityAll.append(load("res://Database/Abilities/powerChord.tres"))
+#	characters.append(lauu)
+#	charactersAvailableIDs.append(lauu.id)
+
+func addCharacter(character : Character) -> void:
+	characters.append(character)
+	charactersAvailableIDs.append(character.id)

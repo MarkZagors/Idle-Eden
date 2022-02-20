@@ -1,198 +1,73 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://MainNavigation/Worldmap/BattleButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Database/Encounters/Owlshore/enc_commonPalewing.tres" type="Resource" id=2]
-[ext_resource path="res://SPRITES/Backgrounds/worldmap.png" type="Texture" id=3]
-[ext_resource path="res://SPRITES/UI/ButtonLong1Hover.png" type="Texture" id=4]
-[ext_resource path="res://SPRITES/UI/ButtonLong1.png" type="Texture" id=5]
-[ext_resource path="res://MainNavigation/Worldmap/UIMap.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Regions/StartingZone.gd" type="Script" id=7]
-[ext_resource path="res://SPRITES/UI/SlotHoverl1.png" type="Texture" id=8]
-[ext_resource path="res://SPRITES/UI/SlotNormal1.png" type="Texture" id=9]
-[ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Regions/RegionEncounter.gd" type="Script" id=3]
+[ext_resource path="res://MainNavigation/Worldmap/RegionMap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://SPRITES/UI/WorldButton.png" type="Texture" id=5]
+[ext_resource path="res://SPRITES/UI/WorldButtonHover.png" type="Texture" id=6]
 [ext_resource path="res://Database/Encounters/Owlshore/enc_waterLyna.tres" type="Resource" id=11]
 [ext_resource path="res://Database/Encounters/Owlshore/enc_stoneEaters.tres" type="Resource" id=12]
 [ext_resource path="res://Database/Encounters/Owlshore/enc_redmouth.tres" type="Resource" id=13]
 
-[sub_resource type="DynamicFont" id=1]
-size = 20
-font_data = ExtResource( 10 )
+[node name="ElarDesert" instance=ExtResource( 4 )]
 
-[sub_resource type="DynamicFont" id=2]
-size = 50
-font_data = ExtResource( 10 )
+[node name="BG" parent="." index="0"]
+position = Vector2( 118.324, 66.9212 )
+scale = Vector2( 1.43937, 1.43937 )
 
-[sub_resource type="DynamicFont" id=3]
-size = 32
-font_data = ExtResource( 10 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 32
-font_data = ExtResource( 10 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 32
-font_data = ExtResource( 10 )
-
-[node name="Owlshore" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="BG" type="Sprite" parent="."]
-position = Vector2( 181.135, 145.355 )
-scale = Vector2( 1.30867, 1.30867 )
-z_index = -4096
-texture = ExtResource( 3 )
-
-[node name="UIMap" parent="." instance=ExtResource( 6 )]
-
-[node name="WorldMapButton" type="TextureButton" parent="UIMap"]
-margin_left = 1050.0
-margin_top = 327.0
-margin_right = 1250.0
-margin_bottom = 450.0
-texture_normal = ExtResource( 9 )
-texture_hover = ExtResource( 8 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UIMap/WorldMapButton"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
-text = "World map"
-align = 1
-valign = 1
-
-[node name="EncounterScreen" type="ColorRect" parent="UIMap"]
-visible = false
-margin_left = 78.0
-margin_top = 16.0
-margin_right = 1023.0
-margin_bottom = 680.0
-color = Color( 0.145098, 0.14902, 0.12549, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NameLabel" type="Label" parent="UIMap/EncounterScreen"]
-margin_right = 945.0
-margin_bottom = 94.0
-custom_fonts/font = SubResource( 2 )
-text = "NAME"
-align = 1
-valign = 1
-
-[node name="StartButton" type="TextureButton" parent="UIMap/EncounterScreen"]
-visible = false
-margin_left = 30.0
-margin_top = 536.0
-margin_right = 926.0
-margin_bottom = 646.0
-texture_normal = ExtResource( 5 )
-texture_hover = ExtResource( 4 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UIMap/EncounterScreen/StartButton"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_fonts/font = SubResource( 3 )
-text = "START"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="EndButton" type="TextureButton" parent="UIMap/EncounterScreen"]
-visible = false
-self_modulate = Color( 1, 0.529412, 0.529412, 1 )
-margin_left = 30.0
-margin_top = 536.0
-margin_right = 926.0
-margin_bottom = 646.0
-texture_normal = ExtResource( 5 )
-texture_hover = ExtResource( 4 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UIMap/EncounterScreen/EndButton"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_fonts/font = SubResource( 3 )
-text = "END LOCK"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CloseButton" type="TextureButton" parent="UIMap/EncounterScreen"]
-margin_left = 907.126
-margin_top = -3.716
-margin_right = 978.126
-margin_bottom = 67.284
-texture_normal = ExtResource( 9 )
-texture_hover = ExtResource( 8 )
-expand = true
-
-[node name="Label" type="Label" parent="UIMap/EncounterScreen/CloseButton"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_fonts/font = SubResource( 4 )
-text = "X"
-align = 1
-valign = 1
-
-[node name="DifficultyLabel" type="Label" parent="UIMap/EncounterScreen"]
-margin_top = 94.0
-margin_right = 945.0
-margin_bottom = 134.0
-custom_fonts/font = SubResource( 5 )
-text = "Difficulty : 1"
-align = 1
-valign = 1
-
-[node name="CommonPalewing" parent="." instance=ExtResource( 1 )]
-margin_left = 557.161
+[node name="CommonPalewing" type="TextureButton" parent="." index="2" instance=ExtResource( 1 )]
+margin_left = 538.473
 margin_top = 528.389
-margin_right = 692.161
+margin_right = 673.473
 margin_bottom = 657.389
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
+expand = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 encounter = ExtResource( 2 )
 
-[node name="WaterLyna" parent="." instance=ExtResource( 1 )]
-margin_left = 393.161
-margin_top = 327.0
-margin_right = 528.161
-margin_bottom = 456.0
+[node name="WaterLyna" type="TextureButton" parent="." index="3" instance=ExtResource( 1 )]
+margin_left = 371.804
+margin_top = 297.633
+margin_right = 506.804
+margin_bottom = 426.633
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
+expand = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 encounter = ExtResource( 11 )
 
-[node name="StoneEaters" parent="." instance=ExtResource( 1 )]
-margin_left = 162.161
-margin_top = 264.0
-margin_right = 297.161
-margin_bottom = 393.0
+[node name="StoneEaters" type="TextureButton" parent="." index="4" instance=ExtResource( 1 )]
+margin_left = 148.813
+margin_top = 242.643
+margin_right = 283.813
+margin_bottom = 371.643
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
+expand = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 encounter = ExtResource( 12 )
 
-[node name="Redmouth" parent="." instance=ExtResource( 1 )]
-margin_left = 234.161
-margin_top = 26.0
-margin_right = 369.161
-margin_bottom = 155.0
+[node name="Redmouth" type="TextureButton" parent="." index="5" instance=ExtResource( 1 )]
+margin_left = 191.446
+margin_top = 17.991
+margin_right = 326.446
+margin_bottom = 146.991
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
+expand = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 encounter = ExtResource( 13 )
-
-[connection signal="pressed" from="UIMap/WorldMapButton" to="." method="gotoWorldMap"]
-[connection signal="pressed" from="UIMap/EncounterScreen/StartButton" to="." method="gotoEncounter"]
-[connection signal="pressed" from="UIMap/EncounterScreen/EndButton" to="." method="endLock"]
-[connection signal="pressed" from="UIMap/EncounterScreen/CloseButton" to="." method="closeEncounterScreen"]

@@ -3,8 +3,8 @@
 [ext_resource path="res://Database/Abilities/peacefulMelody.tres" type="Resource" id=1]
 [ext_resource path="res://Database/Abilities/extract.tres" type="Resource" id=2]
 [ext_resource path="res://Global/Character.gd" type="Script" id=3]
-[ext_resource path="res://SPRITES/Characters/lauu.png" type="Texture" id=4]
-[ext_resource path="res://SPRITES/Characters/lauu_face.png" type="Texture" id=5]
+[ext_resource path="res://SPRITES/Characters/Lauu/lauu.png" type="Texture" id=4]
+[ext_resource path="res://SPRITES/Characters/Lauu/face_lauu.png" type="Texture" id=5]
 [ext_resource path="res://Database/Abilities/powerChord.tres" type="Resource" id=6]
 [ext_resource path="res://Database/Abilities/miseryLovesCompany.tres" type="Resource" id=7]
 [ext_resource path="res://Global/LevelReward.gd" type="Script" id=8]
@@ -32,7 +32,7 @@ script = ExtResource( 3 )
 id = "lauu"
 nameShown = "Lauu"
 abilities = [ ExtResource( 1 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 6 ) ]
-abilityAll = [  ]
+abilityAll = [ ExtResource( 1 ), ExtResource( 6 ) ]
 inventory = [ null, null, null, null ]
 rewards = [ SubResource( 1 ), SubResource( 2 ) ]
 healthBase = 100

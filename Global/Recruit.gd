@@ -1,10 +1,8 @@
 class_name Recruit
 extends Resource
 
-export var characterName : String
-export var characterId : String
-export var icon : Texture
-export var characterSprite : Texture
+export var character : Resource
+export var lastQuestIndex : int = 1
 export(String,MULTILINE) var start = ""
 export(String,MULTILINE) var end = ""
 

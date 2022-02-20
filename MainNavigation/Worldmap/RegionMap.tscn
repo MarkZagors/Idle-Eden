@@ -1,0 +1,231 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://SPRITES/Enemies/ElarDesert/tier1str/tier1str.png" type="Texture" id=1]
+[ext_resource path="res://SPRITES/UI/WorldButtonMask.png" type="Texture" id=2]
+[ext_resource path="res://SPRITES/Backgrounds/worldmap.png" type="Texture" id=3]
+[ext_resource path="res://SPRITES/UI/ButtonLong1Hover.png" type="Texture" id=4]
+[ext_resource path="res://SPRITES/UI/ButtonLong1.png" type="Texture" id=5]
+[ext_resource path="res://MainNavigation/Worldmap/UIMap.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Regions/StartingZone.gd" type="Script" id=7]
+[ext_resource path="res://SPRITES/UI/SlotHoverl1.png" type="Texture" id=8]
+[ext_resource path="res://SPRITES/UI/SlotNormal1.png" type="Texture" id=9]
+[ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://SPRITES/UI/WorldButton.png" type="Texture" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 10 )
+
+[sub_resource type="Shader" id=6]
+code = "shader_type canvas_item;
+
+uniform sampler2D mask;
+
+void fragment() {
+	vec4 m = texture(mask,UV);
+	vec4 tex = texture(TEXTURE,UV);
+	COLOR = vec4(m*tex);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 6 )
+shader_param/mask = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 50
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 40
+font_data = ExtResource( 10 )
+
+[node name="RegionMap" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="Sprite" parent="."]
+position = Vector2( 846.967, 713 )
+scale = Vector2( 1.76876, 1.76876 )
+z_index = -4096
+texture = ExtResource( 3 )
+
+[node name="UIMap" parent="." instance=ExtResource( 6 )]
+
+[node name="WorldMapButton" type="TextureButton" parent="UIMap"]
+margin_left = 1050.0
+margin_top = 327.0
+margin_right = 1250.0
+margin_bottom = 450.0
+texture_normal = ExtResource( 9 )
+texture_hover = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UIMap/WorldMapButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+text = "World map"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EncounterScreen" type="ColorRect" parent="UIMap"]
+visible = false
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0.0745098, 0.0784314, 0.0666667, 0.615686 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Border" type="TextureRect" parent="UIMap/EncounterScreen"]
+margin_left = 338.355
+margin_top = 0.246445
+margin_right = 1000.35
+margin_bottom = 646.246
+texture = ExtResource( 11 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="UIMap/EncounterScreen/Border"]
+material = SubResource( 2 )
+margin_right = 662.0
+margin_bottom = 646.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="ColorRect" parent="UIMap/EncounterScreen"]
+margin_top = 502.627
+margin_right = 1280.0
+margin_bottom = 591.627
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameLabel" type="Label" parent="UIMap/EncounterScreen/Name"]
+margin_top = 0.200195
+margin_right = 1280.0
+margin_bottom = 94.2002
+custom_fonts/font = SubResource( 7 )
+text = "NAME"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" type="TextureButton" parent="UIMap/EncounterScreen"]
+visible = false
+margin_left = 74.0
+margin_top = 605.0
+margin_right = 1191.0
+margin_bottom = 702.0
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UIMap/EncounterScreen/StartButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 3 )
+text = "START"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EndButton" type="TextureButton" parent="UIMap/EncounterScreen"]
+visible = false
+self_modulate = Color( 1, 0.529412, 0.529412, 1 )
+margin_left = 53.0
+margin_top = 605.0
+margin_right = 1191.0
+margin_bottom = 702.0
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UIMap/EncounterScreen/EndButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 3 )
+text = "END LOCK"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseButton" type="TextureButton" parent="UIMap/EncounterScreen"]
+margin_left = 856.905
+margin_top = 35.3553
+margin_right = 960.905
+margin_bottom = 139.355
+texture_normal = ExtResource( 9 )
+texture_hover = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UIMap/EncounterScreen/CloseButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 4 )
+text = "X"
+align = 1
+valign = 1
+
+[node name="Difficulty" type="ColorRect" parent="UIMap/EncounterScreen"]
+margin_left = 269.0
+margin_top = 432.0
+margin_right = 1033.0
+margin_bottom = 495.0
+color = Color( 0.0627451, 0.0588235, 0.0588235, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DifficultyLabel" type="Label" parent="UIMap/EncounterScreen/Difficulty"]
+margin_left = -216.0
+margin_right = 975.0
+margin_bottom = 63.0
+custom_fonts/font = SubResource( 5 )
+text = "Difficulty : 1"
+align = 1
+valign = 1
+
+[connection signal="pressed" from="UIMap/WorldMapButton" to="." method="gotoWorldMap"]
+[connection signal="pressed" from="UIMap/EncounterScreen/StartButton" to="." method="gotoEncounter"]
+[connection signal="pressed" from="UIMap/EncounterScreen/EndButton" to="." method="endLock"]
+[connection signal="pressed" from="UIMap/EncounterScreen/CloseButton" to="." method="closeEncounterScreen"]

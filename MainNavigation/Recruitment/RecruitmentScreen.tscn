@@ -1,10 +1,12 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://MainNavigation/Recruitment/RecruitmentScreen.gd" type="Script" id=1]
-[ext_resource path="res://SPRITES/UI/shadeUIHover.png" type="Texture" id=3]
+[ext_resource path="res://SPRITES/UI/ButtonLong1Hover.png" type="Texture" id=2]
+[ext_resource path="res://SPRITES/UI/ButtonLong1.png" type="Texture" id=3]
 [ext_resource path="res://SPRITES/UI/recruitshadeUI.png" type="Texture" id=4]
 [ext_resource path="res://SPRITES/UI/shadeUI.png" type="Texture" id=5]
 [ext_resource path="res://SPRITES/UI/SlotHoverl1.png" type="Texture" id=6]
+[ext_resource path="res://SPRITES/UI/shadeUIHover.png" type="Texture" id=7]
 [ext_resource path="res://Fonts/Cinzel-Regular.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://SPRITES/UI/SlotNormal1.png" type="Texture" id=10]
 
@@ -20,7 +22,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/color = Color( 0.247059, 0.768627, 0.278431, 0 )
+shader_param/color = Color( 0.996078, 0.698039, 0.278431, 1 )
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -36,11 +38,11 @@ shader = SubResource( 3 )
 size = 50
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=6]
 size = 35
 font_data = ExtResource( 8 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 resource_name = "Fade"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:percent_visible")
@@ -55,7 +57,7 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=8]
 size = 24
 font_data = ExtResource( 8 )
 
@@ -90,10 +92,9 @@ __meta__ = {
 }
 
 [node name="CharacterSprite" type="TextureRect" parent="BG"]
-margin_left = -179.0
-margin_top = 17.0
-margin_right = 524.0
-margin_bottom = 826.0
+margin_left = -193.126
+margin_right = 609.874
+margin_bottom = 783.0
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -127,7 +128,7 @@ margin_left = 441.0
 margin_top = 115.0
 margin_right = 1250.0
 margin_bottom = 480.0
-custom_fonts/normal_font = SubResource( 7 )
+custom_fonts/normal_font = SubResource( 6 )
 visible_characters = 0
 percent_visible = 0.0
 text = "DDSFH JJ DHFKDSKF JHDKSJ FHKSDJF HKDSJ HFSKDJ FHKD SJFHSDK JFH"
@@ -136,7 +137,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Text"]
-anims/Fade = SubResource( 8 )
+anims/Fade = SubResource( 7 )
 
 [node name="BackButton" type="TextureButton" parent="."]
 margin_left = 1050.0
@@ -154,7 +155,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="BackButton"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 text = "Back"
 align = 1
 valign = 1
@@ -177,7 +178,7 @@ margin_top = 480.0
 margin_right = 1038.0
 margin_bottom = 680.0
 texture_normal = ExtResource( 5 )
-texture_hover = ExtResource( 3 )
+texture_hover = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -198,7 +199,7 @@ margin_top = 480.0
 margin_right = 1038.0
 margin_bottom = 680.0
 texture_normal = ExtResource( 5 )
-texture_hover = ExtResource( 3 )
+texture_hover = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -219,7 +220,7 @@ margin_top = 480.0
 margin_right = 1038.0
 margin_bottom = 680.0
 texture_normal = ExtResource( 4 )
-texture_hover = ExtResource( 3 )
+texture_hover = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -233,5 +234,66 @@ text = "RECRUIT"
 align = 1
 valign = 1
 
+[node name="GotScreen" type="ColorRect" parent="."]
+visible = false
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0, 0, 0, 0.980392 )
+
+[node name="Sep" type="ColorRect" parent="GotScreen"]
+margin_top = 248.0
+margin_right = 1280.0
+margin_bottom = 372.0
+color = Color( 0.996078, 0.905882, 0.172549, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="TextureRect" parent="GotScreen"]
+margin_left = 405.081
+margin_top = 88.0
+margin_right = 892.081
+margin_bottom = 531.0
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ContinueButton" type="TextureButton" parent="GotScreen"]
+margin_left = 350.714
+margin_top = 554.0
+margin_right = 959.714
+margin_bottom = 680.0
+texture_normal = ExtResource( 3 )
+texture_hover = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GotScreen/ContinueButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 9 )
+text = "CONTINUE"
+align = 1
+valign = 1
+
+[node name="Name" type="Label" parent="GotScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 17.0
+margin_bottom = -632.0
+custom_fonts/font = SubResource( 9 )
+text = "GUUL RECRUITED"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="BackButton" to="." method="backButton"]
 [connection signal="pressed" from="NextButton" to="." method="nextButton"]
+[connection signal="pressed" from="TurnInButton" to="." method="turnIn"]
+[connection signal="pressed" from="RecruitButton" to="." method="recruitButton"]
+[connection signal="pressed" from="GotScreen/ContinueButton" to="." method="continueToChooseScreen"]

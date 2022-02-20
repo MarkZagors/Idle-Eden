@@ -487,8 +487,9 @@ __meta__ = {
 
 [node name="StatsButton" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-margin_right = 498.0
-margin_bottom = 720.0
+margin_left = -162.029
+margin_right = 585.971
+margin_bottom = 749.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

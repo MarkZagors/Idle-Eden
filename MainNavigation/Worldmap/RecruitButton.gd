@@ -3,7 +3,7 @@ extends TextureButton
 export var recruitment : Resource
 
 func _ready():
-	get_node("IconContainer/TextureRect").texture = recruitment.icon
+	get_node("IconContainer/TextureRect").texture = recruitment.character.spriteFace
 
 func gotoRecruit():
 	Controller.transferRecruit = recruitment
