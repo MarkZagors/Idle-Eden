@@ -1,7 +1,7 @@
 extends Control
 
 func backToMain() -> void:
-	var _err = get_tree().change_scene("res://MainNavigation/WorldMap/WorldMap.tscn")
+	Controller.changeScene("current")
 
 func gotoCharacter() -> void:
 	var _err = get_tree().change_scene("res://MainNavigation/CharacterChooseScreen/CharacterChooseScreen.tscn")

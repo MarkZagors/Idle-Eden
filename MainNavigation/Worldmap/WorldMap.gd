@@ -5,6 +5,7 @@ func _ready():
 
 func gotoArea(_viewport, event, _shape_idx, gotoScene):
 	if event is InputEventMouseButton and event.pressed:
+		Controller.currentRegion = gotoScene
 		var _err = get_tree().change_scene("res://Regions/"+ gotoScene +".tscn")
 
 func enterArea(buttonName):

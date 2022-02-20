@@ -1,13 +1,15 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://Global/Encounter.gd" type="Script" id=1]
 [ext_resource path="res://Global/Drop.gd" type="Script" id=2]
 [ext_resource path="res://Database/Enemies/Lowlands/raxFighter.tres" type="Resource" id=3]
 [ext_resource path="res://SPRITES/Enemies/Lowlands/tier2dex/face_tier2dex.png" type="Texture" id=4]
 [ext_resource path="res://SPRITES/Enemies/Lowlands/tier2dex/tier2dex.png" type="Texture" id=5]
+[ext_resource path="res://Database/Items/Resources/Lowlands/blueleafLog.tres" type="Resource" id=6]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
+item = ExtResource( 6 )
 ammount = 1
 chance = 1.0
 extraDrop = 0

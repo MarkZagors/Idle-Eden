@@ -16,6 +16,8 @@ var transferCharacter : Character = null
 var transferEncounter : Encounter = null
 var transferRecruit : Recruit = null
 
+var currentRegion : String = "WorldMap"
+
 var questCompletion = {
 	"grunk" : 0,
 	"guul" : 0,
@@ -109,6 +111,14 @@ func endLock(lock : Lock) -> void:
 				charactersBusyIDs.erase(characterID)
 			activeLocks.erase(lockActive)
 			break
+
+func changeScene(region: String):
+	if region == "current":
+		region = currentRegion
+	if region == "WorldMap":
+		var _err = get_tree().change_scene("res://MainNavigation/Worldmap/WorldMap.tscn")
+	else:
+		var _err = get_tree().change_scene("res://Regions/" + region + ".tscn")
 
 func findCharacter(lookingID : String) -> Character:
 	for ch in characters:

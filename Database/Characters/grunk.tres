@@ -1,14 +1,14 @@
 [gd_resource type="Resource" load_steps=12 format=2]
 
-[ext_resource path="res://Database/Abilities/poisionNail.tres" type="Resource" id=1]
-[ext_resource path="res://Database/Abilities/extract.tres" type="Resource" id=2]
+[ext_resource path="res://Database/Abilities/Guul/poisionNail.tres" type="Resource" id=1]
+[ext_resource path="res://Database/Abilities/Guul/extract.tres" type="Resource" id=2]
 [ext_resource path="res://Global/Character.gd" type="Script" id=3]
 [ext_resource path="res://SPRITES/Characters/Grunk/face_grunk.png" type="Texture" id=4]
 [ext_resource path="res://SPRITES/Characters/Grunk/grunk.png" type="Texture" id=5]
-[ext_resource path="res://Database/Abilities/miseryLovesCompany.tres" type="Resource" id=7]
+[ext_resource path="res://Database/Abilities/Guul/miseryLovesCompany.tres" type="Resource" id=7]
 [ext_resource path="res://Global/LevelReward.gd" type="Script" id=8]
-[ext_resource path="res://SPRITES/Abilities/MiseryLovesCompany.png" type="Texture" id=9]
-[ext_resource path="res://SPRITES/Abilities/Extract.png" type="Texture" id=10]
+[ext_resource path="res://SPRITES/Abilities/Guul/MiseryLovesCompany.png" type="Texture" id=9]
+[ext_resource path="res://SPRITES/Abilities/Guul/Extract.png" type="Texture" id=10]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 8 )

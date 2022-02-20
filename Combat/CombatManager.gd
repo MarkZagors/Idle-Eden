@@ -34,7 +34,7 @@ func _enter_tree():
 	group_characters = get_node(Path_group_characters)
 
 func exit():
-	var _err = get_tree().change_scene("res://MainNavigation/WorldMap/WorldMap.tscn")
+	Controller.changeScene("current")
 	for ch in characters:
 		if ch != null:
 			Controller.charactersAvailableIDs.append(ch.id)
@@ -42,7 +42,7 @@ func exit():
 	pass
 
 func lock() -> void:
-	var _err = get_tree().change_scene("res://MainNavigation/WorldMap/WorldMap.tscn")
+	Controller.changeScene("current")
 	var characterIds = []
 	for character in characters:
 		if character != null:

@@ -56,7 +56,7 @@ func showQuest(text : String, showItems : bool = false):
 			get_node("TurnInButton").visible = true
 
 func backButton():
-	var _err = get_tree().change_scene("res://MainNavigation/Worldmap/WorldMap.tscn")
+	Controller.changeScene("current")
 
 func nextButton():
 	Controller.questCompletion[characterID] += 1

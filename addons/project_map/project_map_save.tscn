@@ -1,0 +1,322 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://addons/project_map/project_map.gd" type="Script" id=1]
+[ext_resource path="res://addons/project_map/pm_file_node.gd" type="Script" id=2]
+[ext_resource path="res://addons/project_map/node_selected.stylebox" type="StyleBox" id=3]
+[ext_resource path="res://addons/project_map/node.stylebox" type="StyleBox" id=4]
+[ext_resource path="res://addons/project_map/pm_file_node.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/project_map/pm_group_node.gd" type="Script" id=6]
+[ext_resource path="res://addons/project_map/group.stylebox" type="StyleBox" id=7]
+[ext_resource path="res://addons/project_map/group_selected.stylebox" type="StyleBox" id=8]
+[ext_resource path="res://addons/project_map/pm_group_node.tscn" type="PackedScene" id=9]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.2, 0.231373, 0.309804, 1 )
+
+[node name="ProjectMap" type="GraphEdit"]
+visible = false
+margin_right = 1467.0
+margin_bottom = 932.0
+rect_min_size = Vector2( 500, 500 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/bg = SubResource( 1 )
+scroll_offset = Vector2( 0, -1035 )
+snap_distance = 32
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="GroupNode4" type="GraphNode" parent="." instance=ExtResource( 9 )]
+margin_left = 544.0
+margin_top = 235.0
+margin_right = 672.0
+margin_bottom = 395.0
+rect_min_size = Vector2( 128, 160 )
+mouse_filter = 1
+custom_styles/commentfocus = ExtResource( 8 )
+custom_styles/comment = ExtResource( 7 )
+offset = Vector2( 544, -800 )
+resizable = true
+comment = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+group_name = "Sprites"
+
+[node name="GroupNode5" type="GraphNode" parent="." instance=ExtResource( 9 )]
+margin_left = 736.0
+margin_top = 235.0
+margin_right = 868.0
+margin_bottom = 395.0
+rect_min_size = Vector2( 128, 160 )
+mouse_filter = 1
+custom_styles/commentfocus = ExtResource( 8 )
+custom_styles/comment = ExtResource( 7 )
+offset = Vector2( 736, -800 )
+resizable = true
+selected = true
+comment = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+group_name = "Encounters"
+
+[node name="GroupNode3" type="GraphNode" parent="." instance=ExtResource( 9 )]
+margin_left = 352.0
+margin_top = 235.0
+margin_right = 471.0
+margin_bottom = 395.0
+rect_min_size = Vector2( 96, 160 )
+mouse_filter = 1
+custom_styles/commentfocus = ExtResource( 8 )
+custom_styles/comment = ExtResource( 7 )
+offset = Vector2( 352, -800 )
+resizable = true
+selected = true
+comment = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+group_name = "Database"
+
+[node name="FileNode11" type="GraphNode" parent="." instance=ExtResource( 5 )]
+margin_left = 544.0
+margin_top = 267.0
+margin_right = 656.0
+margin_bottom = 299.0
+mouse_filter = 1
+custom_styles/frame = ExtResource( 4 )
+custom_styles/selectedframe = ExtResource( 3 )
+custom_constants/port_offset = 0
+offset = Vector2( 544, -768 )
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+path = "res://SPRITES/Enemies/ElarDesert/"
+resource_type = 4
+icon_class = "Folder"
+
+[node name="FileNode8" type="GraphNode" parent="." instance=ExtResource( 5 )]
+margin_left = 352.0
+margin_top = 267.0
+margin_right = 464.0
+margin_bottom = 299.0
+mouse_filter = 1
+custom_styles/frame = ExtResource( 4 )
+custom_styles/selectedframe = ExtResource( 3 )
+custom_constants/port_offset = 0
+offset = Vector2( 352, -768 )
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+path = "res://Database/Enemies/ElarDesert/"
+resource_type = 4
+icon_class = "Folder"
+
+[node name="FileNode9" type="GraphNode" parent="." instance=ExtResource( 5 )]
+margin_left = 352.0
+margin_top = 299.0
+margin_right = 457.0
+margin_bottom = 331.0
+mouse_filter = 1
+custom_styles/frame = ExtResource( 4 )
+custom_styles/selectedframe = ExtResource( 3 )
+custom_constants/port_offset = 0
+offset = Vector2( 352, -736 )
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+path = "res://Database/Enemies/Lowlands/"
+resource_type = 4
+icon_class = "Folder"
+
+[node name="FileNode10" type="GraphNode" parent="." instance=ExtResource( 5 )]
+margin_left = 352.0
+margin_top = 331.0
+margin_right = 458.0
+margin_bottom = 363.0
+mouse_filter = 1
+custom_styles/frame = ExtResource( 4 )
+custom_styles/selectedframe = ExtResource( 3 )
+custom_constants/port_offset = 0
+offset = Vector2( 352, -704 )
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+path = "res://Database/Enemies/Owlshore/"
+resource_type = 4
+icon_class = "Folder"
+
+[node name="FileNode12" type="GraphNode" parent="." instance=ExtResource( 5 )]
+margin_left = 544.0
+margin_top = 299.0
+margin_right = 649.0
+margin_bottom = 331.0
+mouse_filter = 1
+custom_styles/frame = ExtResource( 4 )
+custom_styles/selectedframe = ExtResource( 3 )
+custom_constants/port_offset = 0
+offset = Vector2( 544, -736 )
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+path = "res://SPRITES/Enemies/Lowlands/"
+resource_type = 4
+icon_class = "Folder"
+
+[node name="FileNode13" type="GraphNode" parent="." instance=ExtResource( 5 )]
+margin_left = 544.0
+margin_top = 331.0
+margin_right = 650.0
+margin_bottom = 363.0
+mouse_filter = 1
+custom_styles/frame = ExtResource( 4 )
+custom_styles/selectedframe = ExtResource( 3 )
+custom_constants/port_offset = 0
+offset = Vector2( 544, -704 )
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+path = "res://SPRITES/Enemies/Owlshore/"
+resource_type = 4
+icon_class = "Folder"
+
+[node name="FileNode14" type="GraphNode" parent="." instance=ExtResource( 5 )]
+margin_left = 736.0
+margin_top = 267.0
+margin_right = 848.0
+margin_bottom = 299.0
+mouse_filter = 1
+custom_styles/frame = ExtResource( 4 )
+custom_styles/selectedframe = ExtResource( 3 )
+custom_constants/port_offset = 0
+offset = Vector2( 736, -768 )
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+path = "res://Database/Encounters/ElarDesert/"
+resource_type = 4
+icon_class = "Folder"
+
+[node name="FileNode15" type="GraphNode" parent="." instance=ExtResource( 5 )]
+margin_left = 736.0
+margin_top = 299.0
+margin_right = 841.0
+margin_bottom = 331.0
+mouse_filter = 1
+custom_styles/frame = ExtResource( 4 )
+custom_styles/selectedframe = ExtResource( 3 )
+custom_constants/port_offset = 0
+offset = Vector2( 736, -736 )
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+path = "res://Database/Encounters/Lowlands/"
+resource_type = 4
+icon_class = "Folder"
+
+[node name="FileNode16" type="GraphNode" parent="." instance=ExtResource( 5 )]
+margin_left = 736.0
+margin_top = 331.0
+margin_right = 842.0
+margin_bottom = 363.0
+mouse_filter = 1
+custom_styles/frame = ExtResource( 4 )
+custom_styles/selectedframe = ExtResource( 3 )
+custom_constants/port_offset = 0
+offset = Vector2( 736, -704 )
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+path = "res://Database/Encounters/Owlshore/"
+resource_type = 4
+icon_class = "Folder"
+
+[connection signal="delete_nodes_request" from="." to="." method="_on_GraphEdit_delete_nodes_request"]

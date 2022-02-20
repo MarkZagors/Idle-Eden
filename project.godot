@@ -14,20 +14,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Global/Ability.gd"
 }, {
-"base": "LineEdit",
-"class": "Cell",
+"base": "Control",
+"class": "CSVEditor",
 "language": "GDScript",
-"path": "res://addons/gd-sheets/scripts/cell.gd"
+"path": "res://addons/file-editor/scripts/CSVEditor.gd"
 }, {
 "base": "Resource",
 "class": "Character",
 "language": "GDScript",
 "path": "res://Global/Character.gd"
 }, {
+"base": "GraphNode",
+"class": "CommonNode",
+"language": "GDScript",
+"path": "res://addons/project_map/pm_common_node.gd"
+}, {
 "base": "Resource",
 "class": "Drop",
 "language": "GDScript",
 "path": "res://Global/Drop.gd"
+}, {
+"base": "EditorProperty",
+"class": "EC_CreateCategory",
+"language": "GDScript",
+"path": "res://addons/export_categories/ec_create_category.gd"
 }, {
 "base": "Resource",
 "class": "Encounter",
@@ -39,10 +49,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Global/Enemy.gd"
 }, {
-"base": "Reference",
-"class": "GDSheets",
+"base": "HTTPRequest",
+"class": "GoogleTranslateAPI",
 "language": "GDScript",
-"path": "res://addons/gd-sheets/scripts/GDSheets.gd"
+"path": "res://addons/file-editor/scripts/GoogleTranslatorAPI.gd"
 }, {
 "base": "Resource",
 "class": "Item",
@@ -68,32 +78,22 @@ _global_script_classes=[ {
 "class": "Recruit",
 "language": "GDScript",
 "path": "res://Global/Recruit.gd"
-}, {
-"base": "Resource",
-"class": "SheetsDataDocument",
-"language": "GDScript",
-"path": "res://addons/gd-sheets/data_document.gd"
-}, {
-"base": "Reference",
-"class": "SheetsUtility",
-"language": "GDScript",
-"path": "res://addons/gd-sheets/scripts/utility.gd"
 } ]
 _global_script_class_icons={
 "Ability": "",
-"Cell": "",
+"CSVEditor": "",
 "Character": "",
+"CommonNode": "",
 "Drop": "",
+"EC_CreateCategory": "",
 "Encounter": "",
 "Enemy": "",
-"GDSheets": "",
+"GoogleTranslateAPI": "",
 "Item": "",
 "LevelReward": "",
 "Lock": "",
 "Recipe": "",
-"Recruit": "",
-"SheetsDataDocument": "",
-"SheetsUtility": ""
+"Recruit": ""
 }
 
 [application]
@@ -107,6 +107,7 @@ config/icon="res://SPRITES/zMisc/icon.png"
 Controller="*res://Global/Controller.gd"
 SavingManager="*res://Global/SavingManager.gd"
 LoadedData="*res://Global/LoadedData.gd"
+LastOpenedFiles="*res://addons/file-editor/scripts/LastOpenedFiles.gd"
 
 [display]
 
@@ -117,7 +118,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/gd-sheets/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/CodeSnippetPopup/plugin.cfg", "res://addons/export_categories/plugin.cfg", "res://addons/file-editor/plugin.cfg", "res://addons/notes_tab/plugin.cfg", "res://addons/project_map/plugin.cfg" )
 
 [global]
 
