@@ -6,10 +6,10 @@
 
 [resource]
 script = ExtResource( 1 )
-id = "peacefulMelody"
-nameShown = "Peaceful Melody"
+id = "energeticMelody"
+nameShown = "Energetic Melody"
 description = "[color=#ffe45e]Melody[/color]
-Heal 10 to all allies
+Increase dextirity of all allies by 10 for 3 seconds
 
 If the next ability is a [color=#ffe45e]Chord[/color], it is 100% more effective."
 icon = ExtResource( 3 )

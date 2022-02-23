@@ -20,7 +20,9 @@ export var healthBase : int = 10
 export var strBase : int = 0
 export var dexBase : int = 0
 export var intBase : int = 0
-export var speed : float = 0
+export var armorBase : float = 1.0
+export var magicDefenceBase : float = 1.0
+export var speed : float = 1.0
 
 #LEVEL
 export var level : int = 1
@@ -50,6 +52,7 @@ var priority : int = 0
 var dead : bool = false
 var position : int = -1
 var effects = []
+var statBuffs = [] #{"stat": STAT.DEX, "ammount": 10, "time": 3.0}
 
 #HIDDEN STATS
 var healthMax : int = 10
@@ -57,6 +60,8 @@ var healthCurrent : int = 10
 var strCurrent : int = 0
 var dexCurrent: int = 0
 var intCurrent : int = 0
+var armorCurrent : float = 1.0
+var magicDefenceCurrent : float = 1.0
 
 func getXp(ammount : int) -> void:
 	xpCurrent += ammount

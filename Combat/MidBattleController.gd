@@ -45,6 +45,9 @@ func _process(delta):
 		ATTACKING.tickDamage()
 		ATTACKING.uiUpdateHealth()
 		tickTimeCurrent = 0.0
+		
+		#update charcater buff times
+		ATTACKING.updateEffectTimer()
 
 func startBattle() -> void:
 	set_process(true)

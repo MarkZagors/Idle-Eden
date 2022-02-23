@@ -6,10 +6,11 @@
 
 [resource]
 script = ExtResource( 1 )
-id = "poisonedNail"
-nameShown = "Poisoned Nail"
-description = "Deal [color=#96f783]1x dex[/color] physical damage
-Apply [color=#96f783]0.2x dex[/color] posion stacks"
+id = "poisionOverflow"
+nameShown = "Poision Overflow"
+description = "[color=#ffe45e]unique[/color]
+Deal [color=#96f783]1x dex[/color] physical damage
+If the enemy has 200 or more posion stacks, apply 200 poision stacks"
 icon = ExtResource( 3 )
 hitSprite = ExtResource( 2 )
-unique = false
+unique = true

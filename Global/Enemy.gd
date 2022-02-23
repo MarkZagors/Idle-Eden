@@ -7,6 +7,8 @@ export var id : String = "NULL"
 #STATS
 export var healthMax : int = 10
 export var damage : int = 10
+export var armor : int = 1
+export var magicDefence : int = 1
 export var speed : float = 1.0
 
 #ABILITIES

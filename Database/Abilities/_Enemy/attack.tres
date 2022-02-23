@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource( 1 )
-id = "bite"
+id = "attack"
 nameShown = "NULL"
 description = "NULL"
 hitSprite = ExtResource( 2 )

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://Global/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://Database/Abilities/_Enemy/bite.tres" type="Resource" id=2]
+[ext_resource path="res://Database/Abilities/_Enemy/attack.tres" type="Resource" id=2]
 [ext_resource path="res://SPRITES/Enemies/Lowlands/tier4dex/tier4dex.png" type="Texture" id=3]
 
 [resource]

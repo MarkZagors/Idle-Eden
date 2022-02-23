@@ -9,7 +9,7 @@ script = ExtResource( 1 )
 id = "extract"
 nameShown = "Extract"
 description = "[color=#ffe45e]unique[/color]
-Deal 3 damage for each stack of poison on the enemy"
+Deal 2 physical damage for each stack of poison on the enemy"
 icon = ExtResource( 3 )
 hitSprite = ExtResource( 2 )
-unique = false
+unique = true

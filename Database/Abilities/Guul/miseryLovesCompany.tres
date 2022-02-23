@@ -9,7 +9,7 @@ script = ExtResource( 1 )
 id = "miseryLovesCompany"
 nameShown = "Misery Loves Company"
 description = "[color=#ffe45e]unique[/color]
-Deal [color=#96f783]0.5x dex[/color] damage
+Deal [color=#96f783]0.5x dex[/color] physical damage
 
 if you are below 50% health, apply [color=#96f783]1.0x dex[/color] poison stacks"
 icon = ExtResource( 3 )

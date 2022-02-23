@@ -18,6 +18,8 @@ export var healthBase : int = 0
 export var strBase : int = 0
 export var dexBase : int = 0
 export var intBase : int = 0
+export var armorBase : float = 0.0
+export var magicDefenceBase : float = 0.0
 
 #AMMOUNT
 export var ammount : int = 0
@@ -32,4 +34,8 @@ func fullDescription() -> String:
 		text += "\nDextirity: +" + str(dexBase)
 	if intBase > 0:
 		text += "\nIntelligence: +" + str(intBase)
+	if armorBase > 0:
+		text += "\nArmor: +" + str(armorBase)
+	if magicDefenceBase > 0:
+		text += "\nMagic Defence: +" + str(magicDefenceBase)
 	return text

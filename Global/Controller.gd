@@ -132,15 +132,7 @@ func setupActiveCharacters() -> void:
 
 func addStartingCharacter() -> void:
 	var guul : Character = load("res://Database/Characters/guul.tres")
-	guul.abilityAll.append(load("res://Database/Abilities/poisionNail.tres"))
-	characters.append(guul)
-	charactersAvailableIDs.append(guul.id)
-	
-#	var lauu : Character = load("res://Database/Characters/lauu.tres")
-#	lauu.abilityAll.append(load("res://Database/Abilities/peacefulMelody.tres"))
-#	lauu.abilityAll.append(load("res://Database/Abilities/powerChord.tres"))
-#	characters.append(lauu)
-#	charactersAvailableIDs.append(lauu.id)
+	addCharacter(guul)
 
 func addCharacter(character : Character) -> void:
 	characters.append(character)

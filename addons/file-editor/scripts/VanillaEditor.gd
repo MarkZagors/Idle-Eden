@@ -72,6 +72,7 @@ func color_region(filextension : String): # -----------------------------> dal m
 			TextEditor.add_color_region("[img]","[/img]",Color8(255,204,153,255),false)
 			TextEditor.add_color_region("[center]","[/center]",Color8(175,238,238,255),false)
 			TextEditor.add_color_region("[right]","[/right]",Color8(135,206,235,255),false)
+#			TextEditor.add_color_region("[","]",Color8(153,204,255,255),false)
 		"html":
 			TextEditor.add_color_region("<b>","</b>",Color8(153,153,255,255),false)
 			TextEditor.add_color_region("<i>","</i>",Color8(153,255,153,255),false)

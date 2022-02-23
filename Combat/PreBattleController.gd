@@ -61,6 +61,8 @@ func pressChooseCharacterSlot(character : Character) -> void:
 	character.strCurrent = character.strBase
 	character.dexCurrent = character.dexBase
 	character.intCurrent = character.intBase
+	character.armorCurrent = character.armorBase
+	character.magicDefenceCurrent = character.magicDefenceBase
 	
 	for i in range(character.inventorySlotCount):
 		if character.inventory[i] == null:
@@ -70,6 +72,8 @@ func pressChooseCharacterSlot(character : Character) -> void:
 		character.strCurrent += item.strBase
 		character.dexCurrent += item.dexBase
 		character.intCurrent += item.intBase
+		character.armorCurrent += item.armorBase
+		character.magicDefenceCurrent += item.magicDefenceBase
 	
 	character.healthCurrent = character.healthMax
 	character.cooldownAbilityTotal = 1.0 / character.speed

@@ -14,4 +14,6 @@ healthBase = 0
 strBase = 0
 dexBase = 0
 intBase = 10
+armorBase = 0.0
+magicDefenceBase = 0.0
 ammount = 0
